@@ -1,0 +1,56 @@
+  body {
+ /*   padding-top: 56px; */
+    /* Margin bottom for footer height */
+    margin-bottom: 60px;
+  }
+
+   .navbar { height: 4rem; background-color: #101060; padding: .5em 0 1em; }
+
+    
+  /* Add padding to the right side of navbar. */
+  .navbar-section { padding-right: 2rem;}
+
+  .navbar .navbar-brand {
+    font-size: 1.5rem;
+    text-decoration: none;
+    margin-left: 3rem;
+  }
+
+  .btn.btn-link { color: lightgray; background-color: #101060; font-size: 1.0em;}
+     
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (max-width: 1024px) {
+  /* For smaller devices: */
+  [class*="col-"] {
+    width: 100%;
+  }
+
+}
+
+p {
+  color: black;
+}
+
+a:link {
+        color: blue;
+        text-decoration: none;
+        }
+a:visited {
+  color:  blue;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li + li
+{
+  margin-top: 0px;
+}
