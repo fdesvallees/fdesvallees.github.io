@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Testing with ScopeToSky - TeenAstro Linux</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Testing with ScopeToSky";
+    var mkdocs_page_input_path = "scopetosky.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> TeenAstro Linux</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../firmware/">Firmware</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../config/">Utilities</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../indi/">INDI driver</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ekos/">Ekos</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Testing with ScopeToSky</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-it-for-testing-teenastro-firmware">How to use it for testing TeenAstro Firmware</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#program-design">Program design</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installing">Installing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running-the-program">Running the program</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#sample-yaml-configuration-file">Sample YAML configuration file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-of-test-case-list">Example of test case list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#results">Results</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#examples-of-complete-test">Examples of complete test</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#next-steps">Next steps</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#list-of-scopetosky-variables-that-can-be-selected-for-output">List of ScopeToSky variables that can be selected for output</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">TeenAstro Linux</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Testing with ScopeToSky</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="scope-to-sky-and-teenastro">Scope to Sky and TeenAstro</h1>
+<p>Mel Bartel’s <a href="https://www.bbastrodesigns.com/scopeToSky.html">Scope to Sky calculator</a>, written in Javascript with an HTML user interface, has several functions:<br />
+- Given sky coordinates (either Right Ascension or Hour Angle, and Declination), compute a telescope’s axis positions. <br />
+- Given a telescope’s axis positions, compute the corresponding sky coordinates.<br />
+- For a telescope with encoders, display encoder values for a given telescope position or compute telescope position according to the encoder values.  </p>
+<p>The configuration includes:<br />
+- Setup site, time and date, time zone<br />
+- equatorial and altazimuth mounts<br />
+- Correction for precession, nutation and annual aberration<br />
+- Correction for refraction<br />
+- For equatorial mounts, set pier side (mount flip)<br />
+- Conversion styles (trigonometry or matrix)<br />
+- Tracking rates algorithms (method for computing the rates)<br />
+- Encoder gears</p>
+<p>Notes: <br />
+- The primary and secondary axes are easy to understand (RA/Dec for eq mounts, Az/Alt for Altaz mounts). The third axis is the rotation of the tube relative to the sky. For equatorial mounts, this is always zero. <br />
+- The “alignment” options include a third option called “star”. <strong>What does this do?</strong>  <br />
+- The lower panel, labeled Matrix coordinate conversion, allows setting 2 or 3 alignment positions (each with RA, Dec, Az, Alt and sidereal time) and telescope fabrication errors (misalignments). <strong>How does this work?</strong>  </p>
+<h2 id="how-to-use-it-for-testing-teenastro-firmware">How to use it for testing TeenAstro Firmware</h2>
+<p>We generate a set of test cases (sky positions, site, time etc.), use ScopeToSky to compute axes positions for each, and use them as Goto targets for a TeenAstro. We read the stepper counts for both axes, normalize them back to degrees, and compare with the computed values.<br />
+Of course this tests only the software part, up to the stepper control signals. Any errors with the motors (stalling etc.) or the mount (backlash, orthogonality etc.) will not be detected.<br />
+Astro-Physics has an <a href="https://astro-physics.info/tech_support/mounts/keypad/keypad-v412.pdf">excellent document</a> that explains how to check the mount orthogonality</p>
+<h2 id="program-design">Program design</h2>
+<p><img alt="" src="../diagram.png" /></p>
+<p>The original ScopeToSky runs from a web page, with a human in front of the screen. 
+For our purpose, it has been ported to run under <code>node.js</code>, from the command line. The functionality is the same, but it is now controlled via a TCP/IP socket. The commands sent by the Python program and the results sent back by ScopeToSky are encoded as a JSON stream (JavaScript Object Notation).</p>
+<p>The Python program reads configuration from 2 files, a static one (for parameters which do not change between tests) and a dynamic one (for test cases)</p>
+<p>The static configuration is coded in a YAML file, (which is more readable than JSON, but contains the same data). </p>
+<p>For the dynamic configuration, we use a CSV file with a list of test cases (one line for each). Each test case contains an arbitrary number of parameters that override the static configuration. For example we can set a different Right Ascension, Declination, pier side, site latitude etc. and get the axis positions for each.</p>
+<p>The Python program generates the parameters for each test case, sends the GOTO commands to TeenAstro. 
+When the mount stops slewing, it reads the step counts. It then send an equivalent command to ScopeToSky, receives the results, and prints out the results from both, with the differences in arc-seconds. </p>
+<h2 id="installing">Installing</h2>
+<p>Unzip the archive, install Python 3.7 or above and nodejs v8.10 or above. Install these Python packages: <code>serial</code>, <code>PySerial</code>, <code>ruamel.YAML</code> and <code>telnet</code>, and these nodejs modules: <code>yaml</code>, <code>fs</code>.</p>
+<h2 id="running-the-program">Running the program</h2>
+<p>1 - start the ScopeToSky server: change to the scopetosky root directory, run <code>node index.js</code><br />
+2 - run the Python test program: <code>python3 mainUnitTest.py [-c &lt;config_file&gt; -t &lt;testcase_file&gt;]</code>  </p>
+<p>At this time, only computeScope() and computeEquatCoords() are implemented. I don't yet understand the encoders and matrix conversions sections.</p>
+<h3 id="sample-yaml-configuration-file">Sample YAML configuration file</h3>
+<p>In this file, each line corresponds to a control in Mel Bartel’s original web page, arranged in the same sections. The <code>command</code> section describes which command is to be executed, and the fields to display. 
+The <code>output</code> section describes which internal variables we want to display. (see complete list of variables below)</p>
+<p><strong>config.yaml</strong></p>
+<pre><code>#command
+command: computeScope
+output: RA dec latitude includeRefraction primaryAxis secondaryAxis
+
+#coordinates
+RAHA: '8:00:00'
+RAorHA: 'RA'
+dec: '0:00'
+includeCorrections: false
+coordinateYear: '2000'
+
+# setup
+currentDateTime: false
+dateTime: 'Oct 10, 2020 00:00:00'
+timeZone: '2'
+latitude: '44.75'
+longitude: '5.75'
+
+# telescope
+includeRefraction: true
+alignment: 'equatorial'
+conversionStyle: 'trig'
+trackingRatesAlgorithm: 'deltaTime'
+canFlipMeridian: true
+flippedState: 'onEastSidePointingWest'
+flipped: false
+primaryAxis: '0.0'
+secondaryAxis: '0.0'
+</code></pre>
+
+<h3 id="example-of-test-case-list">Example of test case list</h3>
+<p>In this example, we move to a series of points at declination 50 degrees, and RA from 1 to 14 hr  </p>
+<p><strong>tests.csv</strong></p>
+<pre><code> RAHA;dec
+01:00:00; 50:00:00
+00:00:00; 50:00:00
+23:00:00; 50:00:00
+22:00:00; 50:00:00
+21:00:00; 50:00:00
+20:00:00; 50:00:00
+19:00:00; 50:00:00
+18:00:00; 50:00:00
+17:00:00; 50:00:00
+16:00:00; 50:00:00
+15:00:00; 50:00:00
+14:00:00; 50:00:00
+</code></pre>
+<h3 id="results">Results</h3>
+<p>Results are printed in CSV format, easy to load into a worksheet:</p>
+<pre><code>RA, Dec, computedAxis1, computedAxis2, pierSide, actualAxis1, actualAxis2, delta1, delta2,
+01:00:00,  50:00:00, 87.1529, 129.9852, E, 87.1576, 129.9873,   17,    8
+00:00:00,  50:00:00, 102.1837, 129.9772, E, 102.1880, 129.9786,   15,    5 
+23:00:00,  50:00:00, 117.2144, 129.9652, E, 117.2177, 129.9648,   12,   -1 
+22:00:00,  50:00:00, 132.2465, 129.9429, E, 132.2480, 129.9427,    5,   -1 
+21:00:00,  50:00:00, 147.2811, 129.9103, E, 147.2832, 129.9083,    8,   -7 
+20:00:00,  50:00:00, 162.3303, 129.8656, E, 162.3347, 129.8638,   16,   -7 
+19:00:00,  50:00:00, 177.4052, 129.8309, E, 177.4116, 129.8342,   23,   12 
+18:00:00,  50:00:00, 12.6972, 50.1505, W, 12.7013, 50.1503,   15,   -1,   -6
+17:00:00,  50:00:00, 27.7538, 50.1018, W, 27.7615, 50.1061,   28,   16,   -3
+16:00:00,  50:00:00, 42.7926, 50.0643, W, 42.8006, 50.0673,   29,   11,   12
+15:00:00,  50:00:00, 57.8218, 50.0377, W, 57.8317, 50.0415,   36,   14,  -11
+14:00:00,  50:00:00, 72.8521, 50.0227, W, 72.8614, 50.0254,   34,   10,  -13
+13:00:00,  50:00:00, 87.8819, 50.0128, W, 87.8917, 50.0153,   35,    9,    8
+</code></pre>
+<p>These errors can be easily plotted into a chart:</p>
+<p><img alt="" src="../pointing_errors.png" /></p>
+<h3 id="examples-of-complete-test">Examples of complete test</h3>
+<p>A small Python program (testReport.py) displays the errors in a friendly way. The length of the arrows indicates the differences in arc-seconds between computed and measured coordinates. <br />
+<strong> Note </strong>:  On a typical screen we have roughly 500 pixels for 100 degrees, or 1 pixel for 12 arc minutes. Therefore the arrows are exaggerated by a factor of 720. <br />
+TATestReport requires the following Python packages: matplotlib, numpy, pandas.   </p>
+<p><img alt="" src="../TATestReport.svg" /></p>
+<h3 id="next-steps">Next steps</h3>
+<p>Right now the test program assumes that the mount is perfectly aligned.
+The next step will be to display the effect of alignment (2 and 3-star) on the errors. <br />
+Another possibility is to use the <a href="https://rhodesmill.org/skyfield/">skyfield</a> Python library instead of ScopeToSky. It is modern and very, very precise.</p>
+<h3 id="list-of-scopetosky-variables-that-can-be-selected-for-output">List of ScopeToSky variables that can be selected for output</h3>
+<p>This is a subset of the global <code>ScopeToSkyState</code> structure. </p>
+<pre><code>RAorHA  
+RAHA 
+dec 
+HAOffset 
+JD 
+SidT 
+trackingRates 
+includeCorrections
+includeRefraction
+latitude  
+longitude
+trackingRatesAlgorithm
+coordinateYear 
+scopeAzimuth 
+scopeAltitude 
+alignment
+conversionStyle
+canFlipMeridian
+flipped
+primaryAxis
+secondaryAxis
+tertiaryAxisa
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../troubleshooting/" class="btn btn-neutral" title="Troubleshooting"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../troubleshooting/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
