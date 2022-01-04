@@ -1,0 +1,72 @@
+startPage,endPage,startDate,endDate,id
+1,24,96,96,Chapter I: The Extent Of The Empire In The Age Of The Antonines
+25,51,96,96,Chapter II: The Internal Prosperity In The Age Of The Antonines.
+52,72,96,180,Chapter III: The Constitution In The Age Of The Antonines.
+73,89,180,193,"Chapter IV: The Cruelty, Follies And Murder Of Commodus."
+90,109,193,197,Chapter V: Sale Of The Empire To Didius Julianus.
+110,144,208,235,"Chapter VI: Death Of Severus, Tyranny Of Caracalla, Usurpation Of Macrinus."
+145,168,235,248,"Chapter VII: Tyranny Of Maximin, Rebellion, Civil Wars, Death Of Maximin."
+169,185,165,240,Chapter VIII: State Of Persion And Restoration Of The Monarchy.
+186,205,248,248,Chapter IX: State Of Germany Until The Barbarians.
+206,244,248,268,"Chapter X: Emperors Decius, Gallus, Æmilianus, Valerian And Gallienus"
+245,273,245,275,"Chapter XI: Reign Of Claudius, Defeat Of The Goths."
+274,302,275,285,"Chapter XII: Reigns Of Tacitus, Probus, Carus And His Sons."
+303,340,285,313,Chapter XIII: Reign Of Diocletian And His Three Associates.
+341,381,305,324,"Chapter XIV: Six Emperors At The Same Time, Reunion Of The Empire."
+382,443,324,324,Chapter XV: Progress Of The Christian Religion.
+444,504,180,313,"Chapter XVI: Conduct Towards The Christians, From Nero To Constantine."
+505,559,300,500,Chapter XVII: Foundation Of Constantinople.
+560,597,324,353,Chapter XVIII: Character Of Constantine And His Sons.
+598,633,351,360,Chapter XIX: Constantius Sole Emperor.
+634,670,306,438,Chapter XX: Conversion Of Constantine.
+671,726,312,362,"Chapter XXI: Persecution Of Heresy, State Of The Church."
+727,755,360,361,Chapter XXII: Julian Declared Emperor.
+756,796,351,363,Chapter XXIII: Reign Of Julian.
+797,840,314,390,Chapter XXIV: The Retreat And Death Of Julian.
+841,898,343,384,"Chapter XXV: Reigns Of Jovian And Valentinian, Division Of The Empire."
+899,955,365,395,Chapter XXVI: Progress of The Huns.
+956,1000,395,397,"Chapter XXVII: Civil Wars, Reign Of Theodosius."
+1002,1025,378,420,Chapter XXVIII: Destruction Of Paganism.
+1027,1045,386,398,Chapter XXIX: Division Of Roman Empire Between Sons Of Theodosius.
+1047,1085,395,395,Chapter XXX: Revolt Of The Goths.
+1086,1148,408,449,"Chapter XXXI: Invasion Of Italy, Occupation Of Territories By Barbarians."
+1150,1179,395,1453,"Chapter XXXII: Emperors Arcadius, Eutropius, Theodosius II."
+1181,1198,423,423,Chapter XXXIII: Conquest Of Africa By The Vandals.
+1199,1224,476,476,Chapter XXXIV: Attila.
+1225,1253,419,455,Chapter XXXV: Invasion By Attila.
+1255,1301,439,490,Chapter XXXVI: Total Extinction Of The Western Empire.
+1303,1337,305,712,Chapter XXXVII: Conversion Of The Barbarians To Christianity.
+1339,1398,449,582,Chapter XXXVIII: Reign Of Clovis.
+1400,1428,455,526,Chapter XXXIX: Gothic Kingdom Of Italy.
+1430,1482,482,565,Chapter XL: Reign Of Justinian.
+1484,1540,522,620,"Chapter XLI: Conquests Of Justinian, Charact Of Balisarius."
+1542,1581,500,582,Chapter XLII: State Of The Barbaric World.
+1583,1622,531,594,"Chapter XLIII: Last Victory And Death Of Belisarius, Death Of Justinian."
+1624,1683,527,565,Chapter XLIV: Idea Of The Roman Jurisprudence.
+1685,1714,565,565,Chapter XLV: State Of Italy Under The Lombards.
+1715,1759,570,642,Chapter XLVI: Troubles In Persia.
+1761,1819,412,1632,Chapter XLVII: Ecclesiastical Discord.
+1821,1878,641,1185,Chapter XLVIII: Succession And Characters Of The Greek Emperors.
+1880,1934,726,1377,Chapter XLIX: Conquest Of Italy By The Franks.
+1936,2008,569,680,Chapter L: Description Of Arabia And Its Inhabitants.
+2010,2086,632,728,Chapter LI: Conquests By The Arabs.
+2088,2136,668,1055,Chapter LII: More Conquests By The Arabs.
+2138,2176,733,988,Chapter LIII: Fate Of The Eastern Empire.
+2178,2190,660,1200,Chapter LIV: Origin And Doctrine Of The Paulicians.
+2192,2219,640,1100,"Chapter LV: The Bulgarians, The Hungarians And The Russians."
+2221,2265,840,1204,"Chapter LVI: The Saracens, The Franks And The Normans."
+2267,2292,980,1152,Chapter LVII: The Turks.
+2294,2344,1095,1369,Chapter LVIII: The First Crusade.
+2346,2379,1091,1517,Chapter LIX: The Crusades.
+2381,2416,697,1204,Chapter LX: The Fourth Crusade.
+2418,2450,1020,1020,Chapter LXI: Partition Of The Empire By The French And Venetians.
+2451,2476,1204,1456,Chapter LXII: Greek Emperors Of Nice And Constantinople.
+2478,2498,1282,1391,Chapter LXIII: Civil Wars And The Ruin Of The Greek Empire.
+2500,2528,1206,1425,"Chapter LXIV: Moguls, Ottoman Turks."
+2530,2561,1361,1451,"Chapter LXV: Elevation Of Timour Or Tamerlane, And His Death."
+2563,2601,1339,1500,Chapter LXVI: Union Of The Greek And Latin Churches.
+2603,2623,1421,1421,Chapter LXVII: Schism Of The Greeks And Latins.
+2624,2661,1451,1481,"Chapter LXVIII: Reign Of Mahomet The Second, Extinction Of Eastern Empire."
+2663,2697,800,1500,Chapter LXIX: State Of Rome From The Twelfth Century.
+2699,2735,1304,1590,Chapter LXX: Final Settlement Of The Ecclesiastical State.
+2737,2800,1332,1590,Chapter LXXI: Prospect Of The Ruins Of Rome In The Fifteenth Century.

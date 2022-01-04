@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/adt.css" />
+    <link rel="stylesheet" href="/static/css/pikaday.css" />
+   <style>
+</style>
+  </head>
+
+<body>
+<div class="container">
+  <div class="form-group">
+  <form action="#">
+    <div class="adt-datetime">
+  
+  <div class="adt-row">
+
+  <div class="adt-box">
+    <div class="adt-row">
+    <button class="btn" onclick=incDate(1,'year')><i>&#9650;</i></button>
+    <button class="btn" onclick=incDate(1,'month')><i>&#9650;</i></button>
+    <button class="btn" onclick=incDate(1,'day')><i>&#9650;</i></button>
+    </div>
+    <br>
+    <div class="adt-row">
+    <input class="form-input type="text" size="10" id="currentDate"> </input>
+    </div>
+    <br>
+    <div class="adt-row">
+    <button class="btn" onclick=incDate(-1,'year')><i>&#9660;</i></button>
+    <button class="btn" onclick=incDate(-1,'month')><i>&#9660;</i></button>
+    <button class="btn" onclick=incDate(-1,'day')><i>&#9660;</i></button>
+    </div>
+  </div>
+
+  <div class="adt-box">
+    <div class="adt-row">
+    <button class="btn" onclick=incTime(1,'hour')><i>&#9650;</i></button>
+    <button class="btn" onclick=incTime(1,'minute')><i>&#9650;</i></button>
+    </div>
+    <br>
+    <div class="adt-row">
+    <input class="form-input" type="text" size="5" id="currentTime" disabled > </input>
+    </div>
+    <br>
+    <div class="adt-row">
+    <button class="btn" onclick=incTime(-1,'hour')><i>&#9660;</i></button>
+    <button class="btn" onclick=incTime(-1,'minute')><i>&#9660;</i></button>
+    </div>
+  </div>
+
+  <div class="adt-box">
+    <div class="adt-row">
+    <span class="adt-datetime"> Time Zone </span>
+    <br>    
+    <input class="form-input" id="timeZoneControl" type="number" min="-12" max="11" value = "1"> </input>
+    </div>
+    <div class="adt-row">
+    <span> Latitude </span>
+    <br>    
+    <input class="form-input" id="latitudeControl" type="number" min="-90" max="90" step="5" value="45"></input>
+    </div>
+    <div class="adt-row">
+    <span> Longitude </span>
+    <br>    
+    <input class="form-input"  id="longitudeControl" type="number" min="-180" max="180" value="7"></input>
+    </div>
+  </div>
+
+
+    </div>
+
+
+</div>
+      
+  </form>
+
+  <div class=adt-datetime>
+  Universal Time: <label id="universalTime"> 0 </label>
+  
+  <br>
+
+  Julian Date: <label id="julianDate"> 0 </label>
+
+  <br>
+  Local Sidereal Time: <label id="lSiderealTime"> 0 </label>
+
+  <br>
+  Local Hour Angle: <label id="hourAngle"> 0 </label>
+
+  </div>
+      </div>
+</div>
+</body>
+
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="/static/ephemeris/math.js"></script>
+<script src="/static/ephemeris/datetime.js"></script>
+<script src="/static/js/moment.min.js"></script>
+<script src="/static/js/pikaday.js"></script>
+<script>
+
+
+var latitudeControl = document.getElementById('latitudeControl');
+var longitudeControl = document.getElementById('longitudeControl');
+var timeZoneControl = document.getElementById('timeZoneControl');
+
+var datePicker = new Pikaday(
+  {   field: document.getElementById('currentDate'), 
+      position: "top right",
+      keyboardInput: "false",
+      format: 'YYYY MM DD',
+      onClose: function (){lt = moment(this.getDate());}      
+  });
+
+
+timeZoneControl.addEventListener("input", function() 
+{
+  display();
+}, false);
+
+longitudeControl.addEventListener("input", function() 
+{
+  display();
+}, false);
+
+
+var lt = moment();
+datePicker.setMoment(lt);
+document.getElementById('currentTime').value = lt.format('HH:mm');
+
+display();
+
+function incDate(num, interval)
+{
+  lt.add(num,interval);
+  datePicker.setMoment(lt);
+  display();
+}
+
+function incTime(num, interval)
+{
+  lt.add(num,interval);
+  datePicker.setMoment(lt);
+  document.getElementById('currentTime').value = lt.format('HH:mm');
+  display();
+}
+
+
+function julianDate(ut)
+{
+  return jd0(ut.year(), 1+ut.month(), ut.date()) + ((ut.hour()+ut.minute()/60)/24);     
+}
+
+
+
+
+function display()
+{
+  var tmz = parseInt(timeZoneControl.value);
+  var ut = moment(lt); 
+  ut.subtract(tmz,'hour');
+  document.getElementById('universalTime').textContent = ut.format('HH:mm');
+
+  var jd = julianDate(ut);
+  document.getElementById('julianDate').textContent = jd;
+
+  var jdg = jd0(ut.year(), 1+ut.month(), ut.date());
+  var sidereal = g_sidereal(jdg) + 1.00273790935 * (ut.hour() + ut.minute() / 60);  // at Greenwich
+
+  var gs = moment.duration(sidereal%24, 'hours')
+
+
+  var lon = parseInt(longitudeControl.value);
+  var ls = moment.duration((sidereal+(lon/15))%24, 'hours');
+
+  document.getElementById('lSiderealTime').textContent = ls.asHours();
+  document.getElementById('hourAngle').textContent = ls.asHours() * 15;
+
+}
+
+</script>

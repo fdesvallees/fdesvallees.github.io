@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Moon Distance</title>
+		<meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/spectre.min.css" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+		<style>
+      /* Scale canvas with resize attribute to full size */
+      canvas{
+          width: 100%;
+          height: 300px;
+      }
+		</style>
+
+    <script src="/static/paper/paper-full.min.js"></script>
+  </head>
+  <body>
+  <div class="form-group" id="object_selection">
+  <form action="#">
+   <select id="year" onchange="redraw(+this.value)" class="form-select">
+      <option value="2017">2017</option>
+      <option value="2018">2018</option>
+      <option value="2019">2019</option>
+      <option value="2020">2020</option>
+      <option value="2021">2021</option>
+      <option value="2022">2022</option>
+      <option value="2023">2023</option>
+    </select>
+  </form>
+</div>
+    <canvas id="canvas1" resize="true"></canvas>
+  </body>
+  <script src="/static/ephemeris/math.js"></script>
+  <script src="/static/ephemeris/util.js"></script>
+  <script src="/static/ephemeris/datetime.js"></script>
+  <script src="/static/ephemeris/moon.js"></script>
+  <script type="text/javascript">
+
+
+paper.install(window);
+
+// i is the phase angle of the Moon
+class Moon{
+  constructor(r, i)
+  {
+    this.r = r;
+    this.disk  = new Shape.Circle({radius:r, strokeColor:'black',strokeWidth:0.5});
+    var sign = (Math.sign(i))?Math.sign(i):1;
+    if ((i < -90) || (i>90))
+    {
+      var left = 'white'; var right = 'grey';    
+    }
+    else
+    {
+      var left = 'grey'; var right = 'white';
+    }
+    var cos = Math.cos(i*Math.PI / 180);
+    var r = this.r;
+    this.disk.fillColor = left;
+
+    this.limb =  new Path.Arc({from:[0,-r], to:[0,r], through:[sign*r,0]}).scale(cos, 1, [0,0]);
+
+    this.terminator = new Path.Arc({from:[0,-r], to:[0,r], through:[-sign*r*Math.sign(cos),0],
+      strokeColor:'black',strokeWidth:0.5});
+    this.right = new CompoundPath({children:[this.terminator,this.limb],fillColor:right});
+    return new Group({children:[this.disk, this.right]});
+  }
+}
+
+function redraw(year)
+{
+  project.activeLayer.clear();
+  var today = jstojd(new Date(year,0,1));
+  for (var i=1;i<=31;i++)
+  {
+    var dayName = new PointText(new Point(i*20, 10));
+    dayName.content = i;
+  }
+
+  for (var j=0;j<12;j++)
+  {
+    var firstOfMonth = new Date(year,j,1);
+    var monthName = new PointText(new Point(0,35+j*20));
+    monthName.content = firstOfMonth.toLocaleString('en-us', { month: "narrow" });
+
+
+    if ((j == 1) && (leapyear(year)))
+      var monthLength = 29;
+    else 
+      var monthLength = month_length[j];
+
+    for (var i=0;i<monthLength;i++)
+    {
+      var phase = MoonPhase(today++);
+      var moon = new Moon(10, phase);
+      moon.translate(new Point (30+(i*20), 30+ (j*20)));    
+    }    
+  }
+
+}
+
+
+window.onload = function()
+{
+  // Setup directly from canvas id:
+  paper.setup('canvas1');
+  redraw(2018);
+}
+
+
+
+</script>
+</html>

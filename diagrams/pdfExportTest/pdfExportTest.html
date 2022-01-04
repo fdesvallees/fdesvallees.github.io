@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+  <head>
+    <title>Export to PDF</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/spectre.min.css" />
+    <link rel="stylesheet" href="/static/css/icons.css" />
+  
+    <style>
+      /* Scale canvas with resize attribute to full size */
+      canvas 
+      {  
+          width: 300px;
+          height : 500px;
+          position: absolute;
+          border:black 1px solid;
+      }
+      .preview-pane
+      {
+          width: 300px;
+          height: 500px;
+      }
+    </style>
+  </head>
+<body>
+<div class="container">
+  <div class="columns">
+    <div class="column col-4">
+  
+    <div class="dropdown">
+
+    <p><div class="btn-group">
+    <a class="btn btn-primary">View Parameters</a>
+      <a class="btn btn-primary dropdown-toggle" tabindex="0">
+        <i class="icon icon-caret">
+        ::before
+        ::after
+        </i>
+      </a>  
+    <ul class="menu"> 
+    <li class="menu-item"> <a onclick="viewCenter()" href="#">View Center</a></li>
+    <li class="menu-item"> <a onclick="viewFrame()" href="#">View Frame</a></li>
+    </ul>
+    </div>
+    </p>
+    <p>
+    <div class="btn-group">
+    <a class="btn btn-primary">Paths</a>
+      <a class="btn btn-primary dropdown-toggle" tabindex="0">
+        <i class="icon icon-caret">
+        ::before
+        ::after
+        </i>
+      </a>  
+    <ul class="menu"> 
+    <li class="menu-item"> <a onclick="hLines()" href="#">Horizontal Lines</a></li>
+    <li class="menu-item"> <a onclick="star()" href="#">Star</a></li>
+    <li class="menu-item"> <a onclick="arc()" href="#">Arc</a></li>
+    <li class="menu-item"> <a onclick="compoundPath()" href="#">Compound Path</a></li>
+    <li class="menu-item"> <a onclick="openPath()" href="#">Open Path</a></li>
+    <li class="menu-item"> <a onclick="closedPath()" href="#">Closed Path</a></li>
+    <li class="menu-item"> <a onclick="scaledPath()" href="#">Scaled Path</a></li>
+    <li class="menu-item"> <a onclick="rotatedPath()" href="#">Rotated Path</a></li>
+    </ul>
+    </div>
+    </p>
+
+    <p>
+    <div class="btn-group">
+    <a class="btn btn-primary">Shapes</a>
+      <a class="btn btn-primary dropdown-toggle" tabindex="0">
+        <i class="icon icon-caret">
+        ::before
+        ::after
+        </i>
+      </a>  
+    <ul class="menu"> 
+    <li class="menu-item"> <a onclick="circle()" href="#">Circle</a></li>
+    <li class="menu-item"> <a onclick="scaledCircle()" href="#">Scaled Circle</a>
+    <li class="menu-item"> <a onclick="ellipse()" href="#">Ellipse</a>
+    <li class="menu-item"> <a onclick="rotatedEllipse()" href="#">Rotated Ellipse</a>
+    <li class="menu-item"> <a onclick="filledRectangle()" href="#">Filled Rectangle</a>
+    <li class="menu-item"> <a onclick="rotatedRectangle()" href="#">Rotated Rectangle</a>
+    <li class="menu-item"> <a onclick="roundedRectangle()" href="#">Rounded Rectangle</a>
+    </ul>
+    </div>
+    </p>
+   <p><div class="btn-group">
+    <a class="btn btn-primary">Text</a>
+      <a class="btn btn-primary dropdown-toggle" tabindex="0">
+        <i class="icon icon-caret">
+        ::before
+        ::after
+        </i>
+      </a>  
+    <ul class="menu"> 
+    <li class="menu-item"> <a onclick="simpleText()" href="#">Simple Text</a></li>
+    <li class="menu-item"> <a onclick="rotatedText()" href="#">Rotated Text</a></li>
+    <li class="menu-item"> <a onclick="scaledText()" href="#">Scaled Text</a></li>
+    </ul>
+    </div>
+    </p>
+    <p>
+
+
+
+
+  </div>
+
+    </div>
+    <div class="column col-4">
+      <h3> Paper.js </h3>
+    <canvas id="canvas1"></canvas>
+    </div>
+    <div class="column col-4">
+      <h3> PdfExport </h3>
+    <iframe class="preview-pane" id='pdfPane'></iframe>  
+
+    </div>
+  </div>
+</div>  
+
+  
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.js"></script>
+  <script src="/static/paper/paper-full.js"></script>
+  <script src="/static/paper/PdfExport.js"></script>
+
+
+  <script>
+ 
+function resetProject()
+{
+  project.clear();
+  view.center = new Point (view.size.width/2,view.size.height/2);
+}
+
+
+  function viewCenter() 
+  {
+    resetProject();
+    view.center = new Point (0,0);
+    var star = new Path.Star(new Point(50, 50), 5, 10, 100);
+    star.strokeColor = 'blue';
+    exportPDF('pdfPane');
+  }
+
+  function viewFrame() 
+  {
+    resetProject();
+    var rect = new Shape.Rectangle(view.size);
+    rect.strokeColor = 'red';
+    rect.strokeWidth = 4;
+    var tp = new PointText(view.center.x,view.center.y);
+    tp.content = String(view.size.width) + 'x' + String(view.size.height);
+    tp.fillColor = 'blue';
+    exportPDF('pdfPane');
+  }
+
+  function hLines() 
+  {
+    resetProject();
+    var line1 = new Path.Line(new Point(100, 100), new Point(200, 100));
+    var line2 = new Path.Line(new Point(100, 200), new Point(200, 200));
+    line1.strokeColor = line2.strokeColor = 'black';
+    line1.dashArray = [2,2];
+    line2.dashArray = [5,5];
+    exportPDF('pdfPane');
+  }
+
+ function star() 
+  {
+    resetProject();
+    var star = new Path.Star(new Point(100, 100), 6, 80, 100);
+    star.strokeColor = 'blue';
+    exportPDF('pdfPane');    
+  }
+
+ function arc() 
+  {
+    resetProject();
+    var arc = new Path.Arc(new Point(20, 20), new Point(60, 20), new Point(80, 80));
+    arc.strokeColor = 'red';
+    exportPDF('pdfPane');
+  }
+
+ function compoundPath() 
+  {
+    resetProject();
+    var star = new Path.Star(new Point(100, 100), 6, 80, 100);
+    var circle = new Path.Circle(new Point(200, 200), 80);
+    var cmpPath = new CompoundPath(star, circle);
+    cmpPath.fillColor = 'blue';
+    exportPDF('pdfPane');    
+  }
+
+  function openPath() 
+  {
+    resetProject();
+    var seg1 = [new Point(100, 100), new Point(100, 200), new Point(200, 400), new Point(300, 300)];
+    var path1 = new Path(seg1);
+    path1.strokeWidth = 2;
+    path1.strokeColor = 'black';
+    path1.closed = false;
+    exportPDF('pdfPane');      
+  }
+
+  function closedPath()
+  {
+    resetProject();
+    var seg2 = [new Point(50, 130),  new Point(150, 130), new Point(150, 230), new Point(50,230)];
+    var path2 = new Path(seg2);
+    path2.strokeWidth = 2;
+    path2.strokeColor = 'black';
+    path2.fillColor = 'yellow';
+    path2.closed=true;
+    exportPDF('pdfPane'); 
+  }
+  
+  function scaledPath()
+  {
+    resetProject();
+    var seg3 = [new Point(100, 100),  new Point(300, 250), new Point(200, 200)];
+    var path3 = new Path(seg3);
+    path3.strokeWidth = 2;
+    path3.strokeColor = 'black';
+    path3.fillColor = 'red';
+    path3.closed=true;
+    path3.scale(0.5);
+    exportPDF('pdfPane'); 
+  }
+
+  function rotatedPath()
+  {
+    resetProject();
+    var seg = [new Point(50, 130),  new Point(150, 130), new Point(150, 230), new Point(50,230)];
+    var path = new Path(seg);
+    path.strokeWidth = 2;
+    path.strokeColor = 'black';
+    path.fillColor = 'yellow';
+    path.closed=true;
+    path.rotate(45);
+    exportPDF('pdfPane'); 
+  }
+  
+  function circle() 
+  {
+    resetProject();
+    var circle = new Shape.Circle(new Point(200, 200), 150);
+    circle.strokeWidth = 4;
+    circle.strokeColor = 'red';
+    exportPDF('pdfPane'); 
+  }
+
+  function scaledCircle() 
+  {
+    resetProject();
+    var dot = new Shape.Circle(new Point(200, 200), 20);
+    dot.scale(4);
+    dot.fillColor = 'green';
+    exportPDF('pdfPane');
+  }
+
+  function ellipse() 
+  {
+    resetProject();
+    var ellipse = new Shape.Ellipse(new Point(100, 200), new Size(150, 50));
+    ellipse.strokeColor = 'green';
+    exportPDF('pdfPane');
+  }
+
+  function rotatedEllipse() 
+  {
+    resetProject();
+    var ellipse = new Shape.Ellipse(new Point(100, 200), new Size(150, 50));
+    ellipse.rotate(30);
+    ellipse.strokeColor = 'green';
+    ellipse.strokeWidth = 4;
+    exportPDF('pdfPane');
+  }
+
+  function filledRectangle() 
+  {
+    resetProject();
+    var rect = new Shape.Rectangle(new Point(100, 200), new Size(150, 50));
+    rect.fillColor = 'blue';
+    exportPDF('pdfPane');
+  }
+
+  function rotatedRectangle() 
+  {
+    resetProject();
+    var rect = new Shape.Rectangle(new Point(100, 200), new Size(150, 50));
+    rect.fillColor = 'red';
+    rect.rotate(45);
+    exportPDF('pdfPane');
+  }
+
+  function roundedRectangle()
+  {
+    resetProject();
+    var rect = new Shape.Rectangle(new Rectangle(new Point(100, 200), new Size(150, 50)), 20);
+    rect.strokeColor = 'blue';
+    exportPDF('pdfPane');
+  }
+
+
+
+
+  function simpleText() 
+  {
+    resetProject();
+    var tp = new PointText(new Point(200, 100));
+    tp.fillColor = 'red';
+    tp.content = 'hello world';
+    exportPDF('pdfPane');
+  }
+
+  function rotatedText() 
+  {
+    resetProject();
+    var tp = new PointText(new Point(100, 100));
+    tp.fillColor = 'blue';
+    tp.content = 'hello world';
+    tp.rotate(30);
+    exportPDF('pdfPane');
+  }
+
+ function scaledText()
+  {
+    resetProject();
+    var tp = new PointText(new Point(100, 100));
+    tp.content = 'hello world';
+    tp.scale(4);
+    exportPDF('pdfPane');
+  }
+
+
+paper.install(window);
+window.onload = function()
+{
+  paper.setup('canvas1');
+}
+
+
+
+
+</script>
+</body>

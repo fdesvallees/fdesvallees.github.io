@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sky Tiles</title>
+
+<script src="/static/d3/d3.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+
+<script src="/static/js/euler_quaternion.js"></script>
+<style type="text/css">
+
+.graticule {
+  fill: none;
+  stroke: #777;
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
+.skytiles {
+  stroke: #444;
+  fill: #338;
+  fill-opacity: 0;
+  stroke-width: .5px;
+}
+.skytiles.highlight {
+  fill-opacity: 0.3;
+}
+
+.rectangle {
+  stroke: #000;
+  fill: none;
+}
+
+
+
+</style>
+</head>
+
+
+<body>
+<section>
+
+<div id="map"></div>
+
+</section>
+
+  <script type="text/javascript">
+"use strict";
+
+var width = window.innerWidth - 50;
+var height = window.innerHeight - 50;
+var initialScale = 520;
+var scale = initialScale;
+var maxZoom = 25;
+var minScale = initialScale, maxScale = initialScale * maxZoom;
+
+var graticule = d3.geoGraticule().stepMinor([15,10]);
+
+
+function skyStereographicRaw(λ, φ) {
+  var cosφ = Math.cos(φ), k = 1 + Math.cos(-λ) * cosφ;
+  return [cosφ * Math.sin(-λ) / k, Math.sin(φ) / k];
+}
+
+function skyStereographicInvert(x, y) {
+    var z = Math.sqrt(x * x + y * y),
+        c = 2 * Math.atan(z),
+        sc = Math.sin(c),
+        cc = Math.cos(c);
+    return [
+      -Math.atan2(x * sc, z * cc),
+      Math.asin(z && y * sc / z)
+    ];
+}
+
+
+skyStereographicRaw.invert = skyStereographicInvert;
+var projection = d3.geoProjection(skyStereographicRaw)
+    .scale(scale)
+    .translate([width / 2, height / 2])
+    .clipAngle(120)
+    .clipExtent([[0,0],[width,height]]);
+
+var path = d3.geoPath()
+    .projection(projection);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("style", "border: 1px solid");
+
+svg.append("path")
+    .datum(graticule)
+    .attr("class", "graticule")
+    .attr("d", path);
+
+var drag = d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended);
+var gpos0, o0;
+
+svg.call(drag);
+svg.call(d3.zoom().on("zoom", zoomFunction));
+
+
+var marginx = width/4;
+var marginy = height/4;
+var viewRect = {  left:marginx,  right: width-marginx,   top: height-marginy, bottom: marginy};
+var rect = svg.append("rect").attr("x", marginx).attr("y", marginy).attr("width", width-2*marginx).attr("height", height-2*marginy)
+          .attr("class", 'rectangle');
+
+function isVisible(element)
+{
+  var box = path.bounds(element);
+
+  var boxRect  = {  left:box[0][0],  right:box[1][0],   top:box[1][1], bottom: box[0][1]};
+  var x_overlap = Math.max(0, Math.min(viewRect.right, boxRect.right) - Math.max(viewRect.left, boxRect.left));
+  var y_overlap = Math.max(0, Math.min(viewRect.top, boxRect.top) - Math.max(viewRect.bottom, boxRect.bottom));
+
+  return (x_overlap * y_overlap);
+}
+
+
+function resetTileSet()
+{
+  tileSet = d3.set([]);
+}
+
+function loadStarArray(zoneName)
+{
+}
+
+function unloadStarArray(zoneName)
+{
+}
+
+
+
+function updateTileSet()
+{
+
+  svg.selectAll(".skytiles")
+  .filter(function(d){return(isVisible(d))})
+  .classed("highlight", 1);
+
+  svg.selectAll(".skytiles")
+  .filter(function(d){return(! isVisible(d))})
+  .classed("highlight", 0);
+}
+
+
+
+function unloadTiles()
+{
+  tileSet.each(function(d)
+  {
+     unloadStarArray(d);
+  })
+}
+
+function dragstarted()
+{
+  var xy = d3.mouse(this);
+  gpos0 = projection.invert(xy);
+  o0 = projection.rotate();
+  redraw();
+}
+
+function dragged(){
+
+  var xy = d3.mouse(this);
+  var gpos1 = projection.invert(xy);
+
+  o0 = projection.rotate();
+
+  var o1 = eulerAngles(gpos0, gpos1, o0);
+  projection.rotate(o1);
+
+  redraw();
+
+}
+
+function dragended()
+{
+  updateTileSet();
+  redraw();
+}
+
+// Main program
+
+
+// Load tiles
+d3.json("/static/sky/skytiles.json", function(error, skytiles) {
+      var g4 = svg.append("g").attr("id", "g4")
+      .selectAll("#g4")
+      .data(topojson.feature(skytiles, skytiles.objects.skytiles).features)
+      .enter().append("path")
+      .attr("class", "skytiles");
+      g4.append("title")
+      .text(function(d) { return d.id; });
+      svg.select("#g4").selectAll(".skytiles")
+      .attr("d", path);
+ });
+
+var tileSet = svg.selectAll(".skytiles");
+
+
+var t = d3.interval(function()
+{
+  updateTileSet();
+}, 1000, 1000);
+
+
+function redraw()
+{
+  svg.selectAll("path").attr("d", path);
+}
+
+
+
+function zoomFunction()
+{
+  if (d3.event.transform.k > maxZoom)
+    d3.event.transform.k = maxZoom;
+
+  if (d3.event.transform.k < 1)
+    d3.event.transform.k = 1;
+
+  scale = initialScale * d3.event.transform.k;
+  projection.scale (scale);
+  redraw();
+}
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Display planets in the sky</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				background-color: #ffffff;
+				margin: 0px;
+				overflow: hidden;
+        height: 100%;
+			}
+      /* Scale canvas with resize attribute to full size */
+      canvas[resize] {
+          width: 100%;
+          height: 100%;
+      }
+		</style>
+
+    <script src="/static/ephemeris/util.js"></script>
+    <script src="/static/ephemeris/datetime.js"></script>
+    <script src="/static/ephemeris/observer.js"></script>
+    <script src="/static/ephemeris/planets.js"></script>
+    <script src="/static/ephemeris/math.js"></script>
+    <script src="/static/js/orbital.js"></script>
+    <script src="/static/js/sky_diagram.js"></script>
+    <script src="/static/js/gl-matrix-min.js"></script>
+    <script src="/static/paper/paper-full.min.js"></script>
+    <script src="/static/js/dat.gui.min.js"></script>
+    <script type="text/javascript" canvas="canvas1">
+
+
+//Save SVG from paper.js as a file.
+var downloadAsSVG = function (fileName)
+{
+  if(!fileName)
+  {
+    fileName = "planets.svg"
+  }
+  var url = "data:image/svg+xml;utf8," + encodeURIComponent(paper.project.exportSVG({asString:true}));
+
+  var link = document.createElement("a");
+  link.download = fileName;
+  link.href = url;
+  link.click();
+}
+
+
+function computeOrbit(p, julianDay)
+{
+  var L=polynomial(planets[p].L_, julianDay); // Mean longitude
+  var a=polynomial(planets[p].a_, julianDay); // semimajor axis
+  var e=polynomial(planets[p].e_, julianDay); // eccentricity
+  var i=polynomial(planets[p].i_, julianDay); // inclination
+  var Ω=polynomial(planets[p].Ω_, julianDay); // longitude of ascending node
+  var ω=polynomial(planets[p].ω_, julianDay); // longitude of perihelion
+  return new Orbit(L,a,e,i,Ω,ω);
+}
+
+function computePath(planetIndex, startDate, numDays)
+{
+  var earthIndex = 2;
+  var earthOrbit = computeOrbit(earthIndex, startDate);
+  var planetOrbit = computeOrbit(planetIndex, startDate);
+
+  var julianDay = startDate;
+  var locus = [];   // array of λ, β pairs
+  
+  for (var i=0;i<numDays;i++)
+  {
+    var L_Planet=polynomial(planets[planetIndex].L_, julianDay); // Mean longitude
+    planetOrbit.updateLongitude(L_Planet);
+    var xyz_Planet = planetOrbit.position();
+    
+    var L_Earth=polynomial(planets[earthIndex].L_, julianDay); // Mean longitude
+    earthOrbit.updateLongitude(L_Earth);
+    var xyz_Earth = earthOrbit.position();
+    
+    var eq_coords = radecr (xyz_Planet, xyz_Earth, julianDay);
+    var ecl_coords = eq_ecl(eq_coords[0], eq_coords[1], julianDay);
+    
+    // TODO add the julianday to the path, so that it can be displayed along the path
+    // TODO make locus a compound path composed of several sub-paths.
+    // Add a new sub-path when the distance from the previous point is large (ie it has moved through the zero RA meridian)
+    locus.push(ecl_coords);
+    julianDay = startDate + i;
+  }
+  return locus;
+}
+
+var PlanetLocus = function()
+{
+  this.numDays = 400;
+  this.planet = 'Mercury';
+}
+
+
+paper.install(window);
+
+
+function updateLocus(planet, numDays)
+{
+  var today = new Date();
+  var julianDay = jd0(today.getFullYear(), today.getMonth() + 1, today.getDate());
+  var planetIndex = 0;
+
+  switch (planet)  // should rewrite this
+  {
+    case 'Mercury': planetIndex = 0; break;
+    case 'Venus': planetIndex = 1; break;
+    case 'Mars': planetIndex = 3; break;
+    case 'Jupiter': planetIndex = 4; break;
+    case 'Saturn': planetIndex = 5; break;
+    case 'Uranus': planetIndex = 6; break;
+    case 'Neptune': planetIndex = 7; break;
+  }
+  var locus = computePath(planetIndex, julianDay, numDays);
+  d.addLocus(locus);
+}
+
+window.onload = function()
+{
+  // Setup directly from canvas id:
+  paper.setup('canvas1');
+
+  var gui = new dat.GUI();
+  var pl = new PlanetLocus();
+
+  gui.add(pl, "numDays").onChange(function(newValue)
+  {
+    updateLocus(pl.planet, pl.numDays );
+  });
+
+  gui.add(pl, 'planet', [ 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune' ] ).onChange(function(newValue)
+  {
+    updateLocus(pl.planet, pl.numDays );
+  });
+
+/*
+
+  var dateLabel1 = new PointText(new Point(view.size.width - 100, 50));
+  dateLabel1.fillColor = 'black';
+  dateLabel1.content = String(jdtocd(julianDay)[0]) + ' ' + String(jdtocd(julianDay)[1]) + ' ' + String(jdtocd(julianDay)[2]);
+
+  var dateLabel2 = new PointText(new Point(view.size.width - 100, 100));
+  dateLabel2.fillColor = 'black';
+  dateLabel2.content = String(jdtocd(julianDay+numDays)[0]) + ' ' + String(jdtocd(julianDay+numDays)[1]) + ' ' + String(jdtocd(julianDay+numDays)[2]);
+*/
+
+  d = new Diagram([20,1000],[20,120],[360,0],[10,-10]);
+  d.grid(12,5);
+  updateLocus(pl.planet, pl.numDays );
+}
+
+
+</script>
+</head>
+<body>
+    <canvas id="canvas1" resize="true"></canvas>
+</body>
+</html>

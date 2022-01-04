@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Ecliptic Projection</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+      canvas 
+      {
+          width: 100%;
+          height: 100%;
+         position: absolute;
+     }
+		</style>
+<link rel="stylesheet" href="/static/css/spectre.min.css" />
+<link rel="stylesheet" href="/static/css/icons.css" />
+<link rel="stylesheet" href="/static/css/styles.css" />
+<link rel="stylesheet" href="/static/css/pikaday.css" />
+<link rel="stylesheet" href="/static/css/adt.css" />
+<script src="/static/paper/paper-full.js"></script>
+<script src="/static/d3/d3.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+
+<script src="/static/js/euler_quaternion.js"></script>
+<script src="/static/js/paperContext.js"></script>
+<script src="/static/ephemeris/datetime.js"></script>
+<script src="/static/ephemeris/math.js"></script>
+<script src="/static/ephemeris/util.js"></script>
+<script src="/static/ephemeris/observer.js"></script>
+<script src="/static/ephemeris/planets.js"></script>
+<script src="/static/ephemeris/moon.js"></script>
+<script src="/static/js/orbital.js"></script>
+<script src="/static/js/dso.js"></script>
+<script src="/static/js/barn.min.js"></script>
+<script src="/static/js/moment.min.js"></script>
+<script src="/static/js/pikaday.js"></script>
+<script src="/static/js/adt.js"></script>
+</head>
+
+<body>
+
+<canvas id="canvas" resize="true"></canvas>
+<div class="container">
+<div class="columns">
+<div class="column col-2  ">
+<div class="dropdown">
+  <div class="btn-group">
+  <a class="btn btn-primary">Settings</a>
+    <a class="btn btn-primary dropdown-toggle" tabindex="0">
+      <i class="icon icon-caret">
+      ::before
+      ::after
+      </i>
+    </a>  
+
+<ul class="menu">
+  <li class="menu-item"> <a onclick="saveSVG()" href="#">Save SVG</a></li>
+  <li class="menu-item"> <a onclick="toggleLayer(eclipticLayer)" href="#">Ecliptic</a></li>
+  <li class="menu-item"> <a onclick="toggleStars()" href="#">Stars</a></li>
+  <li class="menu-item"> <a onclick="toggleLayer(constLayer)" href="#">Constellations</a></li>
+
+</ul>
+</div>
+</div>
+
+<br>
+
+<div class="dropdown">  
+<div class="adt-box">
+ <div class="adt-row" id="dtbox">
+ <input id="datepicker" size="10">  
+ </div>
+ </div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+
+function toggleLayer(i)
+{
+  paperContext.toggleLayer(i);
+}
+
+function toggleStars()
+{
+  paperContext.toggleLayer(starLayer);
+  redrawStars();
+}
+
+var radians = Math.PI / 180,
+    degrees = 180 / Math.PI;
+var ε = 23.4 * radians
+var cosε = Math.cos(ε)
+var sinε = Math.sin(ε)
+var longitudeOffset = 0; 
+
+function equ2ecl(α , δ) 
+{
+  λ = Math.atan2((Math.sin(α) * cosε + Math.tan(δ) * sinε), Math.cos(α))
+  β = Math.asin(Math.sin(δ) * cosε - Math.cos(δ) * sinε * Math.sin(α))  
+
+  return [λ, β];
+}
+
+function ecl2equ(λ, β) 
+{
+  α = Math.atan2((Math.sin(λ) * cosε - Math.tan(β) * sinε), Math.cos(λ));
+  δ = Math.asin(Math.sin(β) * cosε + Math.cos(β) * sinε * Math.sin(λ)); 
+
+  return [α, δ];
+}
+
+function rectangularRaw(α , δ) 
+{
+  var xy = equ2ecl(-α, δ);
+  xy[0] += longitudeOffset / 16;
+  while (xy[0] > Math.PI)
+    xy[0] -= 2* Math.PI;
+  while (xy[0] < -Math.PI)
+    xy[0] += 2* Math.PI;
+  return [xy[0]* scale, xy[1]*scale];
+}
+
+function rectangularInvert(x, y) 
+{
+  return ecl2equ(-x,y);
+}
+
+var initialScale = 16;
+var scale = initialScale;
+var maxZoom = 10;
+var minScale = initialScale, maxScale = initialScale * maxZoom;
+var barn = new Barn('astro_roya_skymap', localStorage);
+
+var minMag = d3.scaleLinear()    // smallest visible stars as a function of scale
+    .domain([minScale, maxScale])
+    .range([5, 10]);
+
+var maxDiameter = d3.scaleLinear()  // multiplier for diameter as a function of scale
+    .domain([minScale, maxScale])
+    .range([.3, 1]);
+
+var Radius = d3.scaleLinear()      // circle diameter as a function of magnitude
+    .domain([-2, 10])
+    .range([8, 1]);
+
+
+
+var currentDate = initDate();
+var adt = new Adt({field:document.getElementById("dtbox"), defaultDate:new moment(currentDate), callback:dateChanged});
+
+rectangularRaw.invert = rectangularInvert;
+
+var eqProjection = d3.geoProjection(rectangularRaw)
+    .scale(initialScale)
+    .translate([ 0, 0])
+    .rotate([180,0,0])
+    .clipExtent([0,1],[0,1]);
+
+
+var graticule = d3.geoGraticule().stepMinor([15,10])();
+
+var paperContext;
+var oldFocus;
+
+//Save SVG from paper.js as a file.
+function saveSVG () {
+  var fileName = "zodiac.svg"
+  var url = "data:image/svg+xml;utf8," + encodeURIComponent(paper.project.exportSVG({asString:true}));
+  var link = document.createElement("a");
+  link.download = fileName;
+  link.href = url;
+  link.click();
+}
+
+
+
+// Data sets loaded from JSON/CSV files
+var ecliptic, constellations, boundaries,stars;
+var planetOrbits = [];
+
+paper.install(window);
+
+window.onload = function()
+{
+  paper.setup('canvas');
+  init();
+}
+
+function redrawFast()
+{
+  paperContext.erase();
+  paperContext.drawFullBackground();
+
+  paperContext.setLayer(eclipticLayer);
+  eqPath(topojson.feature(ecliptic, ecliptic.objects.ecliptic));
+  
+  paperContext.setLayer(constLayer);
+  eqPath(topojson.feature(constellations, constellations.objects.constellations));
+  
+
+  // Remove long horizontal spurious lines
+  var items = project.getItems({
+      class: Path,
+   segments: function(segments) {
+          return segments.length == 2;
+   }
+  }); 
+
+  // Select the fetched item:
+  for (var i=0;i<items.length;i++)
+  {
+    var l0 = items[i].segments[0].curve.length;
+    if (l0 > view.viewSize.width - 1)
+      items[i].remove();
+  }
+  redrawPlanets();
+ }
+
+function redrawAll()
+{
+  redrawFast();
+  redrawStars();
+ }
+
+function redrawMoon()
+{
+  var jdobs = julianDate(currentDate);
+  var moonPos = MoonRaDec(jdobs);
+  var xy = eqProjection(moonPos[0], moonPos[1]);
+  var inc = eqProjection.rotate()[2];
+  paperContext.setLayer(moonLayer);
+  paperContext.drawMoon(xy, scale/50,moonPos, inc);
+}
+
+function loadPlanets()
+{
+  for (var i=0;i<8;i++)
+  {
+      var planetOrbit = new PlanetOrbit(i, julianDate(currentDate)); 
+      planetOrbits.push(planetOrbit);
+  }
+}
+
+function drawPlanet(planet)
+{
+  var xy = eqProjection([planet.ra,planet.dec]);
+
+  if (view.bounds.contains(new Point(xy[0],xy[1])))
+  {
+      paperContext.drawDot(xy, radius(planet.mag),planet.name, planet,planetLayer);
+      if (project.layers[labelLayer].visible)
+        paperContext.drawLabel(xy, planet.name);
+  }
+}
+
+function redrawPlanets()
+{
+  
+  var earthOrbit;
+  earthOrbit = planetOrbits[2]; 
+  var jd = julianDate(currentDate);
+  
+  var xyz_Earth = earthOrbit.positionFromLongitude(earthOrbit.longitude(jd));
+
+  paperContext.setLayer(planetLayer);
+  if (project.activeLayer.visible)
+  {
+    for (var i=0;i<8;i++)
+    {
+      if (i!=2)
+      {
+        var planetOrbit = planetOrbits[i]; 
+        var xyz_Planet = planetOrbit.positionFromLongitude(planetOrbit.longitude(jd));
+        var eq_coords = radecr (xyz_Planet, xyz_Earth, jd);
+        drawPlanet({'ra':eq_coords[0],'dec':eq_coords[1],'name':planets[i].name,'mag':planetMagnitude(xyz_Planet,xyz_Earth,planets[i].mag)});   
+      }
+    }
+  } 
+}
+
+function redrawSun()
+{
+  var earthOrbit = planetOrbits[2]; 
+  var jd = julianDate(currentDate);
+  var xyz_Earth = earthOrbit.positionFromLongitude(earthOrbit.longitude(jd));
+  var sunPos= radecr([0,0,0],xyz_Earth,jd);
+  var xy = eqProjection(sunPos[0], sunPos[1]);
+  paperContext.drawSun(xy, scale/200,sunPos);
+}
+
+
+function displayCoordinates(lambda)
+{
+  var label = new PointText(new Point(-50, view.size.height/2 - 20));
+  label.content = lambda;
+  label.fillColor = 'white';
+}
+
+
+
+
+
+// Zoom and drag 
+function normalize(xy)
+{
+  return ([(xy[0]-view.viewSize.width), 0]);
+}
+
+function dragStarted()
+{
+  var xy = normalize(d3.mouse(this));
+
+  oldFocus = xy[0];
+}
+
+function dragEnded()
+{
+  redrawAll();
+}
+
+function dragged()
+{
+  var xy = normalize(d3.mouse(this));
+
+  longitudeOffset += (xy[0]-oldFocus) / scale;
+  oldFocus = xy[0];
+  redrawFast();
+}
+
+
+function zoomed()
+{
+  scale = initialScale * d3.event.transform.k;
+  redrawAll();
+}
+
+
+function radius(mag)
+{
+  if (mag > minMag(scale))
+  {
+    return (0);
+  }
+  return (Math.floor(maxDiameter(scale) * Radius(mag)));
+}
+
+function starText(d)
+{
+  if (d.propername)
+    return (d.propername);
+  if (d.bayer)
+    return (d.bayer + ' ' + d.const);
+  if (d.flamsteed)
+    return (d.flamsteed+ ' ' + d.const);
+
+  return ("HD" + d.hd );
+}
+
+function shortText(d)
+{
+  if (d.propername)
+    return (d.propername);
+  if (d.bayer)
+    return (d.bayer);
+  if (d.flamsteed)
+    return (d.flamsteed);
+  return null;
+}
+
+
+function drawStar(star)
+{
+  var xy = eqProjection([star.ra,star.dec]);
+  if (view.bounds.contains(new Point(xy[0],xy[1])))
+  {
+    var r = radius(star.mag);
+    if (r>0)
+    {
+      paperContext.drawDot(xy, r,starText(star),star, starLayer);
+    }
+  }
+}
+
+function redrawStars()
+{
+  paperContext.setLayer(starLayer);
+  if (project.activeLayer.visible)
+  {
+    stars.map(drawStar);
+  }
+}
+
+// Read julian day from storage or initialize to today 
+function initDate()
+{
+  currentDate = new moment(barn.get('date')); // stored as a JS object
+
+  if ((!currentDate) || (isNaN(currentDate)))
+  {
+    currentDate = moment();
+    barn.set('date', currentDate);
+  }
+//  document.getElementById('currentTime').value = currentDate.format('HH:mm');
+  return (currentDate);
+}
+
+
+function julianDate(ut)
+{
+  return jd0(ut.year(), 1+ut.month(), ut.date()) + ((ut.hour()+ut.minute()/60)/24);     
+}
+
+function dateChanged()
+{
+  currentDate = adt.picker.getMoment();
+  barn.set('date', currentDate);
+  redrawAll();
+}
+
+function resizeView()
+{
+  var w = window.innerWidth;
+  var h =  window.innerHeight;
+  eqProjection.scale(scale);
+  view.center = new Point (0,0);
+  if (info)
+    info.remove();
+  redrawFast();
+}
+
+function init() 
+{
+  paperContext = new PaperContext();  
+  eqPath = d3.geoPath(eqProjection, paperContext);
+  paperContext.toggleLayer(graticuleLayer);
+  paperContext.toggleLayer(starLayer);
+  paperContext.setResizeCallback(resizeView);
+
+  // Read all JSON features
+  var queue = d3.queue();
+  var filenames = ["/static/sky/ecliptic.json",
+                   "/static/sky/constellations.json",
+                   "/static/sky/boundaries.json"]
+
+  filenames.forEach(function(filename) 
+  {
+    queue.defer(d3.json, filename);
+  });
+
+  queue.awaitAll(function(error, jsonDataSets) 
+  {
+    if (error) throw error;
+
+    ecliptic = jsonDataSets[0];
+    constellations = jsonDataSets[1];
+    boundaries = jsonDataSets[2];
+    loadPlanets();
+  
+    // Load stars
+    d3.csv("/static/sky/stars.csv", function(error, starData)
+    {
+      if (error) throw error;
+      stars = starData;
+      resizeView();
+    });
+
+    // zoom and drag functions
+    d3.select('canvas').call(d3.drag()
+      .on("start", dragStarted)
+      .on("end", dragEnded)
+      .on("drag", dragged));
+
+    d3.select('canvas').call(d3.zoom()
+      .scaleExtent([1, maxZoom])
+      .on("zoom", zoomed));
+
+    d3.select('canvas').on('click', function(){paperContext.selectObject()});
+ 
+  });
+
+}
+
+  </script>
+	</body>
+</html>
+

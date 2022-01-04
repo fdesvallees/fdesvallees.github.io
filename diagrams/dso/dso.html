@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/spectre.min.css" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+
+<body>
+<div class="container">
+  <div class="columns">
+  <div class="column col-3">
+  <div class="form-group" id="object_selection">
+  <form action="#">
+    <select id="object_type" onchange="getObjectType(this)" class="form-select">
+      <option value="0">Planetary Nebulae</option>
+      <option value="1">Galaxies</option>
+      <option value="2">Emission Nebulae</option>
+      <option value="3">Reflexion Nebulae</option>
+      <option value="4">Open Clusters</option>
+      <option value="5">Globular Clusters</option>
+    </select>
+    <div>
+      <select id="object_name" type="search" placeholder="Object Name" oninput="showObject()" class="form-select">
+      </select>
+      </div>
+  </form>
+  </div>
+  </div>
+  <div class="column col-2">
+
+  <table class="table">
+    <tbody id = "object_params">
+    </tbody>
+  </table>
+</div>
+</div>
+  </div>
+</body>
+
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="/static/ephemeris/datetime.js"></script>
+<script src="/static/js/dso.js"></script>
+<script>
+
+function getObjectType()
+{
+  var opt = document.getElementById("object_type").value;
+  clearOptions('object_name');
+  for (var i in nebList[opt])
+  {
+    appendOption('object_name', nebList[opt][i].ngc);
+  }
+  showObject();
+}
+
+function showObject()
+{  
+  var opt = document.getElementById("object_type").value;
+  var ndx = document.getElementById("object_name").selectedIndex;
+  
+  var object = nebList[opt][ndx];
+  var tbody = document.getElementById("object_params");
+
+  while (tbody.firstChild)
+  {
+      tbody.firstChild.remove();
+  }
+
+  for (var property in object)
+  {
+    var tr = document.createElement("tr");  
+    var td1 = document.createElement("td");  
+    var td2 = document.createElement("td");  
+    var tn1 = document.createTextNode(property);
+    var tn2 = document.createTextNode(object[property]);
+    td1.appendChild(tn1);                              
+    td2.appendChild(tn2);                              
+    tr.appendChild(td1);                              
+    tr.appendChild(td2);                              
+    tbody.appendChild(tr);    
+  } 
+}
+
+function clearOptions(list)
+{
+  var htmlList = document.getElementById(list);
+  while (htmlList.firstChild)
+  {
+      htmlList.firstChild.remove();
+  }
+}
+
+function appendOption(list, option)
+{
+  var node = document.createElement("option");  
+  var textnode = document.createTextNode(option);
+  node.appendChild(textnode);                              
+  document.getElementById(list).appendChild(node);    
+}
+
+
+
+// Main program
+loadNebulae(getObjectType);
+
+
+</script>

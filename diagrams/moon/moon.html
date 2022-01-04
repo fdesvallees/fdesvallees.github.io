@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Phases of the Moon</title>
+		<meta charset="utf-8">
+     <link rel="stylesheet" href="/static/css/spectre.min.css" />
+     <link rel="stylesheet" href="/static/css/spectre-exp.min.css" />
+     <link rel="stylesheet" href="/static/css/styles.css" />
+		<style>
+      /* Scale canvas with resize attribute to full size */
+      canvas{
+          width: 300px;
+          height: 200px;
+      }
+		</style>
+
+    <script src="/static/paper/paper-full.min.js"></script>
+  </head>
+  <body>
+      <p style="width:300px">
+        <label id="phaseLabel">0</label>
+        <input class="slider" type="range" id="phase"
+          min="-180" max="180" value="-120" oninput="redraw()">
+        </p>
+    <canvas id="canvas1" resize="true"></canvas>
+  </body>
+  <script type="text/javascript">
+
+
+paper.install(window);
+
+// i is the phase angle of the Moon
+class Moon{
+  constructor(r, i)
+  {
+    this.r = r;
+    this.disk  = new Shape.Circle({radius:r, strokeColor:'black',strokeWidth:0.5});
+    this.terminator =  new Path.Arc();
+    this.limb = new Path.Arc();
+    this.right = new CompoundPath({children:[this.terminator,this.limb]});
+    this.updatePhase(i);
+  }
+  updatePhase(i)
+  {
+    this.terminator.remove();
+    this.limb.remove();
+    this.right.remove();
+    var sign = (Math.sign(i))?Math.sign(i):1;
+    if ((i < -90) || (i>90))
+    {
+      var left = 'white'; var right = 'grey';    
+    }
+    else
+    {
+      var left = 'grey'; var right = 'white';
+    }
+    var cos = Math.cos(i*Math.PI / 180);
+    var r = this.r;
+    this.disk.fillColor = left;
+
+    this.limb =  new Path.Arc({from:[0,-r], to:[0,r], through:[sign*r,0]}).scale(cos, 1, [0,0]);
+
+    this.terminator = new Path.Arc({from:[0,-r], to:[0,r], through:[-sign*r*Math.sign(cos),0],
+      strokeColor:'black',strokeWidth:0.5});
+    this.right = new CompoundPath({children:[this.terminator,this.limb],fillColor:right});
+  }
+}
+
+
+function redraw()
+{
+  var i = document.getElementById("phase").value;
+  document.getElementById("phaseLabel").innerHTML = i;
+  moon.updatePhase(i);
+}
+
+var moon; 
+
+window.onload = function()
+{
+  // Setup directly from canvas id:
+  paper.setup('canvas1');
+  view.center = new Point (0,0);
+
+  moon = new Moon(80, 0);
+  redraw();
+}
+
+
+
+</script>
+</html>

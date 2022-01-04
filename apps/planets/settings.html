@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/spectre.min.css" />
+    <link rel="stylesheet" href="/static/css/icons.css" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <link rel="stylesheet" href="/static/css/pikaday.css" />
+    <link rel="stylesheet" href="/static/css/dual-listbox.css" />
+	</head>
+
+<body>
+<div>
+  <div>
+    <p> 
+    I get the orbital elements of asteroids and comets from the <a href="http://www.minorplanetcenter.net/iau/Ephemerides/BrightMP.html">Minor Planet Center</a>.
+    For asteroids, I use the file called "Soft00Bright.txt", which lists the brightest minor planets at opposition this year. For comets, Soft00Cmt.txt.
+    </p>
+
+  </div>
+
+    <div id="container">
+    </div>
+ 
+    <button onclick="closeWindow()">
+    Close
+    </button>
+ 
+  </main>
+</div>
+
+</body>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="/static/js/pikaday.js"></script>
+<script src="/static/ephemeris/datetime.js"></script>
+<script src="/static/js/asteroids.js"></script>
+<script src="/static/js/barn.min.js"></script>
+<script src="/static/js/dual-listbox.js"></script>
+<script>
+
+// by convention, if the first word is a number, then it is an asteroid, otherwise it's a comet
+function objectFromName(name)
+{
+  if (isNaN(name.split(' ')[0]))
+  {
+    return (objParams(comList, name))
+  }
+  else
+    return (objParams(astList, name))
+}
+
+function closeWindow()
+{
+  objectList = dualListbox.selected.map(function (d){return objectFromName(d.textContent)});
+  barn.set('objectList', objectList);
+  barn.set ('reload', true);
+  window.history.back();  
+}
+
+// Called after the lists of asteroids and comets are loaded.
+function callback()
+{
+  var optionList = astList.concat(comList);
+
+  // create an HTML select element for the dual list
+  var lb = document.createElement('select');
+  lb.setAttribute("id", 'object_list');
+  container.appendChild(lb);
+ 
+  // initialize the select element with asteroids / comets
+  for (var i in optionList)
+  {
+    appendOption(lb, optionList[i].name);
+  }
+
+  // create the dual list from the select element
+  dualListbox = new DualListbox('#object_list',{
+      addEvent: function(value) {
+//          console.log(value);
+      },
+      removeEvent: function(value) {
+//          console.log(value);
+      },
+      availableTitle: 'Available Objects',
+      selectedTitle: 'Selected Objects',
+      addButtonText: '>',
+      removeButtonText: '<',
+      addAllButtonText: '>>',
+      removeAllButtonText: '<<'
+  });
+
+  // Add all objects from the store
+  for (var i in objectList) 
+  {
+    var item = getElementFromValue(dualListbox, objectList[i].name);
+    dualListbox.addSelected(item);    
+  }
+}
+
+function getElementFromValue(lb, txt)
+{
+  for (var i=0;i<lb.available.length;i++)
+    if(lb.available[i].textContent==txt)
+      return (lb.available[i]);
+  return null;  
+}
+
+
+function appendOption(list, option)
+{
+  var node = document.createElement("option");  
+  var textnode = document.createTextNode(option);
+  node.appendChild(textnode);                              
+  list.appendChild(node);    
+}
+
+
+// Main program
+var dualListbox;
+var barn = new Barn('astro_roya_planets', localStorage);
+var objectList = barn.get('objectList');
+if (!objectList)
+  objectList = [];
+
+loadObjects(callback);
+</script> 

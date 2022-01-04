@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/spectre.min.css" />
+    <link rel="stylesheet" href="/static/css/icons.css" />    <link rel="stylesheet" href="/static/css/styles.css" />
+    <link rel="stylesheet" href="/static/css/pikaday.css" />
+    <link rel="stylesheet" href="/static/css/dual-listbox.css" />
+	</head>
+
+<body>
+<div class="container">
+<div class="columns">
+<div class="form-group">
+<div class="column col-3">
+  <div class="form-group">
+  <label class="form-checkbox">
+  <input type="checkbox" id="mercury" onclick="selectPlanet('mercury')"> <i class="form-icon"></i>Mercury
+  </label>
+  <label class="form-checkbox">
+  <input type="checkbox" id="venus" onclick="selectPlanet('venus')"> <i class="form-icon"></i>Venus
+  </label>
+  <label class="form-checkbox">
+  <input type="checkbox" id="mars" onclick="selectPlanet('mars')"> <i class="form-icon"></i>Mars
+  </label>
+  <label class="form-checkbox">
+  <input type="checkbox" id="jupiter" onclick="selectPlanet('jupiter')"> <i class="form-icon"></i>Jupiter
+  </label>
+  <label class="form-checkbox">
+  <input type="checkbox" id="saturn" onclick="selectPlanet('saturn')"> <i class="form-icon"></i>Saturn
+  </label>
+  <label class="form-checkbox">
+  <input type="checkbox" id="uranus" onclick="selectPlanet('uranus')"> <i class="form-icon"></i>Uranus
+  </label>
+  <label class="form-checkbox">
+  <input type="checkbox" id="neptune" onclick="selectPlanet('neptune')"> <i class="form-icon"></i>Neptune
+  </label>
+</div>
+</div>
+ 
+    <button class="btn btn-primary" onclick="closeWindow()">
+    Close
+    </button>
+</div>
+</div>
+ 
+</div>
+
+</body>
+
+<script src="/static/js/barn.min.js"></script>
+<script>
+
+function selectPlanet(planet)
+{
+  if (document.getElementById(planet).checked)
+  {
+    planetList[planet] = 1;
+  }
+  else
+  {
+    planetList[planet] = 0;
+  }
+}
+
+
+function closeWindow()
+{
+  barn.set('planetList', planetList);
+  window.history.back();  
+}
+
+// main program
+
+var barn = new Barn('astro_roya_planetPath', localStorage);
+var planetList = barn.get('planetList');
+if ((!planetList) || (planetList == []))
+{
+  var planetList = 
+  {
+    'mercury': 0,
+    'venus': 0,
+    'mars': 0,
+    'jupiter': 0,
+    'saturn': 0,
+    'uranus': 0,
+    'neptune': 0,
+  };  
+}
+
+// Set checkboxes
+var p = Object.keys(planetList);
+
+for (var p in planetList)
+{
+  if (planetList[p])
+    document.getElementById(p).checked = true;
+  else
+    document.getElementById(p).checked = false;
+}
+
+
+</script> 

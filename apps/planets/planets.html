@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+    <!-- Material Design Lite -->
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <link rel="stylesheet" href="/static/css/pikaday.css" />
+    <title> Planets 3D view </title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+      /* Scale canvas with resize attribute to full size */
+      canvas 
+      {
+        width: 95%;
+        height: 100%;
+        position: absolute;
+      }
+		</style>
+
+<link rel="stylesheet" href="/static/css/spectre.min.css" />
+<link rel="stylesheet" href="/static/css/icons.css" />
+<link rel="stylesheet" href="/static/css/styles.css" />
+<script src="/static/paper/paper-full.js"></script>
+<script src="/static/d3/d3.js"></script>
+<script src="/static/three/three.min.js"></script>
+<script src="/static/three/OrbitControls.js"></script>
+<script src="/static/ephemeris/datetime.js"></script>
+<script src="/static/ephemeris/planets.js"></script>
+<script src="/static/ephemeris/math.js"></script>
+<script src="/static/js/orbital.js"></script>
+<script src="PaperRenderer.js"></script>
+<script src="/static/js/pikaday.js"></script>
+<script src="/static/js/barn.min.js"></script>
+
+	</head>
+
+<body>
+<canvas id="canvas1" resize="true"></canvas>
+
+<div class="container">
+<div class="columns">
+<div class="column col-2  ">
+<div class="dropdown">
+  <div class="btn-group">
+  <a class="btn btn-primary">Settings</a>
+    <a class="btn btn-primary dropdown-toggle" tabindex="0">
+      <i class="icon icon-caret">
+      ::before
+      ::after
+      </i>
+     </a>  
+
+<ul class="menu">
+  <li class="menu-item"> <a onclick="downloadAsSVG()"href="#">Save SVG</li>
+  <li class="menu-item"> <a onclick="toggleColors()"href="#">Toggle Colors</li>
+  <li class="menu-item"> <a onclick="toggleText()"href="#">Toggle Labels</li>
+  <li class="menu-item"> <a onclick="toggleAnimation()"href="#">Toggle Animation</li>
+  <li class="menu-item"> <a onclick="toggleGrid()" href="#">Toggle Grid</li>
+  <li class="menu-item"> <a href="javascript:window.open('settings.html', '_self')">Load Asteroids and Comets</a></li>
+</ul>
+  </div>
+  </div>
+
+<div class="adt-row">
+  <input class="adt-row" type="text" id="startDate">
+</div>
+</div>
+</div>
+ 
+ 
+
+
+<script type="text/javascript">
+
+  paper.install(window);
+  window.onload = function()
+  {
+    paper.setup('canvas1');
+		init();
+  }
+
+
+
+// Draw orbit in three.js
+function drawOrbit(orbit, scene, closed, color)
+{
+  var geometry = new THREE.Geometry();
+
+  for (var i=0;i<orbit.length;i++)
+  {
+    geometry.vertices.push(new THREE.Vector3 (orbit[i][0], orbit[i][1], orbit[i][2] ));
+  }
+  // close the orbit
+  var o = new THREE.Line( geometry, color );
+  if (closed)
+    o.userData = {type:'orbit', closed : true, smooth : true };
+  else
+    o.userData = {type:'orbit', closed : false, smooth : true };
+//o.userData.vLine = 1;
+  scene.add(o);
+}
+
+function movePlanets(scene, jd)
+{
+  // compute all orbit parameters and planet positions
+  for (var p=0;p<=7;p++)    // all until Neptune
+  {
+    var xyz = planetOrbits[p].positionFromLongitude(planetOrbits[p].longitude(jd));
+    planetShapes[p].move(xyz);
+    planetLabels[p].move(xyz);
+  }
+  scene.userData.update = 1;
+}
+
+function moveObjects(scene, jd)
+{
+  // compute all orbit parameters and planet positions
+  for (var p in objectOrbits)    // all until Neptune
+  {
+    var xyz = objectOrbits[p].positionFromDate(jd);
+    objectShapes[p].move(xyz);
+    objectLabels[p].move(xyz);
+  }
+  scene.userData.update = 1;
+}
+
+var planetShapes = [];
+var planetOrbits = [];
+var planetLabels = [];
+
+var objectOrbits = [];
+var objectShapes = [];
+var objectLabels = [];
+
+
+function drawPlanetOrbits(scene, jd, color)
+{
+  // compute all orbit parameters and planet positions
+  for (var p=0;p<=7;p++)    // all until Neptune
+  {
+    var orbit = new PlanetOrbit(p, jd);
+    drawOrbit(orbit.generateClosed(12), scene, true, color);
+
+    var xyz = orbit.positionFromLongitude(orbit.longitude(jd));
+    planetLabels[p] = new SpriteItem('text', planets[p].name, xyz, textColor)
+    planetShapes[p] = new SpriteItem('shape','circle', xyz, shapeColor)
+    planetOrbits[p] = orbit;
+  }
+}
+
+class SpriteItem 
+{
+  constructor(type, name, xyz, color)
+  {
+    this.item = new THREE.Sprite( new THREE.SpriteMaterial () );
+    this.item.position.set(xyz[0], xyz[1], xyz[2]);
+    this.item.userData = {type: type, content: name, color: color};
+    if (type == 'text')
+      this.item.layers.set(layerText);
+    else
+      this.item.layers.set(layerLine);
+    scene.add( this.item );
+  }
+  move(xyz)
+  {
+    this.item.position.set(xyz[0], xyz[1], xyz[2]);
+  }
+}
+
+
+
+// avoids LineSegments (not yet supported by my renderer)
+function addGrid(size, n)
+{
+  var g = [];
+
+  for (var i=-n;i<=n;i++)
+  {
+    geometry = new THREE.Geometry();
+    geometry.vertices.push(new THREE.Vector3(-n*size, i*size, 0));
+    geometry.vertices.push(new THREE.Vector3(n*size, i*size, 0));
+    var l = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color : 0xcccccc, linewidth:1} )  );
+//    l.userData.vLine = 1;
+    l.layers.set(layerGrid);
+    scene.add( l );
+
+    g.push(l);
+  }
+  
+  for (var i=-n;i<=n;i++)
+  {
+    geometry = new THREE.Geometry();
+    geometry.vertices.push(new THREE.Vector3(i*size, -n*size, 0));
+    geometry.vertices.push(new THREE.Vector3(i*size, n*size, 0));
+    var l = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color : 0xcccccc, linewidth:1} )  );
+//    l.userData.vLine = 1;
+    l.layers.set(layerGrid);
+    scene.add( l );
+    g.push(l);
+  }
+  return (g);
+ }
+ 
+
+var animation = 0;
+function toggleAnimation()
+{
+  animation = ! animation;
+}
+
+
+var grid;
+
+function toggleGrid()
+{
+   if (camera.layers & (1<<layerGrid))
+    camera.layers &= ~(1<<layerGrid);
+  else
+    camera.layers |= (1<<layerGrid);
+  scene.userData.update = 1;
+}
+
+function toggleText()
+{
+  if (camera.layers & (1<<layerText))
+    camera.layers &= ~(1<<layerText);
+  else
+    camera.layers |= (1<<layerText);
+  scene.userData.update = 1;
+}
+
+
+var colorReverse;
+var textColor = new THREE.Color( 0x000000);
+var shapeColor = new THREE.Color( 0x0000ff);
+
+
+function toggleColors()
+{
+  if (colorReverse)
+  {
+    colorReverse = 0;
+    scene.background = new THREE.Color( 0xffffff); 
+  }
+  else
+  {
+    colorReverse = 1;
+    scene.background = new THREE.Color( 0x000000  ); 
+  }    
+  scene.userData.update = 1;
+}
+
+function createObject(obj)
+{
+  switch(obj.type)
+  {
+    case 'asteroid':
+    var orbit = new AsteroidOrbit(obj.a, obj.e, obj.i, obj.Ω, obj.ω, obj.M, obj.epoch);
+    drawOrbit(orbit.generateClosed(12), scene, true, 
+                              new THREE.LineBasicMaterial( { color : 0xff00ff,  linewidth: 1  } ));
+    break;
+    case 'comet':
+    if (obj.name[0]=='P') // periodic
+    {
+      var orbit = new PeriodicCometOrbit(obj.q, obj.e, obj.i, obj.Ω, obj.ω, obj.T);
+      drawOrbit(orbit.generateClosed(50), scene, true, 
+                              new THREE.LineBasicMaterial( { color : 0x00ffff,  linewidth: 1  } ));
+    }
+    else
+    {
+      var orbit = new ParabolicCometOrbit(obj.q, obj.e, obj.i, obj.Ω, obj.ω, obj.T);
+        drawOrbit(orbit.generate(10000, 50), scene, false, 
+                                new THREE.LineBasicMaterial( { color : 0x00bbbb,  linewidth: 1  } ));
+
+    }
+    break;
+  }
+  var xyz = orbit.positionFromDate(currentDate);
+  objectOrbits.push(orbit);
+  objectLabels.push(new SpriteItem('text',obj.name, xyz, textColor));
+  objectShapes.push(new SpriteItem('shape','circle', xyz, shapeColor));
+}
+
+
+
+	var camera, scene, renderer, controls;
+  var currentDate;
+  var layerLine = 0;
+  var layerText = 1;
+  var layerGrid = 2;
+  var barn = new Barn('astro_roya_planets', localStorage);
+  var startPicker;
+
+	function init() {
+    initDate();
+    barn.set('reload', true);
+
+		camera = new THREE.PerspectiveCamera( 20, 1, 1, 1000 );
+    camera.position.set( 3, -20, 50 );
+    camera.up.set( 0, 1, 0 );
+    camera.layers = layerLine | layerText | layerGrid;
+
+		scene = new THREE.Scene();
+		scene.background = new THREE.Color( 0xffffff );
+
+		renderer = new THREE.PaperRenderer();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.sortObjects = false;
+		renderer.sortElements = false;
+
+		document.body.appendChild( renderer.domElement );
+    controls = new THREE.OrbitControls(camera, renderer.domElement, animate);
+    controls.update();
+
+    // grid
+    grid = addGrid(6, 5);
+
+    // sun
+    var sun = new SpriteItem('shape','circle', [0,0,0], shapeColor);
+
+    // planets
+    drawPlanetOrbits(scene, currentDate, new THREE.LineBasicMaterial( { color : 0x0000ff, linewidth: 1 } ));
+
+		window.addEventListener( 'resize', onWindowResize, false );
+		animate();
+	
+	function onWindowResize()
+  {
+		camera.updateProjectionMatrix();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		animate();
+	}
+
+
+  function updateScene()
+  {
+    movePlanets(scene, currentDate);
+    moveObjects(scene, currentDate);
+  }
+
+	function animate()
+	{
+		requestAnimationFrame( animate );
+    if (animation)
+    {
+      currentDate+=1;
+      updateScene();
+      startPicker.setDate(jdtojs(currentDate));
+    }
+
+		render();
+	}
+	
+		function render() 
+    {
+      if (barn.get('reload'))
+      {
+        barn.set('reload', false);
+        var objectList = barn.get('objectList');
+
+        for (var i in objectList)
+        {
+          createObject(objectList[i]);
+        }
+        scene.userData.update = 1;
+      }
+			renderer.render( scene, camera );
+		}
+    // Read julian day from storage or initialize to today 
+    function initDate()
+    {
+      startPicker = new Pikaday(
+      {   field: document.getElementById('startDate'), 
+          position: "top right",
+          keyboardInput: "false",
+          onClose: function (){currentDate = jstojd(this.getDate()); barn.set('date', currentDate);scene.userData.update = 1;updateScene();render();}
+      });
+      currentDate = barn.get('date');
+      if (currentDate)
+      {
+        var jsDate = jdtojs(currentDate);
+      }
+      else
+      {
+        var jsDate = new Date();
+        currentDate = jstojd(jsDate);
+        barn.set('date', currentDate);
+      }
+      startPicker.setDate(jsDate);
+    }
+	}
+  </script>
+	</body>
+</html>

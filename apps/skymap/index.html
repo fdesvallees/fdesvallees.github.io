@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/css/spectre.min.css" />
+<link rel="stylesheet" href="/static/css/icons.css" />
+<link rel="stylesheet" href="/static/css/glightbox.min.css" />
+<link rel="stylesheet" href="/static/css/styles.css" />
+
+<script src="/static/js/glightbox.min.js"></script>
+</head>
+
+<body>
+
+
+    <header class="navbar">
+        <section class="navbar-section navbar-brand">    
+            <a href="/blog/index.html" class="btn btn-link">Roya Astro</a>
+        </section>
+        <section class="navbar-section">    
+            <a href="/blog/index.html" class="btn btn-link">Blog</a>
+            <a href="/diagrams/index.html" class="btn btn-link">Diagrams</a>
+            <a href="/apps/index.html" class="btn btn-link">Apps</a>
+            <a href="/about/index.html" class="btn btn-link">About</a>
+        </section>
+    </header>
+
+    
+
+
+<div class="container">
+<div class="columns">
+<div class="column col-1">
+</div>
+
+<div class="column col-7">
+    <p></p>
+ 
+     <a href="./skymap.html">
+        <h2>    
+           Sky Map
+        </h2>
+         <p>2019-01-30</p>
+        <img src = "./orion.png" class="img-responsive" />
+        Click to launch
+      </a>
+<p>This sky map uses <a href="http://d3js.org">d3.js</a> and <a href="http://paperjs.org">paper.js</a> to display the night sky.<br>
+It displays a projection of the night sky (stars down to magnitude 9, constellation lines, planets, brightest Messier and NGC objects). The star database derives from the <a href="http://astronexus.com/hyg">astronomy nexus</a>, and the constellation lines from the <a href="http://pp3.sourceforge.net/">PP3 program</a>.<br>
+You can zoom and drag the map, and hovering over a star displays its Draper catalog number and Bayer designation if available.<br>
+The amount of detail (ie the magnitude limit) depends on the zoom factor.
+At a certain level, we load tiles containing fainter stars, and unload them when zooming out or panning across the sky. This is described in a <a href="http://astro.roya.org/blog/tiles/">blog entry</a>.
+To save memory and speed up loading, the constellation lines and boundaries are stored in <a href="https://github.com/topojson/topojson">TopoJSON</a>, Mike Bostock's utility for encoding topology.</p>
+
+
+</div>
+
+<div class="column col-4 right">
+    <p>
+    <h4>Archive</h4>
+    <p>
+        
+        
+              
+        
+    <ul>
+    
+        <li><a href="./">Sky Map</a></li> 
+    
+        <li><a href="../planets/">Planets in 3D</a></li> 
+    
+    </ul>
+</div>
+</div>
+</body>
+
+</html>
