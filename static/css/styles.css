@@ -2,6 +2,8 @@
  /*   padding-top: 56px; */
     /* Margin bottom for footer height */
     margin-bottom: 60px;
+    font-family: Avenir, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 15px;
   }
 
    .navbar { height: 4rem; background-color: #101060; padding: .5em 0 1em; }
@@ -18,6 +20,11 @@
 
   .btn.btn-link { color: lightgray; background-color: #101060; font-size: 1.0em;}
      
+.padded-col{
+  padding-left: 2em;
+}
+
+
 
 img {
   width: 100%;
