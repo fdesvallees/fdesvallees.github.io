@@ -22,9 +22,11 @@ Swann
 Odette, Mme de Crécy, dame en rose, miss sacripant
 Forcheville
 Robert, Saint-Loup
+de Marsantes
+Molé
 Mme de Saint-Euverte
 baronne Putbus
-Mlle de Stermaria, Mme de Stermaria
+[Mme|Mlle] de Stermaria
 Gilberte
 Cottard
 Bloch
@@ -40,12 +42,12 @@ Bergotte
 Brichot
 Saniette
 Ski
-Princesse Sherbatoff
-Norpois, M. de Norpois
+Sherbatoff
+Norpois
 Mme de Villeparisis
 Mme de Cambremer
 M. de Cambremer
-Marquise de Cambremer
+marquise de Cambremer
 Le directeur
 Aimé
 Le lift
