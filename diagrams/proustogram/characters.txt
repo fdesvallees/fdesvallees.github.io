@@ -1,5 +1,5 @@
 Maman, [M|m]a mère
-[M|m]a grand-mère, [M|m]a grand'mère
+[M|m]a grand-mère
 [M|m]on père
 [M|m]on grand-père
 oncle Adolphe
@@ -14,7 +14,7 @@ Rachel
 Charlus, Palamède, Mémé
 Jupien
 Morel, Charlie
-duchesse de Guermantes, Oriane, princesse des Laumes
+[duchesse|Mme de Guermantes],Oriane, princesse des Laumes
 duc de Guermantes, Basin
 princesse de Guermantes, Marie-Gilbert
 prince de Guermantes
@@ -27,6 +27,8 @@ Molé
 Mme de Saint-Euverte
 baronne Putbus
 [Mme|Mlle] de Stermaria
+[princesse|Mme] de Luxembourg
+de Nassau
 Gilberte
 Cottard
 Bloch

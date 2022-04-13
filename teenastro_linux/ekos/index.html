@@ -7,14 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Ekos - TeenAstro Linux</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -25,7 +22,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -36,7 +33,6 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> TeenAstro Linux</a>
         <div role="search">
@@ -47,50 +43,69 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../firmware/">Firmware</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../config/">Utilities</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../indi/">INDI driver</a>
-                    </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Ekos</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#connection-options">Connection options</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#goto">Goto</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#guiding">Guiding</a>
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../firmware/">Firmware</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../config/">Utilities</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../indi/">INDI driver</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Ekos</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#teenastro-with-ekos">TeenAstro with Ekos</a></li>
+    
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#phd2-vs-ekos-internal-guiding">PHD2 vs. Ekos internal guiding</a>
-    </li>
+        
+            <li><a class="toctree-l3" href="#connection-options">Connection options</a></li>
+        
+            <li><a class="toctree-l3" href="#goto">Goto</a></li>
+        
+            <li><a class="toctree-l3" href="#guiding">Guiding</a></li>
+        
+            <li><a class="toctree-l3" href="#meridian-flip">Meridian Flip</a></li>
+        
+            <li><a class="toctree-l3" href="#error-handling">Error handling</a></li>
+        
+            <li><a class="toctree-l3" href="#using-teenastro-without-the-hand-controller">Using TeenAstro without the hand controller</a></li>
+        
         </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#meridian-flip">Meridian Flip</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error handling</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#using-teenastro-without-the-hand-controller">Using TeenAstro without the hand controller</a>
-    </li>
+    
+
     </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
-                    </li>
-                </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../troubleshooting/">Troubleshooting</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../scopetosky/">Testing with ScopeToSky</a>
+	    </li>
+          
+        </ul>
       </div>
-    </div>
+      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -115,7 +130,6 @@
       
     </li>
   </ul>
-  
   <hr/>
 </div>
           <div role="main">
@@ -139,20 +153,20 @@
 <p>For long exposure astrophotography, the mount must track the stars precisely. To compensate polar alignment errors and refraction effects, we need to guide, by using a guide camera and software (PHD2 or Ekos Guide Module) running on a computer to correct the mount movement. The signals can be either electrical impulsions through an ST4 cable, or software commands from computer to mount (no need for ST4 cable between camera and mount). To select the software mode, enable  "Pulse Guiding" in the TeenAstro INDI control panel. <strong> As noted above, guiding is more reliable with the serial port. For the time being, don't use Wifi for guiding. </strong></p>
 <p>Other important options in the Guide tab of the control panel are:  <br />
 - Exposure time. I use 1 or 2 seconds. <br />
-- Guiding rate. I found that  0.5x works best on my setup.  (Note: this is set in the TeenAstro INDI control panel.)  <br />
+- Guiding rate. I found that 0.5x works best on my setup.   <br />
 - Bin: 2x2 in the Guide Module tab.   </p>
 <p><img alt="" src="../pulse_guiding.png" /></p>
-<p>If you use the Ekos guide module, keep the suggested control parameters (proportional and integral gains) and select </p>
-<p>With these settings I obtain a guiding error of between 0.5 arc-second and 1 arc-second RMS with my setup (250mm focal length guide scope, ASI120mini camera, AP600 mount)</p>
+<p>If you use the Ekos guide module, keep the suggested control parameters (proportional and integral gains). </p>
+<p>With these settings, in the best case (with excellent seeing) I obtain a guiding error of between 0.5 arc-second and 1 arc-second RMS with my setup (250mm focal length guide scope, ASI120mini camera, AP600 mount)</p>
 <h3 id="phd2-vs-ekos-internal-guiding">PHD2 vs. Ekos internal guiding</h3>
 <p>Both work. I did not notice significant differences in precision, but I found it easier to use the internal Ekos guiding module (no need to start an external program). </p>
 <h2 id="meridian-flip">Meridian Flip</h2>
 <p>All German Equatorial mounts need to switch from east to west when imaging past the meridian. This is called the Meridian Flip and Ekos provides a way to do this automatically during a session. Here are the steps:  <br />
 - Determine the "Past Meridian Mount Limit" of your mount, ie the angle it can continue tracking past the meridian without the telescope hitting the pier. <br />
 - Program this limit in the mount via the handset or Wifi interface <br />
-- In the Ekos mount tab, check the box "Flip if HA&gt;" and enter the same value as the TeenAstro limit.  </p>
-<p>Start your photo session. When Ekos detects that the next capture will get close to the limit, it initiates a GOTO to the current target. TeenAstro will now perform the flip automatically. When done, Ekos restarts the photo session, after eventually performing an astrometry session to re-center the image (if programmed in the scheduler).</p>
-<p><strong> Note </strong> : The meridian flip in the Ekos official release is not working as of April 2020. The fix is identified and should be implemented soon.</p>
+- In the Ekos mount tab, check the box "Flip if HA&gt;" and enter the same value <strong>minus one degree</strong> than the TeenAstro limit. For example, if the TeenAstro limit is 10 degrees, enter 9 degrees in Ekos.  </p>
+<p>Start your photo session. When Ekos detects that the next capture will get close to the limit, it initiates a GOTO to the current target. TeenAstro will perform the flip automatically. In some cases, TeenAstro decides it is not close enough, then Ekos will reschedule it after the next exposure. When the flip is done, Ekos restarts the photo session, after eventually performing an astrometry session to re-center the image (if programmed in the scheduler).</p>
+<p><strong> Note </strong> : The current Ekos official release (January 2022) has a bug that prevents the meridian flip timer from operating. The fix is identified and should be implemented soon.</p>
 <h2 id="error-handling">Error handling</h2>
 <p>When the telescope is tracking and moves past one of the defined limits, it stops tracking and does not execute any GOTO commands. On the SHC, an icon appears to show the limit.
 When it is controlled by Ekos, it shows the message in the Main tab of the TeenAstro INDI control panel.</p>
@@ -182,7 +196,7 @@ When it is controlled by Ekos, it shows the message in the Main tab of the TeenA
     
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -192,7 +206,7 @@ When it is controlled by Ekos, it shows the message in the Main tab of the TeenA
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
+  <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -206,11 +220,6 @@ When it is controlled by Ekos, it shows the message in the Main tab of the TeenA
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
 
 </body>
 </html>
