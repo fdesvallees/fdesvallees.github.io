@@ -83,6 +83,8 @@
         
             <li><a class="toctree-l3" href="#meridian-flip">Meridian Flip</a></li>
         
+            <li><a class="toctree-l3" href="#polar-alignment">Polar Alignment</a></li>
+        
             <li><a class="toctree-l3" href="#error-handling">Error handling</a></li>
         
             <li><a class="toctree-l3" href="#using-teenastro-without-the-hand-controller">Using TeenAstro without the hand controller</a></li>
@@ -136,7 +138,7 @@
             <div class="section">
               
                 <h1 id="teenastro-with-ekos">TeenAstro with Ekos</h1>
-<p>Ekos is documented <a href="https://docs.kde.org/trunk5/en/extragear-edu/kstars/tool-ekos.html">here</a>.</p>
+<p>Ekos is documented <a href="https://docs.kde.org/trunk5/en/kstars/kstars/tool-ekos.html">here</a>.</p>
 <p>This gives some detail on its operation with TeenAstro</p>
 <h2 id="connection-options">Connection options</h2>
 <p>KStars / Ekos runs either on a PC, Mac or on a Raspberry Pi. The connection between this device and TeenAstro is done either through Serial / USB (the Telescope port on the main unit), or through Wifi to the Smart HandController (SHC), port 9999 (IP address depends on the network). When running through Wifi, the SHC requires a firmware version that allows permanent IP connections with the “One to One” Wifi menu option (SHC version 1.2b or above). <br />
@@ -167,6 +169,12 @@
 - In the Ekos mount tab, check the box "Flip if HA&gt;" and enter the same value <strong>minus one degree</strong> than the TeenAstro limit. For example, if the TeenAstro limit is 10 degrees, enter 9 degrees in Ekos.  </p>
 <p>Start your photo session. When Ekos detects that the next capture will get close to the limit, it initiates a GOTO to the current target. TeenAstro will perform the flip automatically. In some cases, TeenAstro decides it is not close enough, then Ekos will reschedule it after the next exposure. When the flip is done, Ekos restarts the photo session, after eventually performing an astrometry session to re-center the image (if programmed in the scheduler).</p>
 <p><strong> Note </strong> : The current Ekos official release (January 2022) has a bug that prevents the meridian flip timer from operating. The fix is identified and should be implemented soon.</p>
+<h2 id="polar-alignment">Polar Alignment</h2>
+<p>Ekos has a good polar alignment feature, that uses the stellar solver. It works as follows:</p>
+<p>From a given position, preferably on the meridian (but <strong>NOT</strong> from the Home position - more on this later), it takes one picture, then rotates either west or east, by 15 or 30 degrees (both options are configurable), twice, and takes 2 other pictures. From these 3 images, it computes 2 vectors that describe the errors in altitude and azimuth. Once these two errors are corrected by adjusting the mount, alignment is completed. This takes only about 5 minutes, and allows an alignment better than 30 arc-seconds.</p>
+<p><strong>Attention</strong>: Ekos simulates E/W button presses until RA has increased/decreased by 15 or 30 degrees. But one feature of TeenAstro is that when the mount points Home (towards the pole), rotating the RA axis does <strong>not</strong> change the displayed RA value. </p>
+<p>Therefore Ekos will keep pressing the E or W button forever. Since TeenAstro does not check mount limits in this situation, the telescope will hit the pier sooner or later, and potentially damage camera, filters etc.</p>
+<p><strong>This means you must be very careful to perform polar alignment from any position near the meridian EXCEPT from Home position</strong></p>
 <h2 id="error-handling">Error handling</h2>
 <p>When the telescope is tracking and moves past one of the defined limits, it stops tracking and does not execute any GOTO commands. On the SHC, an icon appears to show the limit.
 When it is controlled by Ekos, it shows the message in the Main tab of the TeenAstro INDI control panel.</p>
