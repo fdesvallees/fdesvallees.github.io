@@ -1,16 +1,11 @@
-swann,15715,16948, Épisode de la madeleine
 swann,57998,59979, Scène de Montjouvain
 alodjff,7990,19599,Dîner de Norpois chez le Narrateur
 alodjff,46098,55287,Dîner chez Swann
 alodjff,83943,1226632,Premier séjour à Balbec
-lcdg,11135,19628,Soirée de gala à l'Opéra
-lcdg,24303,51741,Séjour à Doncières
-lcdg,72471,112311,Matinée chez Mme de Villeparisis
-lcdg,123073,135802,Mort de la grand-mère
-lcdg,163450,212961,Soirée chez la duchesse de Guermantes
-lcdg,214590,220400,Visite chez M. de Charlus
+lcdg,11135,19628,Soirée de gala à l'Opera
+lcdg,24303,,Séjour à Doncières
+seg,12490,49047,Soirée chez la Princesse de Guermantes
 seg,0,4810,Parade nuptiale de Charlus et Jupien
-seg,12490,49047,Soirée chez la princesse de Guermantes
 seg,58865,1235153,Second séjour à Balbec
 seg,104109,143917,Dîner Verdurin à la Raspelière
 lp,68286,71400, Mort de Bergotte
@@ -21,4 +16,4 @@ lf,83731,94454,Séjour à Venise
 ltr,40066,49407,Séance masochiste de Charlus
 ltr,53793,56773,Mort de Saint Loup
 ltr,56773,122392,Matinée chez la princesse de Guermantes
-ltr,61277,80628,Épisode du pavé inégal
+ltr,61277,80628,Pavé inégal

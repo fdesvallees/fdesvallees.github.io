@@ -7,11 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Testing with ScopeToSky - TeenAstro Linux</title>
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -22,9 +25,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -33,75 +35,71 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> TeenAstro Linux</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../firmware/">Firmware</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../config/">Utilities</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../indi/">INDI driver</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../ekos/">Ekos</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../troubleshooting/">Troubleshooting</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">Testing with ScopeToSky</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#scope-to-sky-and-teenastro">Scope to Sky and TeenAstro</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../firmware/">Firmware</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../config/">Utilities</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../indi/">INDI driver</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ekos/">Ekos</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Testing with ScopeToSky</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-it-for-testing-teenastro-firmware">How to use it for testing TeenAstro Firmware</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#program-design">Program design</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installing">Installing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running-the-program">Running the program</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#how-to-use-it-for-testing-teenastro-firmware">How to use it for testing TeenAstro Firmware</a></li>
-        
-            <li><a class="toctree-l3" href="#program-design">Program design</a></li>
-        
-            <li><a class="toctree-l3" href="#installing">Installing</a></li>
-        
-            <li><a class="toctree-l3" href="#running-the-program">Running the program</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#sample-yaml-configuration-file">Sample YAML configuration file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-of-test-case-list">Example of test case list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#results">Results</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#examples-of-complete-test">Examples of complete test</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#next-steps">Next steps</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#list-of-scopetosky-variables-that-can-be-selected-for-output">List of ScopeToSky variables that can be selected for output</a>
+    </li>
         </ul>
-    
-
+    </li>
     </ul>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -126,8 +124,10 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -201,7 +201,6 @@ flipped: false
 primaryAxis: '0.0'
 secondaryAxis: '0.0'
 </code></pre>
-
 <h3 id="example-of-test-case-list">Example of test case list</h3>
 <p>In this example, we move to a series of points at declination 50 degrees, and RA from 1 to 14 hr  </p>
 <p><strong>tests.csv</strong></p>
@@ -292,7 +291,7 @@ tertiaryAxisa
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -302,18 +301,24 @@ tertiaryAxisa
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../troubleshooting/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../troubleshooting/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
