@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Mount Simulator - TeenAstro Linux</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Mount Simulator";
+    var mkdocs_page_input_path = "mount_sim.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> TeenAstro Linux</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../firmware/">Firmware</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../config/">Utilities</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../indi/">INDI driver</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ekos/">Ekos</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../scopetosky/">Testing with ScopeToSky</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Mount Simulator</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#program-design">Program Design</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#primer-on-mount-design">Primer on Mount Design</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#advantages-of-each-type">Advantages of each type</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#equatorial-vs-alt-az">Equatorial vs Alt-Az</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#fork-vs-offset-tube">Fork vs. Offset tube</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#what-it-means-for-the-mount-firmware">What it means for the mount firmware</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">TeenAstro Linux</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Mount Simulator</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="mount-simulator">Mount Simulator</h1>
+<p>mountSim is a Python program that connects to a TeenAstro through Wifi and displays a simulated mount. It reads the steps on both axes, and shows the mount's movements, including Meridian Flip (for German Equatorials only) and to debug eventual firmware problems. </p>
+<h2 id="installation">Installation</h2>
+<p>Download the python scripts and STL files from Github. 
+Install Python 3.8 or higher, and the following modules:</p>
+<p><code>pip install argparse numpy trimesh glooey pyglet threading serial serial.tools time datetime</code></p>
+<p>Launch mountSim from the command line. The single option is the IP address of your TeenAstro.</p>
+<p><code>python mountSim.py --ip 192.168.0.21</code></p>
+<p>A graphic window opens, that displays a simplified mount model, selected according to your type of mount:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">Fork</th>
+<th align="center">Offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alt-Az</td>
+<td align="center"><img alt="" src="../altaz_fork.png" /><br/>Alt-Az Fork</td>
+<td align="center"><img alt="" src="../altaz_tee.png" /><br/>Alt-Az T-Mount</td>
+</tr>
+<tr>
+<td>Equatorial</td>
+<td align="center"><img alt="" src="../eq_fork.png" /><br/>Equatorial Fork</td>
+<td align="center"><img alt="" src="../eq_german.png" /><br/>German Equatorial (GEM)</td>
+</tr>
+</tbody>
+</table>
+<p>You can now move the mount with the hand controller. It is also possible to control TeenAstro remotely, either with the Web interface from the SHC, or through a program running on your PC (Ekos, SkySafari etc.). <br />
+Note that you can have only one Wifi (IP) port at a time, so the PC program should use USB, not Wifi. <br />
+You can run mountSim in parallel with your mount, or without. In this case it is possible to speed up the maximum speed up to 2000x or more. (You may need to lower the gear reduction). </p>
+<p>Use these mouse movements: click-drag to change the view orientation, right-click+drag to pan around.</p>
+<h2 id="program-design">Program Design</h2>
+<p>The program consists of 2 python scripts (mountSim.py and teenastro.py) and STL files that represent the parts of each mount. I used the 3d parametric CAD tool <a href="https://solvespace.com/index.pl">SolveSpace</a> to design the mounts. 
+The display itself is done by <a href="https://trimsh.org/index.html">the trimesh library</a> and a <a href="https://pyglet.org/">pyglet</a> viewer.</p>
+<h2 id="primer-on-mount-design">Primer on Mount Design</h2>
+<p>To point any direction in the sky, a telescope mount requires (at least) 2 orthogonal axes. In practice these two types exist:</p>
+<ul>
+<li>Alt-Az: Primary axis is vertical, secondary axis is horizontal.   </li>
+<li>Equatorial: Primary axis points to celestial pole, secondary axis sweeps along a meridian.</li>
+</ul>
+<p>Within these two main types, there are several design options: <br />
+- Fork: Optical tube is in the same plane as the primary axis. <br />
+- Offset: Optical tube is offset to the side of the primary axis. Usually requires a counterweight.</p>
+<p>Therefore TeenAstro can be configured for any of these 4 types of mounts: </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">Fork</th>
+<th align="center">Offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alt-Az</td>
+<td align="center"><img alt="" src="../altaz_fork.jpg" /><br/>Alt-Az Fork</td>
+<td align="center"><img alt="" src="../t.gif" /><br/>Alt-Az T-Mount</td>
+</tr>
+<tr>
+<td>Equatorial</td>
+<td align="center"><img alt="" src="../eq_fork.jpg" /><br/>Equatorial Fork</td>
+<td align="center"><img alt="" src="../gem.jpg" /><br/>German Equatorial (GEM)</td>
+</tr>
+</tbody>
+</table>
+<p>Note that some systems do not fit in any of these categories. For example a Dobson telescope on an equatorial table actually has 3 axes: The primary is a kind of horseshoe (equatorial fork), on which an Alt-Az fork is sitting, but not horizontal. But it works!</p>
+<p>Also note these interesting cases: <br />
+- at the North or South pole, an Alt-Az mount is also an equatorial <br />
+- at the equator, the primary axis of an equatorial mount is horizontal</p>
+<h3 id="advantages-of-each-type">Advantages of each type</h3>
+<h4 id="equatorial-vs-alt-az">Equatorial vs Alt-Az</h4>
+<p>Equatorial mounts follow the sky with only one motor on the right ascension (hour) primary axis. The object always stays in the same orientation, there is no field rotation. In contrast, Alt-Az mounts need two motors to track, and the field rotates during tracking, requiring a derotator to make images.    <br />
+Alt-Az mounts are mechanically simpler and lighter. The last large equatorial mount was the 200-inch (5.1m) Hale at Mount Palomar (1949). Modern large telescopes are all Alt-Az.</p>
+<h4 id="fork-vs-offset-tube">Fork vs. Offset tube</h4>
+<p>Equatorial forks are generally bulky and reserved for large instruments. Alt-Az forks are common for amateur telescopes (especially for Schmidt-Cassegrain with short fat tubes). Most amateur telescopes intended for astrophoto are GEM mounts. </p>
+<h3 id="what-it-means-for-the-mount-firmware">What it means for the mount firmware</h3>
+<p>The main task of a modern GOTO mount firmware is the computation of <strong>axis positions</strong> from the object's <strong>sky coordinates</strong>. For Alt-Az, the axis positions are the required altitude and azimuth. For Equatorial, the axis positions are the Hour Angle (Local sidereal time - Right Ascension of object) and the object's declination (with a positive or negative sign, depending on the RA axis position) <br />
+In both cases the computation is the same for fork or offset mounts, but the <strong>limits</strong> are different. For example, a GEM (German Equatorial) cannot track continuously across the southern sky. It needs to perform a <strong>meridian flip</strong>. Equatorial Fork mounts usually cannot track below the pole.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../scopetosky/" class="btn btn-neutral" title="Testing with ScopeToSky"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../scopetosky/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
