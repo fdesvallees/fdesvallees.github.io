@@ -132,7 +132,7 @@
             <div class="section">
               
                 <h1 id="mount-simulator">Mount Simulator</h1>
-<p>mountSim is a Python program that connects to a TeenAstro through Wifi and displays a simulated mount. It reads the steps on both axes, and shows the mount's movements, including Meridian Flip (for German Equatorials only) and to debug eventual firmware problems. </p>
+<p>mountSim is a Python program that connects to a TeenAstro through Wifi and displays a simulated mount. It reads the steps on both axes, and shows the mount's movements, including Meridian Flip (for German Equatorials only) which can help debugging eventual firmware problems. </p>
 <h2 id="installation">Installation</h2>
 <p>Download the python scripts and STL files from Github. 
 Install Python 3.8 or higher, and the following modules:</p>
@@ -164,7 +164,7 @@ Install Python 3.8 or higher, and the following modules:</p>
 <p>You can now move the mount with the hand controller. It is also possible to control TeenAstro remotely, either with the Web interface from the SHC, or through a program running on your PC (Ekos, SkySafari etc.). <br />
 Note that you can have only one Wifi (IP) port at a time, so the PC program should use USB, not Wifi. <br />
 You can run mountSim in parallel with your mount, or without. In this case it is possible to speed up the maximum speed up to 2000x or more. (You may need to lower the gear reduction). </p>
-<p>Use these mouse movements: click-drag to change the view orientation, right-click+drag to pan around.</p>
+<p>Use these mouse movements: left-click+drag to change the view orientation, middle-click+drag to pan around.</p>
 <h2 id="program-design">Program Design</h2>
 <p>The program consists of 2 python scripts (mountSim.py and teenastro.py) and STL files that represent the parts of each mount. I used the 3d parametric CAD tool <a href="https://solvespace.com/index.pl">SolveSpace</a> to design the mounts. 
 The display itself is done by <a href="https://trimsh.org/index.html">the trimesh library</a> and a <a href="https://pyglet.org/">pyglet</a> viewer.</p>
