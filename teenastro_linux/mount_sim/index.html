@@ -165,6 +165,34 @@ Install Python 3.8 or higher, and the following modules:</p>
 Note that you can have only one Wifi (IP) port at a time, so the PC program should use USB, not Wifi. <br />
 You can run mountSim in parallel with your mount, or without. In this case it is possible to speed up the maximum speed up to 2000x or more. (You may need to lower the gear reduction). </p>
 <p>Use these mouse movements: left-click+drag to change the view orientation, middle-click+drag to pan around.</p>
+<p>For proper operation of the model, TeenAstro must know the direction of motor rotation, which depends on the type of mount and hemisphere</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">Eq. Fork</th>
+<th align="center">Eq. German</th>
+<th align="center">Altaz Fork</th>
+<th align="center">Altaz Tee</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>North</td>
+<td align="center">1: Direct</br>2: Direct</td>
+<td align="center">1: Direct</br> 2: Direct</td>
+<td align="center">1: Direct</br> 2: Direct</td>
+<td align="center">1: Direct</br> 2: Direct</td>
+</tr>
+<tr>
+<td>South</td>
+<td align="center">1: Reverse</br> 2: Reverse</td>
+<td align="center">1: Reverse</br> 2: Direct</td>
+<td align="center">1: Reverse</br> 2: Direct</td>
+<td align="center">1: Reverse</br> 2: Direct</td>
+</tr>
+</tbody>
+</table>
 <h2 id="program-design">Program Design</h2>
 <p>The program consists of 2 python scripts (mountSim.py and teenastro.py) and STL files that represent the parts of each mount. I used the 3d parametric CAD tool <a href="https://solvespace.com/index.pl">SolveSpace</a> to design the mounts. 
 The display itself is done by <a href="https://trimsh.org/index.html">the trimesh library</a> and a <a href="https://pyglet.org/">pyglet</a> viewer.</p>

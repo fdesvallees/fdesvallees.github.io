@@ -59,7 +59,9 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#flashing">Flashing</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#flashing-teensy-through-usb-with-the-teensy-uploader">Flashing Teensy through USB with the Teensy uploader</a>
+    <li class="toctree-l3"><a class="reference internal" href="#flashing-the-main-unit-through-usb-with-the-teensy-uploader">Flashing the Main Unit through USB with the Teensy uploader</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#flashing-the-shc-through-usb-and-through-wifi">Flashing the SHC through USB and through Wifi</a>
     </li>
         </ul>
     </li>
@@ -123,13 +125,18 @@
               
                 <h1 id="teenastro-flashing-and-configuration">TeenAstro Flashing and Configuration</h1>
 <h2 id="flashing">Flashing</h2>
-<p>To flash (download) the firmware, you can either use the <a href="https://groups.io/g/TeenAstro/wiki/TeenAstroUploader">TeenAstroUploader application</a> (Windows only), or the <a href="https://www.pjrc.com/teensy/loader_linux.html">Teensy uploader</a>, which is available for Windows, MacOS and Linux. In all cases, it is possible to program the microcontrollers as standalone (when unplugged from the TeenAstro PCB) through a microUSB port. </p>
-<p>After assembly, the Teensy on the Main Unit can also be programmed using the same tools through the USB port on the front panel, and the Wemos in the Hand Controller can be programmed through the <a href="https://groups.io/g/TeenAstro/wiki/WiFi-Interface">web server interface</a></p>
-<h3 id="flashing-teensy-through-usb-with-the-teensy-uploader">Flashing Teensy through USB with the Teensy uploader</h3>
-<p>Download the teensy uploader from the PJRC web site. On Linux, you need to copy the 00-teensy.rules to the /etc/udev/rules.d folder as explained on the web site.</p>
+<p>To flash (download) the firmware on both processors, you can either use the <a href="https://groups.io/g/TeenAstro/wiki/TeenAstroUploader">TeenAstroUploader application</a> (Windows only), or use directly the tools provided by the board manufacturers.</p>
+<h3 id="flashing-the-main-unit-through-usb-with-the-teensy-uploader">Flashing the Main Unit through USB with the Teensy uploader</h3>
+<p>The <a href="https://www.pjrc.com/teensy/loader_linux.html">Teensy uploader</a>, is available for Windows, MacOS and Linux. In all cases, it is possible to program the microcontrollers as standalone (when unplugged from the TeenAstro PCB) through a microUSB port. </p>
+<p>After assembly, the Teensy on the Main Unit can also be programmed using the same tools through the USB port on the front panel</p>
+<p>On Linux, you need to copy the 00-teensy.rules to the /etc/udev/rules.d folder as explained on the web site.</p>
 <p>Launch <code>teensy</code>, select the firmware file in HEX format, and hit the reset button on the board</p>
 <p><img alt="" src="../teensy.png" /></p>
 <p>If the reset button is not accessible, you can also reset it by software by launching <code>teensy_reboot</code>. Note that teensy_reboot is installed by default when using platformio. If you don't use platformio, post a message on the TeenAstro help group.</p>
+<h3 id="flashing-the-shc-through-usb-and-through-wifi">Flashing the SHC through USB and through Wifi</h3>
+<p>The processor on the SHC is an ESP8266, on a board called Wemos D1 mini. <br />
+It can be programmed with a tool called esptool.py, available <a href="https://github.com/espressif/esptool">here</a>. First remove the Wemos board from the SHC, then use the micro USB connector to connect to your computer. <br />
+Once the Wemos is programmed, it is easier to flash through the <a href="https://groups.io/g/TeenAstro/wiki/WiFi-Interface">web server interface</a>, so that there is no need to open the case.</p>
 <h2 id="configuration">Configuration</h2>
 <p>These utilities allow to view and change the configuration of the mount (motor parameters etc.)</p>
 <p>For Windows, use <a href="https://groups.io/g/TeenAstro/wiki/TeenAstroConfig">TeenAstroConfig.exe</a></p>
