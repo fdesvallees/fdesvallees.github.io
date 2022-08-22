@@ -67,9 +67,11 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Testing with autoTest</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#pointing-accuracy-test-not-yet-completed">Pointing Accuracy Test (not yet completed)</a>
+    <li class="toctree-l2"><a class="reference internal" href="#pointing-accuracy-test">Pointing Accuracy Test</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#drift-test">Drift Test</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#alignment-test">Alignment Test</a>
     </li>
     </ul>
                 </li>
@@ -105,12 +107,15 @@
 <p>autoTest allows testing a TeenAstro Main Unit without the mount, by counting steps reported during specified movements.
 The computer is connected to the Main Unit either through the serial USB port or through TCP/IP via the Smart Hand Controller.</p>
 <p>It has 2 test options:</p>
-<h2 id="pointing-accuracy-test-not-yet-completed">Pointing Accuracy Test (not yet completed)</h2>
+<h2 id="pointing-accuracy-test">Pointing Accuracy Test</h2>
 <p><img alt="" src="../pointTest.png" /></p>
-<p>The mount points to a list of positions defined as alt-az pairs. The mount position is displayed on an altazimuth graph. At each position, the program compares the RA / Dec reported by TeenAstro against values computed from the axis positions using Skyfield. </p>
+<p>The mount points to a list of positions defined as alt-az pairs. The mount position is displayed on an altazimuth graph. At each position, the program compares Alt-Az computed from the RA / Dec reported by TeenAstro against values computed from the axis positions using Skyfield. </p>
 <h2 id="drift-test">Drift Test</h2>
 <p><img alt="" src="../driftTest.png" /></p>
-<p>The mount is set to track any point in the sky. At regular intervals, the program reads the axis positions and computes the differences in RA and Dec since the test started. This can be used to verify slow movements like guiding and custom tracking. The + and - keys allow zooming in and out.</p>
+<p>The mount is set to track any point in the sky. At regular intervals, the program reads the axis positions and computes the differences in RA and Dec since the test started. This can be used to verify slow movements like guiding and custom tracking. The + and - keys allow zooming in and out. The current drift averaged over the last 10 seconds is displayed on the right.</p>
+<h2 id="alignment-test">Alignment Test</h2>
+<p><img alt="" src="../alignTest.png" /></p>
+<p>The current TeenAstro position is plotted on top of a simple star map. A set of controls sets "home position" and "pole alignment" errors. This allows running the alignment routine in the hand controller, to view its effect on pointing accuracy.</p>
               
             </div>
           </div><footer>
