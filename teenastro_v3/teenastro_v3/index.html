@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>TeenAstro V3 - TeenAstro V3</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "TeenAstro V3";
+        var mkdocs_page_input_path = "teenastro_v3.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> TeenAstro V3
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../teenastro_v2/">TeenAstro V2</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">TeenAstro V3</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#software-design">Software Design</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#motion-control-mode-of-the-5160-stepper-controller">Motion Control mode of the 5160 stepper controller</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hardware">Hardware</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">TeenAstro V3</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>TeenAstro V3</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="teenastro-under-freertos">TeenAstro under FreeRTOS</h1>
+<h3 id="introduction">Introduction</h3>
+<p>The original TeenAstro was designed with a Teensy 3.2 processor. Since this is now Unobtainium, it is necessary to plan for upgrades to other processors. A logical alternative is Teensy 4.x, but also the ESP32 family. These newer processors already have ports of FreeRTOS. A real-time OS has many advantages compared to the Arduino setup/loop model, in terms of software portability and readability. I have started this porting project on an ESP32, because it has excellent JTAG debug capability, which Teensy 4.x does not have. However it is simple to rebuild the code for both platforms with simple #ifdef statements and to test it in parallel.  </p>
+<h3 id="software-design">Software Design</h3>
+<p>The project required significant code changes. The original TeenAstro uses many shared global variables accessed by low-level motion control routines and interrupt service routines (ISR) that toggle the STEP/DIR inputs of the motor driver. All accesses to critical sections are bracketed by interrupt disable/enable statements (CLI/SEI). The new design is structured as follows:</p>
+<ul>
+<li>There are now 3 main tasks (Command, Control, Monitor) plus one task for each motor driver (in Step/Drive mode)   </li>
+<li>The Command task handles communication with the 2 serial ports, and does the high-level computation of positions and speeds   </li>
+<li>The Control task contains the logic for the main states of operation (Tracking, Goto)    </li>
+<li>The Monitor task controls the limits and does general housekeeping   </li>
+<li>The Motor tasks control the motors with either Step/Dir or Motion Controller if available.    </li>
+<li>In order to be compatible with both Step/Dir and Motion Control modes, the upper-level tasks do all their computations in angles (double floating point), axis positions (32-bit int) and speeds, either in multiples of sidereal speed, or in steps per second (both double floating point). All the computation of periods for programming the timers is done in the Motor tasks.   </li>
+</ul>
+<h3 id="implementation-details">Implementation Details</h3>
+<p>The ISR running off the sidereal timer has only one purpose, which is to update the sidereal time. All other tasks run at multiples of the operating system's tick, normally one millisecond.   </p>
+<p>On ESP32 there is no EEPROM, but a section of RAM that emulates EEPROM, and gets written into the Flash with the EEPROM.commit() function. To keep the code compatible, the Monitor task performs a hash of the RAM (every 10 seconds or so) and commits it to Flash when a change is detected.   </p>
+<h3 id="motion-control-mode-of-the-5160-stepper-controller">Motion Control mode of the 5160 stepper controller</h3>
+<p>The current TeenAstro code base uses the STEP/DIR mode for controlling the stepper motor driver (TMC2130 or TMC5160). This requires the microcontroller to toggle the STEP input of the driver for each step. Since we use microstepping to get a smooth motion, we program one interrupt for each microstep. The interrupt period is </p>
+<pre><code>t = 24 * 3600 / (gear reduction * steps/rot * microsteps)
+</code></pre>
+<p>For example, for a gear reduction of 1000 (ratio of motor axis to mount axis rotations), typical motors with 200 steps/rotation, 32 microsteps, and sidereal rate (one mount axis rotation for 24 hours), our interrupt period is:  </p>
+<pre><code>t = 24 * 3600 / (1000 * 200 * 32) = 13.5mS.
+</code></pre>
+<p>At higher slew speeds, the interrupt period is reduced proportionnally: at a slew speed of 100x, the period is 13.5mS / 100 = 135µS.   </p>
+<p>In turn, the minimum interrupt period of the microcontroller limits the maximum slew speed. (to 675x in our example for the Teensy 3.2).      </p>
+<p>The corresponding step size for the motor axis is 360º / (gear reduction * steps/rot * microsteps). In our example, the step size is 360 / (1000 * 200 * 32) = 0.000056º = 0.2" (arc-seconds). This step size should be kept as low as possible to ensure smooth tracking and guiding.   </p>
+<p>The Trinamic 5160 can control the motor directly without requiring a microcontroller interrupt at each step. Extract from the 5160 datasheet: "The integrated 32-bit motion controller automatically drives the motor to target positions or accelerates to target velocities".   </p>
+<p>We should be able to use the highest possible microstep value (128) and the highest slew rate that the motors can handle. (We are only limited by the maximum torque).   </p>
+<h3 id="hardware">Hardware</h3>
+<p>We need the 5160 BOB (Breakout Board), not the 5160 SilentStepStick, for 2 reasons:   </p>
+<ul>
+<li>set SD_MODE to GND to use the internal step generator   </li>
+<li>connect an external clock to the CLK input. Without this external clock, the precision is +-4%, obviously unusable in our case.   </li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../teenastro_v2/" class="btn btn-neutral float-left" title="TeenAstro V2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../teenastro_v2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
