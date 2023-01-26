@@ -101,17 +101,17 @@
         toReferenceDeg()            // matrix operation - converts axis degrees to sky Az/Alt 
     HorTopoToEqu()                  // converts Az/Alt to HA/Dec    
 </code></pre>
-<h4 id="notes">Notes</h4>
+<h4 id="mapping-sky-coordinates-to-axis-angles">Mapping sky coordinates to axis angles</h4>
 <p>The difference between Eq and AltAz mounts is handled inside the alignment matrix operations (toInstrumentalDeg / toReferenceDeg) based on <a href="http://takitoshimi.starfree.jp/matrix/matrix_method_rev_e.pdf">Toshimi Taki's 2004 paper</a>. At initialization, the alignment matrix is initialized as follows: <br />
 - for AltAz mounts, Axis1 is Azimuth reversed by 180º, Axis2 is Altitude, so that in the Home position the optical tube is horizontal, pointing South. <br />
 - for Eq mounts, it converts Axis1/Axis2 to Altitude and Azimuth, so that in the Home position the optical tube points to the celestial pole.   </p>
-<p>The idea is to perform all Goto with the same (Alt-Az) code. <br />
+<p>The idea is to perform all Goto with the same (AltAz) code. <br />
 This simplifies somewhat the design, but has several disadvantages: <br />
-- It causes problems near the poles. If we move the RA axis when pointing at the pole, the new AltAz position will be identical, since the tube still points at the pole, therefore the reported RA does not change, even though the RA axis has rotated.  <br />
+- It causes problems near the poles, especially for polar alignment software: If we rotate the RA axis when pointing at the pole, the new AltAz position will be identical, since the tube still points at the pole, therefore the reported RA does not change, even though the RA axis has rotated.  <br />
 - It hides the amount of conversions going on behind the scenes (see tracking section below)   </p>
 <h4 id="mapping-axis-angles-to-steps">Mapping axis angles to steps</h4>
-<p>This mapping is not one-to-one: The same position (in steps) may represent 2 different axis angles, according to two parameters: the motor reverse bit, and the hemisphere. This also applies to the direction of tracking.
-This means that it is not possible to directly port the code to motion control mode, where a motor (axis) position has to map unambiguously to an axis position.</p>
+<p>This mapping is not one-to-one: The same position (in steps) may represent 2 different axis angles, according to the hemisphere. This also applies to the direction of tracking.</p>
+<p>The motor reverse bit is handled at the very lowest level so that the whole software uses the same coordinates for direct and reverse directions.</p>
 <h4 id="slewing-mode">Slewing Mode</h4>
 <p>Slewing or centering is triggered by pressing direction keys. It moves the mount at predefined speeds in any direction, without a target. This is the call sequence:</p>
 <pre><code>MoveAxis1/2                         // LX200 command

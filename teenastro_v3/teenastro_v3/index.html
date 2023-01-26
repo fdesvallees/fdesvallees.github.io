@@ -53,15 +53,17 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#operating-system">Operating system</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#software-design">Software Design</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#file-formats">File Formats</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#program-structure">Program Structure</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#equatorial-vs-altaz-mounts">Equatorial vs AltAz mounts</a>
+    <li class="toctree-l3"><a class="reference internal" href="#alignment-equatorial-vs-altaz-mounts">Alignment, Equatorial vs AltAz mounts</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#the-dreaded-meridian-flip">The Dreaded Meridian Flip</a>
+    <li class="toctree-l3"><a class="reference internal" href="#mapping-sky-coordinates-to-axis-angles">Mapping sky coordinates to axis angles</a>
     </li>
         </ul>
     </li>
@@ -97,14 +99,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="teenastro-under-freertos">TeenAstro under FreeRTOS</h1>
+                <h1 id="teenastrov3">TeenAstroV3</h1>
 <h3 id="introduction">Introduction</h3>
-<p>The original TeenAstro was designed with a Teensy 3.2 processor. Since this is now Unobtainium, it is necessary to plan for upgrades to other processors. A logical alternative is Teensy 4.x, but also the ESP32 family. These newer processors already have ports of FreeRTOS. A real-time OS has many advantages compared to the Arduino setup/loop model, in terms of software portability and readability. I have started this porting project on an ESP32, because it has excellent JTAG debug capability, which Teensy 4.x does not have. However it is simple to rebuild the code for both platforms with simple #ifdef statements and to test it in parallel.  </p>
+<p>Here are some of the design requirements for a new design of the TeenAstro Main Unit.</p>
+<ul>
+<li>Modular, easier to read and to maintain than v2</li>
+<li>Support for multiple processors</li>
+<li>Support Step/Dir steppers, MotionControl (SPI-only) steppers, DC servo motors </li>
+<li>Encoders: on axis (absolute), on axis (relative), on worm (relative), on motor (relative)</li>
+</ul>
+<p>The original TeenAstro used a Teensy 3.2 processor. Since this is now Unobtainium, it is necessary to plan for upgrades to other processors. A logical alternative is Teensy 4.x, but also the ESP32 family. These newer processors already have ports of FreeRTOS. </p>
+<h3 id="operating-system">Operating system</h3>
+<p>A real-time OS has many advantages compared to the Arduino setup/loop model, in terms of software portability and readability. FreeRTOS is the de-facto standard for this class of projects, and it is available for both ESP32 and Teensy 4.</p>
+<p>I have started this porting project on an ESP32, because it has excellent JTAG debug capability, which Teensy 4.x does not have. However it is simple to rebuild the code for both platforms with simple #ifdef statements and to test it in parallel.  </p>
 <h3 id="software-design">Software Design</h3>
 <h4 id="file-formats">File Formats</h4>
-<p>I have removed the funky INO format and used standard .h headers and .cpp sources. Much of the code is unchanged, in particular the math calculations. However all low-level code that handles timers and interrupts is new.    </p>
+<p>I have removed the funky Arduino .INO format and used standard .h headers and .cpp sources. Much of the code is unchanged, in particular the math calculations. However all low-level code that handles timers and interrupts is new.    </p>
 <h4 id="program-structure">Program Structure</h4>
-<p>The project required significant code changes. The original TeenAstro uses many shared global variables accessed by low-level motion control routines and interrupt service routines (ISR) that toggle the STEP/DIR inputs of the motor driver. Accesses to critical sections are bracketed by interrupt disable/enable statements (CLI/SEI). The new design is structured as follows:</p>
+<p>TeenAstroV2 uses many shared global variables accessed by low-level motion control routines and interrupt service routines (ISR) that toggle the STEP/DIR inputs of the motor driver. Accesses to critical sections are bracketed by interrupt disable/enable statements (CLI/SEI). The new design is structured as follows:</p>
 <ul>
 <li>There are now 3 main tasks (Command, Control, Monitor) plus one task for each motor driver (in Step/Drive mode)   </li>
 <li>The Command task handles communication with the 2 serial ports, and does the high-level computation of positions and speeds   </li>
@@ -113,13 +125,32 @@
 <li>The Motor tasks control the motors with either Step/Dir or Motion Controller if available.    </li>
 <li>In order to be compatible with both Step/Dir and Motion Control modes, the upper-level tasks do all their computations in angles (double floating point), axis positions (32-bit int) and speeds, either in multiples of sidereal speed, or in steps per second (both double floating point). All the computation of periods for programming the timers is done in the Motor tasks.   </li>
 </ul>
-<h4 id="equatorial-vs-altaz-mounts">Equatorial vs AltAz mounts</h4>
-<p>The TeenAstro v2 code uses alignment matrices to handle the differences between the two kinds of mounts, by considering that an Eq mount is simply an AltAz mount oriented towards the pole. As noted in the v2 document, this has several disadvantages. I chose to isolate all mount-dependent code in 2 different classes, one for each type of mount. Each class has its own goto, tracking etc. routines. This way we only test the mount type once at startup, and no longer need to call isAltAz() or similar functions at run-time.   </p>
-<h4 id="the-dreaded-meridian-flip">The Dreaded Meridian Flip</h4>
+<h4 id="alignment-equatorial-vs-altaz-mounts">Alignment, Equatorial vs AltAz mounts</h4>
+<p>TeenAstro v2 uses alignment matrices for 2 purposes:</p>
+<ul>
+<li>for the  sky model (mapping sky coordinates to instrument coordinates) </li>
+<li>to handle the differences between the two kinds of mounts, by considering that an Eq mount is simply an AltAz mount oriented towards the pole. As noted in the v2 document, this has several disadvantages.</li>
+</ul>
+<p>For v3, the alignment matrices and Eq/Altaz differences are handled separately: The alignment matrix only maps the sky coordinates to instrument coordinates, and all mount-dependent code is isolated in 2 different classes, one for each type of mount. Each class has its own goto, tracking etc. routines. This way we only test the mount type once at startup, and in most cases we no longer need to call isAltAz() or similar functions at run-time.   </p>
+<h4 id="mapping-sky-coordinates-to-axis-angles">Mapping sky coordinates to axis angles</h4>
 <p>Mapping axis positions to sky coordinates seems simple, but requires careful definitions. <br />
 For an equatorial mount, Axis1 is the Hour Angle and Axis2 is the Declination. <br />
 For simplicity, consider a mount in the northern hemisphere. 
-A GEM mount in the Home Position points to the pole, with its DEC axis vertical. From this position, the DEC axis can move either clockwise (as seen from the top), in which case it points towards the geographic east, or counterclockwise, to point to geographic west. We define the home position as Axis2 = zero, the counterclockwise orientation as "direct" (Axis2 &gt; 0) and the clockwise orientation as "flipped" (Axis2 &lt; 0). We can now plot the following relations between axes and coordinates:</p>
+A GEM mount in the Home Position points to the pole, with its DEC axis vertical. From this position, the DEC axis can move either clockwise (as seen from the top), in which case it points towards the geographic east, or counterclockwise, to point to geographic west. We define the home position as Axis2 = zero, the counterclockwise orientation as "direct" (Axis2 &gt; 0) and the clockwise orientation as "flipped" (Axis2 &lt; 0). We can now plot the following relations between axes and coordinates, for a GEM mount in the northern hemisphere. For the southern hemisphere, both plots are reversed. Note that equatorial forks are different (to be done)</p>
+<table>
+<thead>
+<tr>
+<th>ra_direct = axis1+90, ra_flipped=axis1-90</th>
+<th>dec = 90+axis2[-90..0], dec=90-axis2[0..90]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="../axis1_ra.png" /></td>
+<td><img alt="" src="../axis2_dec.png" /></td>
+</tr>
+</tbody>
+</table>
 <h3 id="implementation-details">Implementation Details</h3>
 <p>The ISR running off the sidereal timer has only one purpose, which is to update the sidereal time. All other tasks run at multiples of the operating system's tick, normally one millisecond.   </p>
 <p>On ESP32 there is no EEPROM, but a section of RAM that emulates EEPROM, and gets written into the Flash with the EEPROM.commit() function. To keep the code compatible, the Monitor task performs a hash of the RAM (every 10 seconds or so) and commits it to Flash when a change is detected.   </p>
