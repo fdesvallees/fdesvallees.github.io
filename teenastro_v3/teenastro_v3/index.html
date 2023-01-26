@@ -54,10 +54,20 @@
     <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#software-design">Software Design</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#file-formats">File Formats</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#program-structure">Program Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#equatorial-vs-altaz-mounts">Equatorial vs AltAz mounts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-dreaded-meridian-flip">The Dreaded Meridian Flip</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#motion-control-mode-of-the-5160-stepper-controller">Motion Control mode of the 5160 stepper controller</a>
+    <li class="toctree-l2"><a class="reference internal" href="#motion-control-spi-only-mode-of-the-5160-stepper-controller">Motion Control (SPI-only) mode of the 5160 stepper controller</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#hardware">Hardware</a>
     </li>
@@ -91,7 +101,10 @@
 <h3 id="introduction">Introduction</h3>
 <p>The original TeenAstro was designed with a Teensy 3.2 processor. Since this is now Unobtainium, it is necessary to plan for upgrades to other processors. A logical alternative is Teensy 4.x, but also the ESP32 family. These newer processors already have ports of FreeRTOS. A real-time OS has many advantages compared to the Arduino setup/loop model, in terms of software portability and readability. I have started this porting project on an ESP32, because it has excellent JTAG debug capability, which Teensy 4.x does not have. However it is simple to rebuild the code for both platforms with simple #ifdef statements and to test it in parallel.  </p>
 <h3 id="software-design">Software Design</h3>
-<p>The project required significant code changes. The original TeenAstro uses many shared global variables accessed by low-level motion control routines and interrupt service routines (ISR) that toggle the STEP/DIR inputs of the motor driver. All accesses to critical sections are bracketed by interrupt disable/enable statements (CLI/SEI). The new design is structured as follows:</p>
+<h4 id="file-formats">File Formats</h4>
+<p>I have removed the funky INO format and used standard .h headers and .cpp sources. Much of the code is unchanged, in particular the math calculations. However all low-level code that handles timers and interrupts is new.    </p>
+<h4 id="program-structure">Program Structure</h4>
+<p>The project required significant code changes. The original TeenAstro uses many shared global variables accessed by low-level motion control routines and interrupt service routines (ISR) that toggle the STEP/DIR inputs of the motor driver. Accesses to critical sections are bracketed by interrupt disable/enable statements (CLI/SEI). The new design is structured as follows:</p>
 <ul>
 <li>There are now 3 main tasks (Command, Control, Monitor) plus one task for each motor driver (in Step/Drive mode)   </li>
 <li>The Command task handles communication with the 2 serial ports, and does the high-level computation of positions and speeds   </li>
@@ -100,11 +113,18 @@
 <li>The Motor tasks control the motors with either Step/Dir or Motion Controller if available.    </li>
 <li>In order to be compatible with both Step/Dir and Motion Control modes, the upper-level tasks do all their computations in angles (double floating point), axis positions (32-bit int) and speeds, either in multiples of sidereal speed, or in steps per second (both double floating point). All the computation of periods for programming the timers is done in the Motor tasks.   </li>
 </ul>
+<h4 id="equatorial-vs-altaz-mounts">Equatorial vs AltAz mounts</h4>
+<p>The TeenAstro v2 code uses alignment matrices to handle the differences between the two kinds of mounts, by considering that an Eq mount is simply an AltAz mount oriented towards the pole. As noted in the v2 document, this has several disadvantages. I chose to isolate all mount-dependent code in 2 different classes, one for each type of mount. Each class has its own goto, tracking etc. routines. This way we only test the mount type once at startup, and no longer need to call isAltAz() or similar functions at run-time.   </p>
+<h4 id="the-dreaded-meridian-flip">The Dreaded Meridian Flip</h4>
+<p>Mapping axis positions to sky coordinates seems simple, but requires careful definitions. <br />
+For an equatorial mount, Axis1 is the Hour Angle and Axis2 is the Declination. <br />
+For simplicity, consider a mount in the northern hemisphere. 
+A GEM mount in the Home Position points to the pole, with its DEC axis vertical. From this position, the DEC axis can move either clockwise (as seen from the top), in which case it points towards the geographic east, or counterclockwise, to point to geographic west. We define the home position as Axis2 = zero, the counterclockwise orientation as "direct" (Axis2 &gt; 0) and the clockwise orientation as "flipped" (Axis2 &lt; 0). We can now plot the following relations between axes and coordinates:</p>
 <h3 id="implementation-details">Implementation Details</h3>
 <p>The ISR running off the sidereal timer has only one purpose, which is to update the sidereal time. All other tasks run at multiples of the operating system's tick, normally one millisecond.   </p>
 <p>On ESP32 there is no EEPROM, but a section of RAM that emulates EEPROM, and gets written into the Flash with the EEPROM.commit() function. To keep the code compatible, the Monitor task performs a hash of the RAM (every 10 seconds or so) and commits it to Flash when a change is detected.   </p>
-<h3 id="motion-control-mode-of-the-5160-stepper-controller">Motion Control mode of the 5160 stepper controller</h3>
-<p>The current TeenAstro code base uses the STEP/DIR mode for controlling the stepper motor driver (TMC2130 or TMC5160). This requires the microcontroller to toggle the STEP input of the driver for each step. Since we use microstepping to get a smooth motion, we program one interrupt for each microstep. The interrupt period is </p>
+<h3 id="motion-control-spi-only-mode-of-the-5160-stepper-controller">Motion Control (SPI-only) mode of the 5160 stepper controller</h3>
+<p>The TeenAstro V2.x code base uses the STEP/DIR mode for controlling the stepper motor driver (TMC2130 or TMC5160). This requires the microcontroller to toggle the STEP input of the driver for each step. Since we use microstepping to get a smooth motion, we program one interrupt for each microstep. The interrupt period is </p>
 <pre><code>t = 24 * 3600 / (gear reduction * steps/rot * microsteps)
 </code></pre>
 <p>For example, for a gear reduction of 1000 (ratio of motor axis to mount axis rotations), typical motors with 200 steps/rotation, 32 microsteps, and sidereal rate (one mount axis rotation for 24 hours), our interrupt period is:  </p>
@@ -113,8 +133,8 @@
 <p>At higher slew speeds, the interrupt period is reduced proportionnally: at a slew speed of 100x, the period is 13.5mS / 100 = 135µS.   </p>
 <p>In turn, the minimum interrupt period of the microcontroller limits the maximum slew speed. (to 675x in our example for the Teensy 3.2).      </p>
 <p>The corresponding step size for the motor axis is 360º / (gear reduction * steps/rot * microsteps). In our example, the step size is 360 / (1000 * 200 * 32) = 0.000056º = 0.2" (arc-seconds). This step size should be kept as low as possible to ensure smooth tracking and guiding.   </p>
-<p>The Trinamic 5160 can control the motor directly without requiring a microcontroller interrupt at each step. Extract from the 5160 datasheet: "The integrated 32-bit motion controller automatically drives the motor to target positions or accelerates to target velocities".   </p>
-<p>We should be able to use the highest possible microstep value (128) and the highest slew rate that the motors can handle. (We are only limited by the maximum torque).   </p>
+<p>The Trinamic 5160 can run without STEP/DIR interrupts and can control the motor directly through the SPI without requiring a microcontroller interrupt at each step. </p>
+<p>Therefore we can use the highest possible microstep value (128) and the highest slew rate that the motors can handle. (We are only limited by the maximum torque).   </p>
 <h3 id="hardware">Hardware</h3>
 <p>We need the 5160 BOB (Breakout Board), not the 5160 SilentStepStick, for 2 reasons:   </p>
 <ul>
