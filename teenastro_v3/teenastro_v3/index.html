@@ -71,6 +71,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#motion-control-spi-only-mode-of-the-5160-stepper-controller">Motion Control (SPI-only) mode of the 5160 stepper controller</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#motor-api">Motor API</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#hardware">Hardware</a>
     </li>
     </ul>
@@ -131,7 +133,7 @@
 <li>for the  sky model (mapping sky coordinates to instrument coordinates) </li>
 <li>to handle the differences between the two kinds of mounts, by considering that an Eq mount is simply an AltAz mount oriented towards the pole. As noted in the v2 document, this has several disadvantages.</li>
 </ul>
-<p>For v3, the alignment matrices and Eq/Altaz differences are handled separately: The alignment matrix only maps the sky coordinates to instrument coordinates, and all mount-dependent code is isolated in 2 different classes, one for each type of mount. Each class has its own goto, tracking etc. routines. This way we only test the mount type once at startup, and in most cases we no longer need to call isAltAz() or similar functions at run-time.   </p>
+<p>For v3, the alignment matrix <strong>only maps the sky coordinates</strong> to instrument coordinates, and <strong>all mount-dependent code is isolated in 2 different classes</strong>, one for each type of mount. Each class has its own goto, tracking etc. routines. This way we only test the mount type once at startup, and in most cases we no longer need to call isAltAz() or similar functions at run-time.   </p>
 <h4 id="mapping-sky-coordinates-to-axis-angles">Mapping sky coordinates to axis angles</h4>
 <p>Mapping axis positions to sky coordinates seems simple, but requires careful definitions. <br />
 For an equatorial mount, Axis1 is the Hour Angle and Axis2 is the Declination. <br />
@@ -140,13 +142,13 @@ A GEM mount in the Home Position points to the pole, with its DEC axis vertical.
 <table>
 <thead>
 <tr>
-<th>ra_direct = axis1+90, ra_flipped=axis1-90</th>
+<th>ha_direct = axis1+90, ha_flipped=axis1-90</th>
 <th>dec = 90+axis2[-90..0], dec=90-axis2[0..90]</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><img alt="" src="../axis1_ra.png" /></td>
+<td><img alt="" src="../axis1_ha.png" /></td>
 <td><img alt="" src="../axis2_dec.png" /></td>
 </tr>
 </tbody>
@@ -155,19 +157,37 @@ A GEM mount in the Home Position points to the pole, with its DEC axis vertical.
 <p>The ISR running off the sidereal timer has only one purpose, which is to update the sidereal time. All other tasks run at multiples of the operating system's tick, normally one millisecond.   </p>
 <p>On ESP32 there is no EEPROM, but a section of RAM that emulates EEPROM, and gets written into the Flash with the EEPROM.commit() function. To keep the code compatible, the Monitor task performs a hash of the RAM (every 10 seconds or so) and commits it to Flash when a change is detected.   </p>
 <h3 id="motion-control-spi-only-mode-of-the-5160-stepper-controller">Motion Control (SPI-only) mode of the 5160 stepper controller</h3>
-<p>The TeenAstro V2.x code base uses the STEP/DIR mode for controlling the stepper motor driver (TMC2130 or TMC5160). This requires the microcontroller to toggle the STEP input of the driver for each step. Since we use microstepping to get a smooth motion, we program one interrupt for each microstep. The interrupt period is </p>
+<p>The TeenAstrov2 code base uses the STEP/DIR mode for controlling the stepper motor driver (TMC2130 or TMC5160). This requires the microcontroller to toggle the STEP input of the driver for each step. Since we use microstepping to get a smooth motion, we program one interrupt for each microstep. The interrupt period is </p>
 <pre><code>t = 24 * 3600 / (gear reduction * steps/rot * microsteps)
 </code></pre>
 <p>For example, for a gear reduction of 1000 (ratio of motor axis to mount axis rotations), typical motors with 200 steps/rotation, 32 microsteps, and sidereal rate (one mount axis rotation for 24 hours), our interrupt period is:  </p>
 <pre><code>t = 24 * 3600 / (1000 * 200 * 32) = 13.5mS.
 </code></pre>
-<p>At higher slew speeds, the interrupt period is reduced proportionnally: at a slew speed of 100x, the period is 13.5mS / 100 = 135µS.   </p>
+<p>At higher slew speeds, the interrupt period is reduced proportionally: at a slew speed of 100x, the period is 13.5mS / 100 = 135µS.   </p>
 <p>In turn, the minimum interrupt period of the microcontroller limits the maximum slew speed. (to 675x in our example for the Teensy 3.2).      </p>
 <p>The corresponding step size for the motor axis is 360º / (gear reduction * steps/rot * microsteps). In our example, the step size is 360 / (1000 * 200 * 32) = 0.000056º = 0.2" (arc-seconds). This step size should be kept as low as possible to ensure smooth tracking and guiding.   </p>
 <p>The Trinamic 5160 can run without STEP/DIR interrupts and can control the motor directly through the SPI without requiring a microcontroller interrupt at each step. </p>
 <p>Therefore we can use the highest possible microstep value (128) and the highest slew rate that the motors can handle. (We are only limited by the maximum torque).   </p>
+<h3 id="motor-api">Motor API</h3>
+<p>All the motor functionality is accessed through this API. The device driver for each type of motor (Step/Dir, MotionControl, Servo) implements these functions.    </p>
+<pre><code>class MotionControl
+{
+public:
+  virtual void init(void);
+  virtual void setCurrentPos(long);
+  virtual void setTargetPos(long);
+  virtual void setVmax(double);
+  virtual void setAmax(long);
+  virtual long getCurrentPos(void);
+  virtual long getTargetPos(void);
+  virtual double getSpeed(void);
+  virtual bool positionReached(void);
+  virtual bool isSlewing(void);
+  virtual void adjustSpeed(double);
+};
+</code></pre>
 <h3 id="hardware">Hardware</h3>
-<p>We need the 5160 BOB (Breakout Board), not the 5160 SilentStepStick, for 2 reasons:   </p>
+<p>For the SPI-only mode, we need the 5160 BOB (Breakout Board), not the 5160 SilentStepStick, for 2 reasons:   </p>
 <ul>
 <li>set SD_MODE to GND to use the internal step generator   </li>
 <li>connect an external clock to the CLK input. Without this external clock, the precision is +-4%, obviously unusable in our case.   </li>
