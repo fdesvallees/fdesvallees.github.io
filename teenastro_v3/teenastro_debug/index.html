@@ -91,8 +91,10 @@
 <h2 id="debug-tools">Debug tools</h2>
 <p>The ESP32 has JTAG support, which, together with a J-Link probe, allows the use of a full-featured debugger like VSCode. I can set breakpoints, watch variables and memory. </p>
 <p><img alt="" src="../debugger.png" /></p>
-<p>For tracing communications on serial ports between components (main unit, SHC, focuser etc.), a small logic analyzer like a  Saleae (or clone) is very useful.</p>
+<p>For tracing communications on serial ports between components (main unit, SHC, focuser etc.), a small logic analyzer like a  Saleae (or clone) is very useful. Here the logic analyzer is setup to show UART activity in both directions.</p>
 <p><img alt="" src="../logic_analyzer.png" /></p>
+<p>This trace is obtained during a 1 second "West" guiding command with the StepDir driver. The RA motor Step frequency is increased.</p>
+<p><img alt="" src="../guiding.png" /></p>
 <p>Finally, an oscilloscope can be used for tracing low-level issues.</p>
 <p><img alt="" src="../lab.jpg" /></p>
 <h2 id="software-simulation">Software simulation</h2>

@@ -174,9 +174,17 @@ A GEM mount in the Home Position points to the pole, with its DEC axis vertical.
 </table>
 <h4 id="altaz-mounts">AltAz Mounts</h4>
 <p>For AltAz mounts, Axis1 is the azimuth and Axis2 is the altitude. Home position is defined as Alt=0, pointing away from the pole (in the Northern hemisphere: az=180º, alt=0º, in the Southern Hemisphere, az=0º, alt=0º).  We define the Axis1 direction as positive for Clockwise, like the azimuth.</p>
-<p><img alt="" src="../axis1_az.png" /> </p>
-<pre><code>Azimuth = Axis1 mod 360
+<p><img alt="" src="../axis1_az_n.png" /> <img alt="" src="../axis1_az_s.png" /></p>
+<p>.png)</p>
+<pre><code>N. Hemisphere
+Azimuth = (Axis1+180) mod 360
 Altitude = Axis2
+
+S. Hemisphere
+Azimuth = Axis1 mod 360
+Altitude = Axis2
+
+
 </code></pre>
 <h3 id="implementation-details">Implementation Details</h3>
 <h4 id="hardware-abstraction-layer-hal">Hardware Abstraction Layer (HAL)</h4>
@@ -261,10 +269,10 @@ public:
 };
 </code></pre>
 <h4 id="hardware">Hardware</h4>
-<p>For the SPI-only mode, we need the 5160 BOB (Breakout Board), not the 5160 SilentStepStick, for 2 reasons:   </p>
+<p>For the SPI-only mode, we need either a 5160 BOB (Breakout Board), or a bigTreeTech 5160. The Watterott SilentStepStick cannot be used, because we need to:   </p>
 <ul>
 <li>set SD_MODE to GND to use the internal step generator   </li>
-<li>connect an external clock to the CLK input. Without this external clock, the precision is +-4%, obviously unusable in our case</li>
+<li>connect an external clock to the CLK input. Without this external clock, the precision is +-4%.</li>
 </ul>
               
             </div>
