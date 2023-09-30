@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>lumiere_gravite</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/simple.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level1">
+
+<h2 id="lumière-et-gravité">Lumière et gravité</h2>
+</section>
+<section class="slide level1">
+
+<p>Adapté de “Crash Course Astronomy” (Phil Plait)</p>
+<p><img data-src="philplait.jpg" /> <img
+data-src="crash_course_astronomy.jpg" /></p>
+</section>
+<section id="la-lumière" class="slide level1">
+<h1>La Lumière</h1>
+<p>Presque toute l’information sur l’Univers vient sous la forme de
+lumière. Comment est-elle créée?</p>
+<p>La lumière peut être décrite comme une onde, qui représente la
+variation de champs électrique et magnétique.<br />
+</p>
+<p>La distance entre vagues est la <strong>longueur d’onde</strong>, qui
+varie comme l’inverse de la fréquence (c = λf)</p>
+<p><strong>L’énergie</strong> de la lumière augmente avec la
+fréquence</p>
+</section>
+<section class="slide level1">
+
+<h2 id="newton-1643-1727">Newton: 1643-1727</h2>
+<div class="container">
+<div class="left_block">
+<p><img src="newton.jpg" /></p>
+</div>
+<div class="right_block">
+<p><img src="newton_prism.gif" /></p>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<h2 id="maxwell-1831-1879">Maxwell: 1831-1879</h2>
+<div class="container">
+<div class="left_block">
+<p><img data-src="maxwell.jpg" /></p>
+</div>
+<div class="right_block">
+<p><img src="maxwell_equations.svg" height="600px" /></p>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<h2 id="le-spectre-électromagnétique">Le spectre électromagnétique</h2>
+<p><img src="Electromagnetic-Spectrum.svg" height="600px" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="la-spectroscopie">La spectroscopie</h2>
+<div class="container">
+<div class="left_block">
+<p>Newton</p>
+<p><span class="fragment" data-fragment-index="1"> Fraunhofer
+</span></p>
+<p><span class="fragment" data-fragment-index="2"> Kirchhoff et Bunsen
+<img src="spectroscope.jpg" alt="emission" /> </span></p>
+</div>
+<div class="right_block">
+<figure>
+<img src="Spectral-lines-continuous.svg" alt="continu" />
+<figcaption>
+spectre continu
+</figcaption>
+</figure>
+<span class = "fragment" data-fragment-index="1">
+<figure>
+<img src="Spectral-lines-absorption.svg" alt="absorption" />
+<figcaption>
+spectre d’absorption
+</figcaption>
+</figure>
+<p></span></p>
+<span class = "fragment" data-fragment-index="2">
+<figure>
+<img src="Spectral-lines-emission.svg" alt="emission" />
+<figcaption>
+spectre d’émission
+</figcaption>
+</figure>
+<p></span></p>
+</div>
+</section>
+<section class="slide level1">
+
+<h2 id="le-spectre-continu">Le spectre continu</h2>
+<p>Quand on chauffe un objet, il perd son énergie en émettant de la
+lumière, dont le type dépend de la température: plus l’objet est chaud,
+plus la longueur d’onde est courte.</p>
+<p><img data-src="black-body-radiation-curves.png" /></p>
+<aside class="notes">
+<p>Dans le langage des astronomes, “plus bleu” veut dire “longueur
+d’onde plus courte” et “plus rouge” veut dire “longueur d’onde plus
+longue”.</p>
+</aside>
+</section>
+<section class="slide level1">
+
+<h2 id="spectres-démission-et-dabsorption">Spectres d’émission et
+d’absorption</h2>
+<div class="container">
+<div class="left_block">
+<p>Les électrons dans les atomes ne peuvent occuper que des espaces bien
+définis autour du noyau, qui dépendent de l’énergie des électrons, comme
+les marches d’un escalier.<br />
+</p>
+<p>Quand on leur <strong>donne</strong> de l’énergie sous forme de
+lumière, ils montent d’une marche, et cette lumière est ré-émise quand
+ils <strong>perdent</strong> la même énergie.</p>
+</div>
+<div class="right_block">
+<p><img data-src="Atom.gif" /> <img data-src="exciteemit.jpg" /></p>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<p>Quand un électron saute vers le haut ou vers le bas, il absorbe ou
+émet une énergie (couleur) spécifique, qui caractérise l’atome:
+l’hydrogène a un spectre différent de l’hélium, de l’oxygène, etc.</p>
+<p><img data-src="Emission_spectrum_H.png" /></p>
+</section>
+<section class="slide level1">
+
+<div class="container">
+<div class="left_block">
+<p>L’analyse du spectre est la <strong>clé</strong> de la compréhension
+de l’Univers: Si on peut mesurer la lumière, on peut déterminer de quoi
+l’objet est fait, même s’il est à des milliards d’années lumière. Dans
+un nuage de gaz ténu, la couleur dépend plus de la composition que de la
+température. Les étoiles et nuages de gaz sont surtout composés
+d’hydrogène, avec un peu d’hélium et d’autres éléments.</p>
+<aside class="notes">
+<p>Au début du XX<sup>e</sup> siècle on a trouvé dans le spectre de
+nébuleuses planétaires des raies ne correspondant pas à des éléments
+connus. On a attribué ces raies à un nouvel élément qu’on a appelé
+“nebulium”. Ces raies étaient en fait dûes à des éléments connus
+(oxygène etc.), mais dans des conditions impossibles à reproduire sur
+Terre.</p>
+</aside>
+</div>
+<div class="right_block">
+<p><img src="Tulip-Nebula.jpg" height="600px" /></p>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<p>En analysant la lumière, on peut déterminer d’autres propriétés des
+objets lointains comme:</p>
+<ul>
+<li>leur vitesse d’éloignement ou de rapprochement (grâce à l’effet
+Doppler-Fizeau). C’est le décalage vers le rouge (“red shift”) qui a
+permis de trouver que l’Univers est en expansion</li>
+<li>leur vitesse de rotation</li>
+<li>leur champ magnétique</li>
+<li>leur masse et leur densité.</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<p>La mesure de la vitesse de la lumière</p>
+<div class="container">
+<div class="left_block">
+<p><img data-src="roemer_portrait.jpg" /></p>
+</div>
+<div class="right_block">
+<p><img src="Romer.jpg" height="600px" /></p>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<p>Hippolyte Fizeau</p>
+<p><img data-src="fizeau.jpg" /></p>
+<p><img data-src="experience_fizeau.jpg" /></p>
+</section>
+<section class="slide level1">
+
+<p>Une autre méthode</p>
+<p><img data-src="microwave.jpg" /></p>
+<p>c = λf</p>
+</section>
+<section class="slide level1">
+
+<h2 id="léther">L’éther</h2>
+<aside class="notes">
+<p>Les théories du XIX<sup>e</sup> siècle supposaient que, comme les
+vagues sur l’eau ou le son dans l’air, les ondes de la lumière avaient
+besoin d’un <strong>milieu</strong> pour se déplacer. D’après cette
+hypothèse,</p>
+</aside>
+<div class="container">
+<div class="left_block">
+<p>La Terre se déplace à environ 30km/s, donc 0,01% de la vitesse de la
+lumière.</p>
+<p>Si l’éther existait, on devrait donc pouvoir détecter une différence
+de vitesse de la lumière dans deux directions à angle droit.</p>
+</div>
+<div class="right_block">
+<p><img src="AetherWind.svg" height="400px" /></p>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<p>Les expériences de Michelson et Morley utilisaient un miroir
+semi-réfléchissant pour séparer et recombiner deux rayons ayant accompli
+des parcours à angle droit.</p>
+<p><img src="Michelson1881c.png" height="300px" /></p>
+<p>Ces expériences ont eu un résultat négatif, c’est-à-dire qu’elles
+n’ont pas permis de mesurer une différence de vitesse. On sait
+maintenant que la lumière a une vitesse constante.</p>
+<aside class="notes">
+<p>et on a pu dire qu’elles ont été les plus célèbres expériences
+ratées, puisqu’elles ont permis à Einstein de concevoir la théorie de la
+relativité.</p>
+<p>D’autre part, un instrument construit sur le même principe est à
+l’origine de la détection des ondes gravitationnelles.</p>
+</aside>
+</section>
+<section class="slide level1">
+
+<h2 id="la-gravité">La Gravité</h2>
+<p>Les objets ne se comportent pas de la même façon selon qu’ils sont
+sur Terre (ou une autre planète) ou dans l’espace intersidéral: sur
+Terre, les choses <strong>tombent</strong> parce que la
+<strong>gravité</strong> y est plus forte. Cette force agit partout,
+mais son action se réduit rapidement avec l’éloignement.<br />
+Sur certains corps célestes, elle est beaucoup plus forte que sur
+Terre.</p>
+<aside class="notes">
+<p>Pendant la plus grande partie de notre histoire, elle apparaissait
+comme une évidence, et n’était ni étudiée ni comprise.<br />
+C’est au XVII<sup>e</sup> siècle que Robert Hooke et Isaac Newton se
+sont mis à l’étudier en utilisant les mathématiques.</p>
+</aside>
+</section>
+<section class="slide level1">
+
+<h2 id="masse-et-gravité">Masse et gravité</h2>
+<ul>
+<li>La masse nous indique comment un objet résiste à une force
+appliquée. Un objet plus massif est plus difficile à déplacer.</li>
+<li>Elle peut aussi être sentie grâce à la gravité: Tout ce qui a une
+masse génère aussi de la gravité, qui agit sur les autres objets.</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>La force subie entre deux objets dépend de 3 choses: les masses des
+deux objets, et leur distance.</li>
+<li>La gravité s’affaiblit avec le carré de la distance: si la distance
+double, la force est divisée par 4.</li>
+<li>Si on laisse tomber une pierre, elle accélère: plus la force agit
+longtemps, plus la vitesse augmente.</li>
+</ul>
+<p>Sur Terre, d’autres forces agissent, et perturbent l’accélération dûe
+à la gravité, mais dans l’espace, la gravité est souvent
+prépondérante.</p>
+</aside>
+</section>
+<section class="slide level1">
+
+<h2 id="microgravité">Microgravité</h2>
+<p>La gravité agit partout, et par exemple dans l’ISS en orbite à 200km
+elle est encore de 90% de celle à la surface. Les astronautes ne sentent
+pas la gravité parce qu’ils tombent en même temps que leur vaisseau.
+Ceci nous fait comprendre la différence entre la <strong>masse</strong>
+et le <strong>poids</strong>. En orbite on a la même masse, mais on ne
+sent plus son poids.</p>
+<aside class="notes">
+<p>Les photons n’ont pas de masse, mais sont affectés par la gravité
+d’un objet massif. C’est Albert Einstein qui a expliqué que la gravité
+<strong>courbe</strong> l’espace.</p>
+</aside>
+<p><img src="microgravity_sm1.jpg" /></p>
+</section>
+<section class="slide level1">
+
+<h2 id="effondrement-gravitationnel">Effondrement gravitationnel</h2>
+<p>Un nuage de gaz d’une densité suffisante <strong>s’effondre sur
+lui-même</strong> sous l’effet de sa propre gravité, en s’échauffant, ce
+qui est la source d’énergie initiale pour démarrer la fusion dans le
+noyau d’une étoile.</p>
+<p><img src="NGC_6745.jpg" height = "400px"/></p>
+</section>
+<section class="slide level1">
+
+<h2 id="kepler-1571-1630">Kepler: 1571-1630</h2>
+<div class="container">
+<div class="left_block">
+<p><img src="kepler.jpg" /></p>
+</div>
+<div class="right_block">
+<p><img src="Kepler_laws_diagram.svg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>Cette vitesse est de 11km/S pour la Terre, de 58km/S pour Jupiter, et
+de 600km/S pour le Soleil.<br />
+Plus il s’éloigne, plus l’objet ralentit, mais il ne s’arrête
+jamais.</p>
+<p>L’inverse est aussi vrai: un objet très lointain avec une vitesse
+nulle tombe sur le corps massif. Au-dessus de la vitesse de libération,
+l’orbite est parabolique ou hyperbolique (encore plus ouverte). Loi 1:
+Les orbites sont des ellipses dont le Soleil occupe un des foyers Loi 2:
+Le rayon vecteur balaye des aires proportionnelles au temps. Loi 3: Les
+carrés des périodes de révolution sont proportionnels aux cubes des
+grands axes.</p>
+<p>Neptune: 30 AU</p>
+</aside>
+</section>
+<section class="slide level1">
+
+<h2 id="newton-1643-1727-1">Newton: 1643-1727</h2>
+<aside class="notes">
+<p>Quand des objets sont libres de se déplacer sous l’effet de la
+gravité, on dit qu’ils sont en <strong>orbite</strong>. Deux objets qui
+ont une masse s’attirent. S’il n’y a pas d’autres forces, ils se
+rapprochent, et les mouvements respectifs dépendent de leurs masses:
+l’objet le plus massif bougera moins que l’autre.<br />
+</p>
+<p>L’orbite la plus simple est la ligne droite que décrit une pierre qui
+tombe. On obtient une orbite plus intéressante si on lance la pierre:
+elle tombe plus loin… et si on la lance très très fort?<br />
+C’est sur cette question que Newton a fait preuve de son génie: il s’est
+rendu compte que si on la lance avec une vitesse suffisante, la courbe
+de sa trajectoire sera la même que la courbure de la Terre. Un satellite
+ne fait rien d’autre que de tomber assez vite pour éviter la Terre.</p>
+</aside>
+<div class="container">
+<div class="left_block">
+<p><img src="newton.jpg" /></p>
+</div>
+<div class="right_block">
+<p>F = M x a</p>
+<p><img src="NewtonsLaw.svg" height = "200px"/></p>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<h2 id="mécanique-céleste">Mécanique céleste</h2>
+<div class="container">
+<div class="left_block">
+<section>
+<pre><code>
+Stone.prototype.move = function()
+{
+  // compute current acceleration
+  var r = this.pos.length;
+  var gamma =  k / (r * r);
+
+  // acceleration points to center
+  var vec = this.pos.normalize();  
+  this.v = this.v.subtract(vec.multiply(gamma));
+
+ // update position of satellite
+  this.pos = this.pos.add(this.v);
+  this.spot.position = view.center.add(this.pos);
+  this.pth.add (new Point(this.spot.position));
+}
+
+  </code></pre>
+</section>
+</div>
+<div class="right_block">
+<iframe src="../diagrams/orbit_js.html" height="500" width="500">
+</iframe>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<h2 id="la-situation-à-la-fin-du-xixe-siècle">La situation à la fin du
+XIX<sup>e</sup> siècle</h2>
+<ul>
+<li><p>Relativité galiléenne (newtonienne): les lois de la physique sont
+identiques pour tout observateur se déplaçant à vitesse
+uniforme</p></li>
+<li><p>Electromagnétisme et équations de Maxwell</p></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="einstein-1879-1955">Einstein: 1879-1955</h2>
+<div class="container">
+<div class="left_block">
+<p>C’est Einstein qui, par ses deux théories de la relativité, a résolu
+le problème, en bouleversant la physique:</p>
+<ul>
+<li>la masse et le temps varient avec la vitesse</li>
+<li>la gravité courbe l’espace</li>
+<li>il doit exister des ondes gravitationnelles</li>
+</ul>
+</div>
+<div class="right_block">
+<p><img data-src="einstein.jpg" /></p>
+</div>
+</div>
+</section>
+<section class="slide level1">
+
+<h2 id="lentilles-gravitationnelles">Lentilles gravitationnelles</h2>
+<p><img src="Gravitational-lensing.jpg" height = "600px"/></p>
+</section>
+<section class="slide level1">
+
+<figure>
+<img data-src="abell2218.jpg" alt="Abell 2218" />
+<figcaption aria-hidden="true">Abell 2218</figcaption>
+</figure>
+</section>
+<section class="slide level1">
+
+<h2 id="ondes-gravitationnelles">Ondes gravitationnelles</h2>
+<p>LIGO est un ensemble d’interféromètres destiné à détecter les ondes
+gravitationnelles.</p>
+<p><img data-src="LIGO_FACILITIES_COLLAGE.jpg" /></p>
+</section>
+<section class="slide level1">
+
+<p>La détection du 14 septembre 2015</p>
+<p><img data-src="ligoChipSlide.jpg" /></p>
+</section>
+<section class="slide level1">
+
+<p>##Résumé Nous avons décrit les diverses formes de rayonnement
+électromagnétique, la longueur d’onde et la fréquence, les deux modes
+principaux d’émission de lumière, le décalage vers le rouge, et nous
+avons évoqué la théorie de l’éther, maintenant abandonnée, puis nous
+avons décrit l’action de la gravité, les orbites, la microgravité et
+l’effondrement gravitationnel, et enfin l’expérience LIGO de détection
+des ondes gravitationnelles.</p>
+</section>
+<section class="slide level1">
+
+<p>##Références</p>
+<p><img data-src="rockstars.jpg" /></p>
+<ul>
+<li>Isaac Newton - Principia Mathematica</li>
+<li>The collected papers of Albert Einstein</li>
+<li>Cours de physique de Richard Feynman</li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@^4//dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 1.0,
+
+        maxScale: 1.0,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

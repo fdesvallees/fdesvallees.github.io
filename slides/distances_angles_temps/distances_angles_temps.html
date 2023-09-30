@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>distances_angles_temps</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/simple.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="la-mesure-des-distances-des-angles-et-du-temps"
+class="slide level2">
+<h2>La mesure des distances, des angles et du temps</h2>
+</section>
+<section id="les-distances" class="slide level2">
+<h2>Les distances</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Les unités</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">La mesure de la Terre</td>
+<td>10000km</td>
+<td>10<sup>7</sup>m</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">La Lune et le Soleil</td>
+<td>millions de km</td>
+<td>10<sup>9</sup>m</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Le Système solaire</td>
+<td>milliards de km</td>
+<td>10<sup>12</sup>m</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Notre galaxie</td>
+<td>100000 années lumière</td>
+<td>10<sup>18</sup>m</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Les autres galaxies</td>
+<td>millions d’années lumière</td>
+<td>10<sup>20</sup>m</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">L’Univers observable</td>
+<td>milliards d’années lumière</td>
+<td>10<sup>23</sup>m</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>Nous allons décrire la mesure des distances depuis notre échelle
+jusqu’a la taille de l’Univers, en passant par la mesure de la surface
+de la Terre.</p>
+</aside>
+</section>
+<section id="les-unités-de-distance" class="slide level2">
+<h2>Les unités de distance</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Antiquité</td>
+<td style="text-align: left;">pied, coudée, stade, farasange, …</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Autres</td>
+<td style="text-align: left;">farsakh, verste, li, …</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Système Impérial</td>
+<td style="text-align: left;">pouce, pied, yard, mille, …</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Système métrique</td>
+<td style="text-align: left;">..</td>
+</tr>
+</tbody>
+</table>
+</section>
+<div class="fragment" data-fragment-index="1">
+<section id="définition-du-mètre" class="slide level2">
+<h2>Définition du mètre</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td>1793</td>
+<td style="text-align: left;">Dix-millionième du quart du méridien
+terrestre</td>
+</tr>
+<tr class="even">
+<td>1889</td>
+<td style="text-align: left;">Mètre étalon en platine iridié</td>
+</tr>
+<tr class="odd">
+<td>1960</td>
+<td style="text-align: left;">1650763.73 longueurs d’onde de la ligne
+orange/rouge du krypton 86</td>
+</tr>
+<tr class="even">
+<td>1983</td>
+<td style="text-align: left;">Distance parcourue par la lumière en
+1/299792458 seconde</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+<aside class="notes">
+<p>Combien de pouces dans un pied? (12) Combien de sagènes dans une
+verste? (500)</p>
+<p>1 acre = 4840 yard<sup>2</sup><br />
+Q: Combien de gallons dans un acre-pied?<br />
+R: 325851</p>
+</aside>
+<section class="slide level2">
+
+<h3 id="mesurer-les-distances-sur-la-terre-la-triangulation">Mesurer les
+distances sur la Terre: la triangulation</h3>
+<div class="container">
+<div class="left_block">
+<p>Si on connaît un côté d’un triangle et deux de ses angles, on connaît
+tout <img data-src="Triangulation_method.png" /> <span class="fragment"
+data-fragment-index="1"> <img data-src="chaine_arpenteur.jpg" />
+</span></p>
+</div>
+<div class="right_block">
+<p><span class="fragment" data-fragment-index="2"> <img
+data-src="Quart_de_cercle_Picard.jpg" /> </span></p>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="triangulation---les-méridiennes">Triangulation - les
+méridiennes</h3>
+<div class="container">
+<div class="left_block">
+<p><img data-src="meridienne.jpg" /></p>
+</div>
+<div class="right_block">
+<p><span class="fragment" data-fragment-index="1"> <img
+data-src="triangulation.gif" /> </span></p>
+</div>
+</div>
+<aside class="notes">
+<p>cartes des Cassini - 1683 à 1744</p>
+</aside>
+</section>
+<section class="slide level2">
+
+<p><img src="India_1870.jpg" height="700px" /></p>
+<aside class="notes">
+<p>1802 à 1871</p>
+</aside>
+</section>
+<section id="la-mesure-de-la-terre" class="slide level2">
+<h2>La mesure de la Terre</h2>
+<p>A première vue, la Terre est plate et l’Univers est infini. Les Grecs
+savaient que la Terre est ronde, mais ne connaissaient pas sa taille,
+jusqu’à Eratosthène qui a obtenu un très bon résultat avec sa mesure de
+l’ombre d’un obélisque.</p>
+<figure>
+<img data-src="methode_eratosthene1.jpg" alt="Méthode d’Eratosthène" />
+<figcaption aria-hidden="true">Méthode d’Eratosthène</figcaption>
+</figure>
+<aside class="notes">
+<p><img data-src="methode_eratosthene2.jpg"
+alt="Méthode d’Eratosthène" /> Nos sens ne nous permettent pas de
+mesurer les grandes distances.</p>
+</aside>
+</section>
+<section id="la-lune" class="slide level2">
+<h2>La Lune</h2>
+<p>Si on connaît la taille de la Terre, on peut trouver la taille et la
+distance de la Lune (en mesurant l’ombre de la Terre lors des éclipses
+de Lune), et sa distance (par trigonométrie)</p>
+<p><img data-src="eclipse.gif" /></p>
+<aside class="notes">
+<p>diamètre: 3474km = 1/4 de celui de la terre distance: 350000km</p>
+</aside>
+</section>
+<section id="le-soleil" class="slide level2">
+<h2>Le Soleil</h2>
+<p>Aristarque de Samos a obtenu une (mauvaise) estimation de la taille
+et de la distance du Soleil. <img data-src="methode_aristarque.svg"
+alt="Méthode d’Aristarque" /></p>
+<aside class="notes">
+<p>1 UA = 150 millions de km</p>
+</aside>
+</section>
+<section id="le-système-solaire" class="slide level2">
+<h2>Le Système Solaire</h2>
+<div class="container">
+<div class="left_block">
+<p>Au XVII° siècle Képler a déterminé les orbites et les lois qui
+régissent ces mouvements,</p>
+<p><img src="Kepler_laws_diagram.svg" /></p>
+</div>
+<div class="right_block">
+<p><img src="kepler.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>Loi 1: Les orbites sont des ellipses dont le Soleil occupe un des
+foyers Loi 2: Le rayon vecteur balaye des aires proportionnelles au
+temps. Loi 3: Les carrés des périodes de révolution sont proportionnels
+aux cubes des grands axes.</p>
+<p>Neptune: 30 AU</p>
+</aside>
+</section>
+<section class="slide level2">
+
+<div class="container">
+<div class="left_block">
+<p>puis Newton les a expliquées et mises en équations, mais toujours
+sans connaître la distance Terre-Soleil (Unité Astronomique)
+<img src="newton_equation.png" /></p>
+</div>
+<div class="right_block">
+<p><img src="newton.jpg" /></p>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Depuis Képler on savait que le rayon de l’orbite de Jupiter était
+d’environ 5 UA. Mais combien vaut une UA en kilomètres?</p>
+<p>Les <strong>transits</strong> de Mercure et Vénus ont donné des
+résultats, mais ceux-ci restaient imprécis à cause des erreurs dûes à
+l’atmosphère.</p>
+<p>Ce n’est que vers 1960 que des mesures par radar de Vénus ont donné
+la mesure de l’UA avec une bonne précision (149 597 870 km).</p>
+</section>
+<section id="les-étoiles-proches" class="slide level2">
+<h2>Les étoiles proches</h2>
+<p>L’UA est l’échelle pour mesurer tout le système solaire et les
+distances aux étoiles proches, grâce à la <strong>parallaxe</strong>
+(que nous utilisons aussi pour notre vision binoculaire).</p>
+<p><img data-src="parallaxe.png" /></p>
+<p>La première mesure de distance d’étoiles par parallaxe (en 1860) a
+été réalisée sur 61 Cyg: 720 000 UA = 11,4 AL.</p>
+<aside class="notes">
+<p>Depuis on a trouvé Proxima Cent (4.2 AL) et d’autres encore plus
+proches mais plus faibles.</p>
+<p>Les satellites Hipparcos puis Gaia arrivent jusqu’à 1000 AL par cette
+méthode.</p>
+</aside>
+</section>
+<section id="les-étoiles-lointaines" class="slide level2">
+<h2>Les étoiles lointaines</h2>
+<p>Pour les étoiles plus lointaines, on utilise une autre méthode:
+<strong>L’éclat apparent</strong> dépend de la <strong>luminosité
+absolue</strong> et de la <strong>distance</strong>.<br />
+Si on connaît la luminosité on peut trouver la distance.</p>
+<p>On peut estimer la luminosité absolue grace à la
+<strong>spectroscopie</strong>, mais aussi aux “bougies étalons” que
+sont les <strong>étoiles variables</strong> et les
+<strong>novas</strong>. Depuis le milieu du XX siècle, en appliquant ces
+méthodes aux étoiles d’autres galaxies, on a immensément amélioré notre
+estimation de la taille de l’Univers.</p>
+</section>
+<section id="les-galaxies-et-autres-objets-lointains"
+class="slide level2">
+<h2>Les galaxies et autres objets lointains</h2>
+<p>C’est Edwin Hubble (parmi d’autres) au début du XX<sup>e</sup> siècle
+qui a bouleversé notre connaissance de l’Univers, par l’étude des
+céphéides et du <strong>décalage vers le rouge</strong> (red shift), en
+montrant que la vitesse d’éloignement des galaxies est proportionnelle à
+leur distance.</p>
+<p><img data-src="Redshift_blueshift.svg" /></p>
+<aside class="notes">
+<p>Hubble (parmi d’autres) a montré que la distance est proportionnelle
+au décalage vers le rouge.</p>
+</aside>
+</section>
+<section id="la-mesure-des-angles" class="slide level2">
+<h2>La mesure des angles</h2>
+</section>
+<section id="les-unités" class="slide level2">
+<h2>Les unités</h2>
+<div class="container">
+<div class="left_block">
+<p>Le même angle exprimé en..</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 30%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Radians</th>
+<th>Degrés sexagésimaux</th>
+<th style="text-align: left;">Degrés décimaux</th>
+<th style="text-align: left;">Ascension droite</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.2618</td>
+<td>15°</td>
+<td style="text-align: left;">15.0°</td>
+<td style="text-align: left;">1h</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td>57°17’44”</td>
+<td style="text-align: left;">57.2958°</td>
+<td style="text-align: left;">3h49m11s</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2π</td>
+<td>360°</td>
+<td style="text-align: left;">360.0°</td>
+<td style="text-align: left;">24h</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="right_block">
+<p><img src="Degree-Radian_Conversion.svg" width="600px" /></p>
+</div>
+</div>
+</section>
+<section id="systèmes-de-coordonnées" class="slide level2">
+<h2>Systèmes de coordonnées</h2>
+<div class="container">
+<div class="left_block">
+<p><img src="Dobson_class.jpg" height="400px" /></p>
+<p>Alt-azimut<br />
+Azimut (A) et altitude (a)</p>
+</div>
+<div class="right_block">
+<p><img src="equatorial_mount.jpg" height="400px" /></p>
+<p>Equatoriales<br />
+Ascension droite (α) et déclinaison (δ)</p>
+</div>
+</div>
+</section>
+<section id="coordonnées-terrestres-et-célestes" class="slide level2">
+<h2>Coordonnées terrestres et célestes</h2>
+<p><img src="lat_long.png" height="400px" /></p>
+<table style="width:81%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 30%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Direction</th>
+<th style="text-align: left;">Nord - Sud</th>
+<th style="text-align: left;">Est - Ouest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Terre</td>
+<td style="text-align: left;">Latitude (φ)</td>
+<td style="text-align: left;">Longitude (λ)</td>
+</tr>
+<tr class="even">
+<td>Ciel</td>
+<td style="text-align: left;">Déclinaison (δ)</td>
+<td style="text-align: left;">Ascension droite (α)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="conversions-de-coordonnées" class="slide level2">
+<h2>Conversions de coordonnées</h2>
+<p><img src="triangle.gif" height="400px" /></p>
+<ul>
+<li>H = t - α</li>
+<li>sin(a) = sin(δ) sin(φ) + cos(δ) cos(φ) cos(H)</li>
+<li>sin(A) = - sin(H) cos(δ) / cos(a)</li>
+<li>cos(A) = { sin(δ) - sin(φ) sin(a) } / cos(φ) cos(a)</li>
+</ul>
+</section>
+<section id="les-instruments-de-mesure-dangles-quadrants-et-sextants"
+class="slide level2">
+<h2>Les instruments de mesure d’angles: Quadrants et Sextants</h2>
+<p><img src="ptolemy.jpg" height="600px" /></p>
+<aside class="notes">
+<p>Précision: quelques minutes d’arc</p>
+</aside>
+</section>
+<section id="armilles" class="slide level2">
+<h2>Armilles</h2>
+<p><img src="armille_chinoise.jpg" height="600px" /></p>
+<aside class="notes">
+<p>Pour augmenter la précision, on peut augmenter la taille…</p>
+</aside>
+</section>
+<section class="slide level2">
+
+<p><img data-src="soviet-stamp.jpg" /></p>
+<aside class="notes">
+<p>Ulugh Beg: Sultan timouride de Samarcande</p>
+<p>Rayon: 40m</p>
+<p>Précision: 5”</p>
+</aside>
+</section>
+<section class="slide level2">
+
+<img src="quadrant.jpg" height="800px" />
+<aside class="notes">
+<p>Précision: 1’</p>
+</aside>
+</section>
+<section class="slide level2">
+
+<p><img src="sextant.svg" height="600px" /></p>
+<aside class="notes">
+<p>Le sextant ajoute une lunette et des cercles gravés avec
+précision</p>
+<p>Précision: 12”</p>
+</aside>
+</section>
+<section id="lunettes-méridiennes" class="slide level2">
+<h2>Lunettes méridiennes</h2>
+<div class="container">
+<div class="left_block">
+<p><img data-src="rota_meridiana.jpg" /></p>
+</div>
+<div class="right_block">
+<p><img data-src="lunette_meridienne.jpg" /></p>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="container">
+<div class="left_block">
+<p><img src="mintaka.svg" height="600px" /></p>
+</div>
+<div class="right_block">
+<p><img src="alnitak.svg" height="600px" /></p>
+</div>
+</div>
+</section>
+<section id="lastrophotographie" class="slide level2">
+<h2>L’astrophotographie</h2>
+<div class="container">
+<div class="left_block">
+<p><img src="big_schmidt.jpg" /></p>
+</div>
+<div class="right_block">
+<p><img data-src="NGC884.gif" /></p>
+</div>
+</div>
+</section>
+<section id="gaia" class="slide level2">
+<h2>Gaia</h2>
+<div class="container">
+<div class="left_block">
+<p><img src="gaia.jpg" /></p>
+</div>
+<div class="right_block">
+<p><img src="gaia_optics.jpg" height="400px" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>Gaia tourne sur lui-même en 6 heures</p>
+</aside>
+</section>
+<section id="orbite-de-gaia" class="slide level2">
+<h2>Orbite de Gaia</h2>
+<div class="container">
+<div class="left_block">
+<p><img src="gaia_l2.png" /></p>
+<p>Le point L2 est à 1,5 million de kilomètres</p>
+</div>
+<div class="right_block">
+<p><span class="fragment" data-fragment-index="1">
+<img src="obs-principle400.gif" height="400px" /> Gaia tourne sur
+lui-même en 6 heures </span></p>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img src="Gaia_Sky_Map.png" /></p>
+</section>
+<section id="le-temps" class="slide level2">
+<h2>Le temps</h2>
+<p>Temps local apparent</p>
+<p><img src="sundial.jpg" /></p>
+</section>
+<section class="slide level2">
+
+<p>Analemme</p>
+<p><img src="analemma.jpg" height="600px" /></p>
+<aside class="notes">
+<p>Le mouvement du Soleil n’étant pas uniforme, il culmine avant ou
+après midi de l’heure légale, ce qui est représenté par l’analemme.</p>
+</aside>
+</section>
+<section class="slide level2">
+
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Temps local apparent</td>
+<td style="text-align: left;">Directement donné par le Soleil</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Temps solaire moyen</td>
+<td style="text-align: left;">“Soleil moyen” - corrige les
+irrégularités</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Temps universel</td>
+<td style="text-align: left;">TU - anciennement GMT - calé sur la
+rotation de la Terre</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Temps dynamique</td>
+<td style="text-align: left;">absolument régulier - horloges
+atomiques</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Temps sidéral</td>
+<td style="text-align: left;">Donné par les étoiles</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level2">
+
+<p>Clepsydres et sabliers</p>
+<p><img src="clepsydra.jpg" /></p>
+</section>
+<section class="slide level2">
+
+<p>Christiaan Huygens - 1657</p>
+<p><img src="HuygensClock.jpg" /></p>
+</section>
+<section id="navigation" class="slide level2">
+<h2>Navigation</h2>
+<p><img src="culmination.gif" height="400px" /></p>
+<p>En observant le passage au méridien d’un astre:</p>
+<ul>
+<li>il est facile de trouver la latitude</li>
+<li>si on connaît l’heure, on peut en déduire la longitude</li>
+</ul>
+<p>Jusqu’à l’invention d’horloges précises, on ne pouvait pas établir
+correctement sa longitude</p>
+<aside class="notes">
+<p>une erreur de 15 mn correspond environ à 200 km à l’équateur!</p>
+</aside>
+</section>
+<section class="slide level2">
+
+<p>Horloge de John Harrison - 1725</p>
+<div class="container">
+<div class="left_block">
+<p><img src="John_Harrison.jpg" /></p>
+</div>
+<div class="right_block">
+<p><img src="H1.jpg" /></p>
+</div>
+</div>
+<aside class="notes">
+<p>rappel: en longitude, 1 minute d’écart équivaut à environ 10km</p>
+<p>Les meilleures horloges de Harrison ont une erreur de l’ordre de 3
+sec par jour</p>
+</aside>
+</section>
+<section class="slide level2">
+
+<p>Horloges à quartz</p>
+<p><img src="quartz_clock.jpg" /></p>
+<aside class="notes">
+<p>Environ 1/2 seconde par jour</p>
+</aside>
+</section>
+<section class="slide level2">
+
+<p>Horloges atomiques</p>
+<p><img src="FOCS-1.jpg" /></p>
+<aside class="notes">
+<p>jusqu’à 1 sec en 3 milliards d’années!</p>
+</aside>
+</section>
+<section class="slide level2">
+
+<p>GPS - Global Positioning System</p>
+<p><img src="GPS.gif" /></p>
+<aside class="notes">
+<p>Chaque satellite contient une horloge atomique, et transmet sa
+position et son signal de temps. Le receveur calcule sa position en
+fonction des distances aux satellites visibles.</p>
+</aside>
+</section>
+<section id="références" class="slide level2">
+<h2>Références</h2>
+<p><a
+href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL">Crash
+Course Astronomy</a></p>
+<p><a href="http://universalworkshop.com">The Astronomical
+Companion</a></p>
+<p>Astronomie Générale - André Danjon</p>
+<p>The Exact Sciences in Antiquity - Otto Neugebauer</p>
+<p>The Astronomical Companion - Guy Ottewell</p>
+</section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@^4//dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 1.0,
+
+        maxScale: 1.0,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
