@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Supported Mounts - TeenAstro Linux</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Supported Mounts";
+        var mkdocs_page_input_path = "swDesign/mountDesign.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> TeenAstro Linux
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../linux/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/config/">Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/indi/">INDI driver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/ekos/">Ekos</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Firmware</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../firmware/">Building the Firmware</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SmartHandController/">Smart Hand Controller</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../TeenAstroMainUnit/">TeenAstroMainUnit</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../UniversalMainUnit/">UniversalMainUnit</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Supported Mounts</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#advantages-of-each-type">Advantages of each type</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#equatorial-vs-alt-az">Equatorial vs Alt-Az</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fork-vs-offset-tube">Fork vs. Offset tube</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-it-means-for-the-mount-firmware">What it means for the mount firmware</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/auto_test/">autoTest</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/mount_sim/">Mount Simulator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/teenastro_debug/">Debugging</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">TeenAstro Linux</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Firmware &raquo;</li>
+      <li class="breadcrumb-item active">Supported Mounts</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="primer-on-mount-design">Primer on Mount Design</h2>
+<p>To point any direction in the sky, a telescope mount requires (at least) 2 orthogonal axes. In practice these two types exist:</p>
+<ul>
+<li>Alt-Az: Primary axis is vertical, secondary axis is horizontal.   </li>
+<li>Equatorial: Primary axis points to celestial pole, secondary axis sweeps along a meridian.</li>
+</ul>
+<p>Within these two main types, there are several design options: <br />
+- Fork: Optical tube is in the same plane as the primary axis. <br />
+- Offset: Optical tube is offset to the side of the primary axis. Usually requires a counterweight.</p>
+<p>Therefore TeenAstro can be configured for any of these 4 types of mounts: </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: center;">Fork</th>
+<th style="text-align: center;">Offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alt-Az</td>
+<td style="text-align: center;"><img alt="" src="../altaz_fork.jpg" /><br/>Alt-Az Fork</td>
+<td style="text-align: center;"><img alt="" src="../t.gif" /><br/>Alt-Az T-Mount</td>
+</tr>
+<tr>
+<td>Equatorial</td>
+<td style="text-align: center;"><img alt="" src="../eq_fork.jpg" /><br/>Equatorial Fork</td>
+<td style="text-align: center;"><img alt="" src="../gem.jpg" /><br/>German Equatorial (GEM)</td>
+</tr>
+</tbody>
+</table>
+<p>Note that some systems do not fit in any of these categories. For example a Dobson telescope on an equatorial table actually has 3 axes: The primary is a kind of horseshoe (equatorial fork), on which an Alt-Az fork is sitting, but not horizontal. But it works!</p>
+<p>Also note these interesting cases: <br />
+- at the North or South pole, an Alt-Az mount is also an equatorial <br />
+- at the equator, the primary axis of an equatorial mount is horizontal</p>
+<h3 id="advantages-of-each-type">Advantages of each type</h3>
+<h4 id="equatorial-vs-alt-az">Equatorial vs Alt-Az</h4>
+<p>Equatorial mounts follow the sky with only one motor on the right ascension (hour) primary axis. The object always stays in the same orientation, there is no field rotation. In contrast, Alt-Az mounts need two motors to track, and the field rotates during tracking, requiring a derotator to make images.    <br />
+Alt-Az mounts are mechanically simpler and lighter. The last large equatorial mount was the 200-inch (5.1m) Hale at Mount Palomar (1949). Modern large telescopes are all Alt-Az.</p>
+<h4 id="fork-vs-offset-tube">Fork vs. Offset tube</h4>
+<p>Equatorial forks are generally bulky and reserved for large instruments. Alt-Az forks are common for amateur telescopes (especially for Schmidt-Cassegrain with short fat tubes). Most amateur telescopes intended for astrophoto are GEM mounts. </p>
+<h3 id="what-it-means-for-the-mount-firmware">What it means for the mount firmware</h3>
+<p>The main task of a modern GOTO mount firmware is the computation of <strong>axis positions</strong> from the object's <strong>sky coordinates</strong>. For Alt-Az, the axis positions are the required altitude and azimuth. For Equatorial, the axis positions are the Hour Angle (Local sidereal time - Right Ascension of object) and the object's declination (with a positive or negative sign, depending on the RA axis position) <br />
+In both cases the computation is the same for fork or offset mounts, but the <strong>limits</strong> are different. For example, a GEM (German Equatorial) cannot track continuously across the southern sky. It needs to perform a <strong>meridian flip</strong>. Equatorial Fork mounts usually cannot track below the pole.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../UniversalMainUnit/" class="btn btn-neutral float-left" title="UniversalMainUnit"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../troubleshooting/" class="btn btn-neutral float-right" title="Troubleshooting">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../UniversalMainUnit/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../troubleshooting/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

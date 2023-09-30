@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Troubleshooting - TeenAstro Linux</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Troubleshooting";
+        var mkdocs_page_input_path = "swDesign/troubleshooting.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> TeenAstro Linux
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../linux/">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/config/">Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/indi/">INDI driver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/ekos/">Ekos</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Firmware</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../firmware/">Building the Firmware</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SmartHandController/">Smart Hand Controller</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../TeenAstroMainUnit/">TeenAstroMainUnit</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../UniversalMainUnit/">UniversalMainUnit</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mountDesign/">Supported Mounts</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Troubleshooting</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#mount-goes-in-the-wrong-direction">Mount goes in the wrong direction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#high-pitched-noise-from-motors">High-pitched noise from motors</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mount-goes-into-altitude-error-when-it-should-not">Mount goes into altitude error when it should not</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mount-stops-tracking">Mount stops tracking</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connecting-to-the-main-unit-through-telnet-or-serial-port">Connecting to the Main Unit through telnet or serial port</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/auto_test/">autoTest</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/mount_sim/">Mount Simulator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/teenastro_debug/">Debugging</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">TeenAstro Linux</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Firmware &raquo;</li>
+      <li class="breadcrumb-item active">Troubleshooting</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="troubleshooting">Troubleshooting</h1>
+<p>This section describes common problems and how to fix them.</p>
+<h2 id="mount-goes-in-the-wrong-direction">Mount goes in the wrong direction</h2>
+<p>Check that RA and DEC cables are connected correctly, change the direction of either axis in the SHC "Mount" menu. <br />
+In general, set the mount to its Home position (using the clutches) before switching it on. <br />
+Make sure the pier side reported by TeenAstro corresponds to the actual mount position. If not, it can be changed through the SHC menu, and synchronize to an object afterwards. </p>
+<h2 id="high-pitched-noise-from-motors">High-pitched noise from motors</h2>
+<p>Either the mount movement is blocked, or your slewing speed is too high for the motor / voltage combination</p>
+<h2 id="mount-goes-into-altitude-error-when-it-should-not">Mount goes into altitude error when it should not</h2>
+<p>Check your site latitude and longitude.</p>
+<h2 id="mount-stops-tracking">Mount stops tracking</h2>
+<p>Check altitude / meridian limits (icons on SHC)</p>
+<h2 id="connecting-to-the-main-unit-through-telnet-or-serial-port">Connecting to the Main Unit through telnet or serial port</h2>
+<p>To diagnose communication problems, especially with astronomy software running on a PC, it is convenient to connect to the main unit via telnet:</p>
+<p><code>telnet &lt;IP address&gt; 9999</code></p>
+<p>or via the serial port / USB:</p>
+<p><code>cu -p /dev/ttyACM0</code> </p>
+<p>You can retrieve the IP address of TeenAstro on the SHC menu.
+Once connected, you can issue any LX200 command and view the result. For example, the standard command <code>:GR#</code> returns the current Right Ascension.</p>
+<p><code>telnet 192.168.0.12 9999
+Trying 192.168.0.12...
+Connected to 192.168.0.12.
+Escape character is '^]'.
+:GR#
+16:14:05#</code></p>
+<p>When connecting via telnet, the Wifi connection mode must be set to "One to One" (SHC  Wifi menu).  </p>
+<p><img alt="" src="../wifi_mode.png" /></p>
+<p>Check the list of commands supported by TeenAstro at <a href="../../linux/indi/#functionality-standard-meade-commands">this address</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../mountDesign/" class="btn btn-neutral float-left" title="Supported Mounts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../testing/auto_test/" class="btn btn-neutral float-right" title="autoTest">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../mountDesign/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../testing/auto_test/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

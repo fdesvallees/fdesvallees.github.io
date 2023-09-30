@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Utilities - TeenAstro Linux</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Utilities";
+        var mkdocs_page_input_path = "linux/config.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> TeenAstro Linux
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Utilities</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#flashing">Flashing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#flashing-the-main-unit-through-usb-with-the-teensy-uploader">Flashing the Main Unit through USB with the Teensy uploader</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#flashing-the-shc-through-usb-and-through-wifi">Flashing the SHC through USB and through Wifi</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../indi/">INDI driver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ekos/">Ekos</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Firmware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/firmware/">Building the Firmware</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/SmartHandController/">Smart Hand Controller</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/TeenAstroMainUnit/">TeenAstroMainUnit</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/UniversalMainUnit/">UniversalMainUnit</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/mountDesign/">Supported Mounts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/troubleshooting/">Troubleshooting</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/auto_test/">autoTest</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/mount_sim/">Mount Simulator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/teenastro_debug/">Debugging</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">TeenAstro Linux</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Linux &raquo;</li>
+      <li class="breadcrumb-item active">Utilities</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="teenastro-flashing-and-configuration">TeenAstro Flashing and Configuration</h1>
+<h2 id="flashing">Flashing</h2>
+<p>To flash (download) the firmware on both processors, you can either use the <a href="https://groups.io/g/TeenAstro/wiki/TeenAstroUploader">TeenAstroUploader application</a> (Windows only), or use directly the tools provided by the board manufacturers.</p>
+<h3 id="flashing-the-main-unit-through-usb-with-the-teensy-uploader">Flashing the Main Unit through USB with the Teensy uploader</h3>
+<p>The <a href="https://www.pjrc.com/teensy/loader_linux.html">Teensy uploader</a>, is available for Windows, MacOS and Linux. In all cases, it is possible to program the microcontrollers as standalone (when unplugged from the TeenAstro PCB) through a microUSB port. </p>
+<p>After assembly, the Teensy on the Main Unit can also be programmed using the same tools through the USB port on the front panel</p>
+<p>On Linux, you need to copy the 00-teensy.rules to the /etc/udev/rules.d folder as explained on the web site.</p>
+<p>Launch <code>teensy</code>, select the firmware file in HEX format, and hit the reset button on the board</p>
+<p><img alt="" src="../teensy.png" /></p>
+<p>If the reset button is not accessible, you can also reset it by software by launching <code>teensy_reboot</code>. Note that teensy_reboot is installed by default when using platformio. If you don't use platformio, post a message on the TeenAstro help group.</p>
+<h3 id="flashing-the-shc-through-usb-and-through-wifi">Flashing the SHC through USB and through Wifi</h3>
+<p>The processor on the SHC is an ESP8266, on a board called Wemos D1 mini. <br />
+It can be programmed with a tool called esptool.py, available <a href="https://github.com/espressif/esptool">here</a>. First remove the Wemos board from the SHC, then use the micro USB connector to connect to your computer. <br />
+Once the Wemos is programmed, it is easier to flash through the <a href="https://groups.io/g/TeenAstro/wiki/WiFi-Interface">web server interface</a>, so that there is no need to open the case.</p>
+<h2 id="configuration">Configuration</h2>
+<p>These utilities allow to view and change the configuration of the mount (motor parameters etc.)</p>
+<p>For Windows, use <a href="https://groups.io/g/TeenAstro/wiki/TeenAstroConfig">TeenAstroConfig.exe</a></p>
+<p>For Mac OSX and Linux, use <a href="https://github.com/charleslemaire0/TeenAstro/tree/master/TeenAstroConfig">TAConfig.py</a></p>
+<p><img alt="" src="../TAConfig.png" /></p>
+<p>TAConfig version 1.2 (only works with TeenAstro firmware 1.2 and above) combines the configuration with some of the features from the web server (site management, status display)</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../indi/" class="btn btn-neutral float-right" title="INDI driver">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../indi/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
