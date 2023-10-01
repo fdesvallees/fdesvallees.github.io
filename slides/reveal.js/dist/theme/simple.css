@@ -358,3 +358,27 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
     background-color: var(--r-background-color);
   }
 }
+
+/*********************************************
+ * CUSTOM
+ *********************************************/
+.container {
+  width: 100%;
+  display: flex; }
+
+.left_block {
+  width: inherit;
+  margin-left: 0px; }
+
+.right_block {
+  width: inherit; }
+
+.reveal .slides {
+  width:100%;
+  height: 100%;
+  top: 0;
+  margin-top: 0;
+}
+
+
+
