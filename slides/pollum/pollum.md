@@ -1,12 +1,11 @@
-## La pollution lumineuse
-
-
+---
+title: La pollution lumineuse
 
 ---
 
 
 <div class = "notes">
-- Aujourd’hui, hommes et femmes vivent et travaillent la nuit comme le jour, et il est devenu indispensable d’éclairer les villes. Puisque le coût relativement faible de l’énergie n’a jamais véritablement favorisé la définition et l’instauration de bonnes pratiques d’éclairage, on assiste à une surenchère lumineuse qui va bien au-delà des simples besoins de voir et d’être vu.
+- Aujourd’hui, nous vivons et travaillons la nuit comme le jour, et il est devenu indispensable d’éclairer les villes. Puisque le coût relativement faible de l’énergie n’a jamais véritablement favorisé la définition et l’instauration de bonnes pratiques d’éclairage, on assiste à une surenchère lumineuse qui va bien au-delà des simples besoins de voir et d’être vu.
  
 - Faute d’une réflexion réelle sur les raisons qui poussent à éclairer au point où il n’y a presque plus de limite entre le jour et la nuit, on justifie l’usage abusif de lumière en invoquant la satisfaction du besoin de sécurité, la promotion commerciale ou encore la mise en valeur du patrimoine architectural et naturel. Pourtant, il s'agit d'un véritable gaspillage d'énergie et d'argent, en plus d'avoir de nombreux impacts négatifs dans de nombreuses sphères, naturelles et humaines.
  
@@ -16,7 +15,7 @@
 <div class="container">
 <div class="left_block">
 
-- La pollution lumineuse est un excès de lumière ambiante dûe à des éclairages extérieurs mal conçus, trop nombreux, trop puissants ou de mauvaise qualité, et qui est diffusée à l’extérieur de la surface qui devrait normalement être éclairée, particulièrement si cette lumière est dirigée vers le haut.
+- La pollution lumineuse est un excès de lumière ambiante due à des éclairages extérieurs mal conçus, trop nombreux, trop puissants ou de mauvaise qualité, et qui est diffusée à l’extérieur de la surface qui devrait normalement être éclairée, particulièrement si cette lumière est dirigée vers le haut.
 
 - Elle ne cesse d’augmenter, en ville et à la campagne. C’est un phénomène mondial, et même les grands observatoires du Chili sont maintenant impactés.
 
@@ -34,7 +33,7 @@
 
 ---
 
-##Les méfaits de la pollution lumineuse
+## Les méfaits de la pollution lumineuse
 
 
 - Elle est nuisible pour notre santé, peut causer des troubles du sommeil et autres

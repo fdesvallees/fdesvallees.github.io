@@ -1,68 +1,35 @@
----
-title: La mesure des distances, des angles et du temps
-
----
-
-
-
 ----
 
-## Les distances
-
-
----------------------------    --------------------------   -------
-Les unités
-La mesure de la Terre 		     10000km                  		10^7^m
-La Lune et le Soleil           millions de km    	        	10^9^m
-Le Système solaire             milliards de km   		        10^12^m
-Notre galaxie   			         100000 années lumière        10^18^m
-Les autres galaxies     	     millions d'années lumière    10^20^m
-L'Univers observable           milliards d'années lumière   10^23^m
----------------------------    --------------------------   -------
-
-<div class="notes">
-Nous allons décrire la mesure des distances depuis notre échelle jusqu'a la taille de l'Univers, en passant par la mesure de la surface de la Terre.
-
-
-</div>
+##  La mesure des distances, des angles et du temps
 
 ----
 
 
-## Les unités de distance
+----------------------------------------------------------------- 
+                            kilomètres              lumière
+------------------------    --------------------   -------------- 
+La Lune                     300000                 ~1 seconde 
 
-----------------    -------------------------------------
-Antiquité           pied, coudée, stade, farasange, ...
-Autres              farsakh, verste, li, ...
-Système Impérial    pouce, pied, yard, mille, ...
-Système métrique    ..
-----------------    -------------------------------------
+Le Soleil                   150 millions           ~8 minutes 
 
-<div class = "fragment" data-fragment-index="1">
+Le Système Solaire          milliards (10^9^)       heures 
 
-## Définition du mètre
+Étoiles proches             10^13^                  années 
 
-----     ---------------------------------------------------------------------
-1793     Dix-millionième du quart du méridien terrestre
-1889     Mètre étalon en platine iridié
-1960     1650763.73 longueurs d'onde de la ligne orange/rouge du krypton 86
-1983     Distance parcourue par la lumière en 1/299792458 seconde
-----     ---------------------------------------------------------------------
+Voie Lactée                 10^18^                  100000 années 
 
-</div>
+Galaxies proches            10^19^                  millions d'années
 
-<div class="notes">
-Combien de pouces dans un pied? (12)
-Combien de sagènes dans une verste? (500)
+Quasars les plus lointains  10^26^                  ~13 milliards d'années
+-----------------------------------------------------------------
 
 
-1 acre = 4840 yard^2^ \
-Q: Combien de gallons dans un acre-pied? \
-R: 325851
-</div>
+::: notes
+Proxima Centauri : 4.2 ly
+:::
 
+----
 
------
 
 
 ### Mesurer les distances sur la Terre: la triangulation
@@ -133,7 +100,7 @@ Nos sens ne nous permettent pas de mesurer les grandes distances.
 ----
 
 ## La Lune
-Si on connaît la taille de la Terre, on peut trouver la taille et la distance de la Lune (en mesurant l’ombre de la Terre lors des éclipses de Lune), et sa distance (par trigonométrie)
+Si on connaît la taille de la Terre, on peut trouver la taille de la Lune (en mesurant l’ombre de la Terre lors des éclipses de Lune), et sa distance (par trigonométrie)
 
 ![](eclipse.gif)
 
@@ -200,7 +167,7 @@ puis Newton les a expliquées et mises en équations, mais toujours sans connaî
 
 Depuis Képler on savait que le rayon de l’orbite de Jupiter était d'environ 5 UA. Mais combien vaut une UA en kilomètres?
 
-Les **transits** de Mercure et Vénus ont donné des résultats, mais ceux-ci restaient imprécis à cause des erreurs dûes à l’atmosphère.
+Les **transits** de Mercure et Vénus ont donné des résultats, mais ceux-ci restaient imprécis à cause des erreurs dues à l’atmosphère.
 
 Ce n’est que vers 1960 que des mesures par radar de Vénus ont donné la mesure de l’UA avec une bonne précision (149 597 870 km).
 
@@ -248,90 +215,28 @@ Hubble (parmi d'autres) a montré que la distance est proportionnelle au décala
 
 ## La mesure des angles
 
-## Les unités
-
-<div class="container">
-<div class="left_block">
-
-Le même angle exprimé en..
-
---------    -------------------   ----------------   -----------------
-Radians     Degrés sexagésimaux   Degrés décimaux    Ascension droite
---------    -------------------   ----------------   -----------------
-0.2618            15°                15.0°              1h
-
-1            57°17'44"              57.2958°           3h49m11s
-
-   2π            360°                360.0°             24h
---------    -------------------   ----------------   -----------------
 
 
-</div>
-<div class="right_block">
+::: container
+::: left_block
 
-<img src="Degree-Radian_Conversion.svg" width="600px" />
+--------    ---------------   -----------------------
+            Nord - Sud            Est - Ouest
+--------    ---------------   -----------------------
+Terre       Latitude              Longitude 
 
-</div>
-</div>
+Ciel        Déclinaison           Ascension droite 
 
+--------    ---------------   -----------------------
 
----
+:::
 
-
-## Systèmes de coordonnées
-
-<div class="container">
-<div class="left_block">
-
-
-<img src="Dobson_class.jpg" height="400px" />
-
-Alt-azimut   
-Azimut (A) et altitude (a)
-
-
-</div>
-
-<div class="right_block">
-
-<img src="equatorial_mount.jpg" height="400px" />
-
-Equatoriales   
-Ascension droite (α) et déclinaison (δ)
-
-</div>
-</div>
-
-
----
-
-## Coordonnées terrestres et célestes
-
+::: right_block
 
 <img src="lat_long.png" height="400px" />
 
-
---------    -------------------   -----------------------
-Direction   Nord - Sud            Est - Ouest
---------    -------------------   -----------------------
-Terre       Latitude (φ)          Longitude (λ)
-
-Ciel        Déclinaison (δ)       Ascension droite (α)
-
---------    -------------------   -----------------------
-
-
-
----
-
-## Conversions de coordonnées
-
-<img src="triangle.gif" height="400px" />
-
-- H = t - α
-- sin(a) = sin(δ) sin(φ) + cos(δ) cos(φ) cos(H)
-- sin(A) = - sin(H) cos(δ) / cos(a)
-- cos(A) = { sin(δ) - sin(φ) sin(a) } / cos(φ) cos(a)
+:::
+:::
 
 ---
 
@@ -470,33 +375,17 @@ Précision: 12"
 </div>
 </div>
 
-<div class="notes">
-Gaia tourne sur lui-même en 6 heures
-
-</div>
 
 ---
 
 ## Orbite de Gaia
 
-<div class="container">
 
-<div class="left_block">
 <img src="gaia_l2.png" />
 
-Le point L2 est à 1,5 million de kilomètres
+Comme les autres observatoires JWST et Euclide, Gaia se trouve au deuxième point de Lagrange (L2), à 1,5 million de kilomètres
+de la Terre.
 
-</div>
-
-<div class="right_block">
-
-<span class = "fragment" data-fragment-index="1">
-<img src="obs-principle400.gif" height="400px" />
-Gaia tourne sur lui-même en 6 heures
-</span>
-
-</div>
-</div>
 
 ---
 
@@ -508,21 +397,28 @@ Gaia tourne sur lui-même en 6 heures
 ## Le temps
 
 
-Temps local apparent
 
+::: container
+::: left_block
+
+Temps local apparent
 
 <img src="sundial.jpg" />
 
+:::
 
----
+::: right_block
 
-Analemme
+Le Soleil à midi  
 
 <img src="analemma.jpg" height="600px" />
 
-<div class="notes">
+:::
+:::
+
+::: notes
 Le mouvement du Soleil n'étant pas uniforme, il culmine avant ou après midi de l'heure légale, ce qui est représenté par l'analemme.
-</div>
+:::
 
 ---
 
@@ -531,7 +427,6 @@ Temps local apparent        Directement donné par le Soleil
 Temps solaire moyen         "Soleil moyen" - corrige les irrégularités
 Temps universel             TU - anciennement GMT - calé sur la rotation de la Terre
 Temps dynamique             absolument régulier - horloges atomiques
-Temps sidéral               Donné par les étoiles
 ------------------------    ---------------------------------------
 
 
@@ -554,14 +449,21 @@ Christiaan Huygens - 1657
 
 ## Navigation
 
-<img src="culmination.gif" height="400px" />
 
+::: container
+::: left_block
 En observant le passage au méridien d'un astre:
 
 - il est facile de trouver la latitude 
 - si on connaît l'heure, on peut en déduire la longitude
 
 Jusqu'à l'invention d'horloges précises, on ne pouvait pas établir correctement sa longitude
+
+:::
+::: right_block
+<img src="culmination.gif" height="400px" />
+:::
+:::
 
 <div class="notes">
 une erreur de 15 mn correspond environ à 200 km à l'équateur!

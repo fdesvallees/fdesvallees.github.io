@@ -6,7 +6,7 @@ clean:
 	rm $(targets)
 
 $(targets): %.html: %.md
-	pandoc -t revealjs -V theme=simple -V transition=none  -V width=2000 -V height=1200 \
+	pandoc -t revealjs -V theme=simple -V transition=none  -V width=1200 -V height=800 \
 										-V minScale=0.2 -V maxScale=2.0 -V history=true -s  -V revealjs-url=../reveal.js $< -o $@
 
 
