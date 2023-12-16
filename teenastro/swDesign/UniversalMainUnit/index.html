@@ -82,9 +82,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#hardware-abstraction-layer-hal">Hardware Abstraction Layer (HAL)</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#timers">Timers</a>
+    <li class="toctree-l2"><a class="reference internal" href="#platform-dependent-code">Platform-dependent code</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#teensy4">Teensy4</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#non-volatile-memory">Non-Volatile Memory</a>
+    <li class="toctree-l3"><a class="reference internal" href="#esp32s3">ESP32S3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#timers">Timers</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#tracking-and-guiding">Tracking and Guiding</a>
     </li>
@@ -125,8 +131,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Firmware &raquo;</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Firmware</li>
       <li class="breadcrumb-item active">UniversalMainUnit</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -244,23 +250,71 @@ void beginTimers(void)
   ...
 }
 </code></pre>
+<h3 id="platform-dependent-code">Platform-dependent code</h3>
+<h4 id="teensy4">Teensy4</h4>
+<ul>
+<li>Time: Teensy4 has an on-chip RTC which keeps counting time when the chip is powered off, as long as the 2032 coin battery provides VBAT.</li>
+<li>Non-Volatile Memory: Teensy4 provides 1kB of emulated EEPROM, accessible through a provided library.</li>
+<li>Serial Ports: Teensy4 has 7 serial ports, of which 3 are used (SHC, USB, GPS)</li>
+</ul>
+<h4 id="esp32s3">ESP32S3</h4>
+<ul>
+<li>
+<p>Non-Volatile Memory: On ESP32 there is no EEPROM, but a section of RAM that emulates EEPROM, and gets written into the Flash with the EEPROM.commit() function. To keep the code compatible, the Monitor task performs a hash of the RAM (every 10 seconds or so) and commits it to Flash when a change is detected.</p>
+</li>
+<li>
+<p>Time: <to be done>.</p>
+</li>
+<li>
+<p>JTAG: To use JTAG pins by default with a JLINK probe, we need to burn an Efuse (EFUSE_DIS_USB_JTAG) using the utility esptool.py. Refer to the Datasheet, section 2.6.4.</p>
+</li>
+<li>
+<p>Serial ports: ESP32S3 has 3 serial ports: </p>
+</li>
+<li>
+<p>USB:  on the micro-USB port labeled USB. (and on the D+/D- pins of the B-connector of the prototype board). This is the PC connection:   Serial.begin();</p>
+</li>
+<li>
+<p>SHC: on the micro-USB port labeled UART. The pins are configurable at initialization: Serial0.begin(57600, SERIAL_8N1, 44, 43)</p>
+</li>
+<li>
+<p>GPS: The pins are configured at initialization:   Serial1.begin(9600, SERIAL_8N1, 15, 16) </p>
+</li>
+</ul>
+<p><strong>NOTES</strong>: </p>
+<ul>
+<li>
+<p>USB and SHC are used by default at boot time to load software and to display boot messages. To use them as standard serial ports, we need special gymnastics described in the Technical Reference Manual, Chapter 8. This gives these lines in platformio.ini:</p>
+<p>build_unflags = 
+  -D ARDUINO_USB_MODE=1
+  -D ARDUINO_USB_CDC_ON_BOOT=0
+build_flags = 
+  -D ARDUINO_USB_MODE=0
+  -D ARDUINO_USB_CDC_ON_BOOT=1</p>
+</li>
+<li>
+<p>Strapping Pins: Pins 0, 3, 45 and 46 have special functions at boot-time to configure the chip.  If they are used for GPIO, their power-up state should be compatible with the chip functionality described in  the ESP32S3 Datasheet, section 2.6.</p>
+</li>
+</ul>
 <h3 id="timers">Timers</h3>
 <p>The ISR running off the sidereal timer has only one purpose, which is to update the sidereal time. All other tasks run at multiples of the operating system's tick, normally one millisecond.   </p>
-<h3 id="non-volatile-memory">Non-Volatile Memory</h3>
-<p>On ESP32 there is no EEPROM, but a section of RAM that emulates EEPROM, and gets written into the Flash with the EEPROM.commit() function. To keep the code compatible, the Monitor task performs a hash of the RAM (every 10 seconds or so) and commits it to Flash when a change is detected.   </p>
 <h3 id="tracking-and-guiding">Tracking and Guiding</h3>
 <p>While tracking, the Control Task periodically computes the tracking speed. For Eq Mounts, this is currently a constant (it will eventually add components for refraction), for Altaz mounts, it is the difference between computed positions slightly before and after the current position.
 If required, it adds increments corresponding to guiding commands (pulse or ST4), or spiral.</p>
 <h3 id="sync-and-alignment">Sync and Alignment</h3>
 <p>Synchronizing the mount, or 1-star alignment, is simply resetting the instrument coordinates to a known value (Home, or a given star). <br />
-2-star alignment consists of setting up a linear relationship between: <br />
-- reference coordinates (Hour Angle and Declination) of 2 stars and <br />
-- instrument coordinates (the positions of the 2 axes).  <br />
-We use <a href="http://takitoshimi.starfree.jp/">Toshimi Taki's</a> matrix method.</p>
+2-star alignment consists of setting up a linear relationship between 2 sets of mount axis angles:   </p>
+<ul>
+<li>sky coordinates corresponding to the 2 stars and   </li>
+<li>instrument coordinates read from the mount.<br />
+We use <a href="http://takitoshimi.starfree.jp/">Toshimi Taki's</a> matrix method, with 2 observed stars and the 3rd reference computed as an orthogonal direction to the first 2.</li>
+</ul>
+<p>Note: This alignment is not very useful, since it only uses one 3x3 matrix. 9 parameters are not sufficient to build a complete sky model. We would need n_point_alignment as described in the EQMOD alignment model document. As of today, I recommend using a simple 1-star synchronization with careful polar alignment.</p>
+<p><img alt="" src="../n_point_alignment.png" /></p>
 <h3 id="refraction">Refraction</h3>
 <p>Not yet implemented</p>
 <h3 id="motion-control-spi-only-mode-of-the-5160-stepper-controller">Motion Control (SPI-only) mode of the 5160 stepper controller</h3>
-<p>The TeenAstrov2 code base uses the STEP/DIR mode for controlling the stepper motor driver (TMC2130 or TMC5160). This requires the microcontroller to toggle the STEP input of the driver for each step. Since we use microstepping to get a smooth motion, we program one interrupt for each microstep. The interrupt period is </p>
+<p>The standard TeenAstro code base uses the STEP/DIR mode for controlling the stepper motor driver (TMC2130 or TMC5160). This requires the microcontroller to toggle the STEP input of the driver for each step. Since we use microstepping to get a smooth motion, we program one interrupt for each microstep. The interrupt period is </p>
 <pre><code>t = 24 * 3600 / (gear reduction * steps/rot * microsteps)
 </code></pre>
 <p>For example, for a gear reduction of 1000 (ratio of motor axis to mount axis rotations), typical motors with 200 steps/rotation, 32 microsteps, and sidereal rate (one mount axis rotation for 24 hours), our interrupt period is:  </p>
