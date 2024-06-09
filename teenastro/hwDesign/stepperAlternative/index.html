@@ -68,13 +68,13 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Choice of Motors</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#closed-loop-stepper-stepper-onlinecom">Closed-loop Stepper (stepper-online.com)</a>
+    <li class="toctree-l2"><a class="reference internal" href="#closed-loop-stepper-stepper-onlinecom">Closed-loop Stepper: stepper-online.com</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#integrated-easy-servo-motor-stepper-onlinecom">Integrated Easy Servo Motor (stepper-online.com)</a>
+    <li class="toctree-l2"><a class="reference internal" href="#integrated-easy-servo-motor-stepper-onlinecom">Integrated Easy Servo Motor: stepper-online.com</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#odrive-micro-with-brushless-dc-motor">ODrive Micro with Brushless DC Motor</a>
+    <li class="toctree-l2"><a class="reference internal" href="#odrive-micro-with-brushless-dc-motor-odriveroboticscom">ODrive Micro with Brushless DC Motor: odriverobotics.com</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#odesc-with-brushless-dc-motor">ODesc with Brushless DC Motor</a>
+    <li class="toctree-l2"><a class="reference internal" href="#odesc-with-brushless-dc-motor-sequremallcom">ODesc with Brushless DC Motor: sequremall.com</a>
     </li>
     </ul>
                   </li>
@@ -113,8 +113,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="summary-of-motor-alternatives-for-teenastro">Summary of motor alternatives for TeenAstro</h1>
-<h3 id="closed-loop-stepper-stepper-onlinecom">Closed-loop Stepper (stepper-online.com)</h3>
-<p>https://www.omc-stepperonline.com/closed-loop-stepper-driver-v4-1-0-3-0a-24-48vdc-for-nema-11-14-17-stepper-motor-cl42t-v41</p>
+<h3 id="closed-loop-stepper-stepper-onlinecom">Closed-loop Stepper: <a href="https://www.omc-stepperonline.com/closed-loop-stepper-driver-v4-1-0-3-0a-24-48vdc-for-nema-11-14-17-stepper-motor-cl42t-v41">stepper-online.com</a></h3>
 <p>This is a stepper motor with an internal shaft encoder. It is meant to be used with an external controller that corrects lost steps.  This external controller is a discrete board (also from stepper-online) that accepts Step/Dir signals - it replaces the TMC5160.</p>
 <p>Notes:</p>
 <ul>
@@ -122,14 +121,11 @@
 <li>It could also be implemented by the DCSTEP feature of TMC5160, that monitors motor overload. (software change only)</li>
 <li>In my experience, if the motors are powerful enough and the mount is well balanced, TeenAstro <strong>never loses steps</strong>. For me closed-loop steppers <strong>do not bring significant improvements</strong>.</li>
 </ul>
-<h3 id="integrated-easy-servo-motor-stepper-onlinecom">Integrated Easy Servo Motor (stepper-online.com)</h3>
-<p>https://www.omc-stepperonline.com/nema-23-integrated-easy-servo-motor-90w-3000rpm-0-3nm-42-49oz-in-20-50vdc-servo-motor-short-shaft-isv57t-090s</p>
+<h3 id="integrated-easy-servo-motor-stepper-onlinecom">Integrated Easy Servo Motor: <a href="https://www.omc-stepperonline.com/nema-23-integrated-easy-servo-motor-90w-3000rpm-0-3nm-42-49oz-in-20-50vdc-servo-motor-short-shaft-isv57t-090s">stepper-online.com</a></h3>
 <p>This is a brushless DC motor with an integrated controller that takes Step/Dir inputs. This can be <strong>much faster than a stepper</strong>, especially for large mounts. It would require hardware changes (buffers to adapt Step/Dir signals from 3.3V to 5V) and some software changes (remove 5160 configuration). Note that this controller only takes rising edge pulses, whereas the current TeenAstro code uses both rising and falling edges to reduce interrupt frequency.</p>
-<h3 id="odrive-micro-with-brushless-dc-motor">ODrive Micro with Brushless DC Motor</h3>
-<p>https://docs.odriverobotics.com/v/latest/hardware/micro-datasheet.html</p>
+<h3 id="odrive-micro-with-brushless-dc-motor-odriveroboticscom">ODrive Micro with Brushless DC Motor: <a href="https://docs.odriverobotics.com/v/latest/hardware/micro-datasheet.html">odriverobotics.com</a></h3>
 <p>This is from a US company. It is similar in principle (but nicer in my view) to the one from stepper-online, with an additional Motion Controller, controlled by UART (Step/Dir is possible, but not recommended). This looks very good, but it is quite expensive, and it is <strong>no longer open source</strong>. It runs on a dedicated STM32 processor. In Step/Dir mode, same remarks as above. A positive side is that they have <strong>very good documentation</strong>. Motion Controller mode would require routing a UART to the Odrive board.</p>
-<h3 id="odesc-with-brushless-dc-motor">ODesc with Brushless DC Motor</h3>
-<p>https://sequremall.com/collections/odesc/products/odesc-dual-drive</p>
+<h3 id="odesc-with-brushless-dc-motor-sequremallcom">ODesc with Brushless DC Motor: <a href="https://sequremall.com/collections/odesc/products/odesc-dual-drive">sequremall.com</a></h3>
 <p>This is a chinese clone of ODrive, less expensive, with their <strong>early open-source firmware, no longer maintained</strong>. It might be a good alternative, although they have zero documentation (or if they have I could not find any).</p>
               
             </div>
