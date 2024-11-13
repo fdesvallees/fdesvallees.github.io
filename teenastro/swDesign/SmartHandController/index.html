@@ -56,8 +56,14 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../firmware/">Building the Firmware</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Smart Hand Controller</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Smart Hand Controller</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#catalogs">Catalogs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#process-for-creating-the-catalogs">Process for creating the catalogs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#new-scripts">New Scripts</a>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../TeenAstroMainUnit/">TeenAstroMainUnit</a>
@@ -106,6 +112,61 @@
               
                 <h2 id="smart-hand-controller">Smart Hand Controller</h2>
 <p>The SHC handles all user interface, as well as the databases for deep-sky objects, and the solar system computations. It is currently implemented on a Wemos processor that includes a Wifi interface. The peripherals are 7 buttons,  a screen controlled by I2C, and a UART connected to the Main Unit. All commands and response follow the LX200 standard, with proprietary additions.</p>
+<h3 id="catalogs">Catalogs</h3>
+<p>There are currently 9 catalogs:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ta_stars_vc</td>
+<td>408 brightest stars</td>
+</tr>
+<tr>
+<td>ta_stf_select_c</td>
+<td>Struve STF - 595 double stars</td>
+</tr>
+<tr>
+<td>ta_stt_select_c</td>
+<td>Struve STT - 114 double stars</td>
+</tr>
+<tr>
+<td>ta_gvcs_select_c</td>
+<td>621 variable stars</td>
+</tr>
+<tr>
+<td>ta_messier_c</td>
+<td>109 Messier objects</td>
+</tr>
+<tr>
+<td>ta_caldwell_c</td>
+<td>109 Caldwell objects</td>
+</tr>
+<tr>
+<td>ta_herschel_c</td>
+<td>400 best NGC objects</td>
+</tr>
+<tr>
+<td>ta_ngc_select_c</td>
+<td>~ 2000 DSO objects of mag&lt;16</td>
+</tr>
+<tr>
+<td>ta_ic_select_c</td>
+<td>~ 500 DSO objects of mag&lt;16</td>
+</tr>
+</tbody>
+</table>
+<h3 id="process-for-creating-the-catalogs">Process for creating the catalogs</h3>
+<p>The original scripts (no longer available) worked as follows:</p>
+<p>Databases --??????--&gt; intermediate C files ---- Visual Basic scripts -----&gt; C files included in TeenAstroCatalog</p>
+<h3 id="new-scripts">New Scripts</h3>
+<p>The simplified python script (currently for NGC objects only, should be easy to port for other objects) has only one step:</p>
+<p>OpenNGC database --- convertNGC.py -------&gt; C files included in TeenAstroCatalog</p>
+<p>It uses <a href="https://pyongc.readthedocs.io/en/latest/readme.html">the Python interface to ONGC</a> to retrieve the data and the <a href="https://www.geeksforgeeks.org/getting-started-with-jinja-template/">Jinja templating engine</a> to create the C files.</p>
               
             </div>
           </div><footer>
