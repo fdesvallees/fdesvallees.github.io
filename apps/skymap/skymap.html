@@ -13,28 +13,28 @@
       }
 		</style>
 
-<link rel="stylesheet" href="/static/css/spectre.min.css" />
-<link rel="stylesheet" href="/static/css/icons.css" />
-<link rel="stylesheet" href="/static/css/styles.css" />
-<link rel="stylesheet" href="/static/css/pikaday.css" />
-<link rel="stylesheet" href="/static/css/adt.css" />
-<script src="/static/paper/paper-full.js"></script>
+<link rel="stylesheet" href="/css/spectre.min.css" />
+<link rel="stylesheet" href="/css/icons.css" />
+<link rel="stylesheet" href="/css/styles.css" />
+<link rel="stylesheet" href="/css/pikaday.css" />
+<link rel="stylesheet" href="/css/adt.css" />
+<script src="/paper/paper-full.js"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
 
-<script src="/static/js/euler_quaternion.js"></script>
-<script src="/static/js/paperContext.js"></script>
-<script src="/static/ephemeris/datetime.js"></script>
-<script src="/static/ephemeris/planets.js"></script>
-<script src="/static/ephemeris/moon.js"></script>
-<script src="/static/ephemeris/math.js"></script>
-<script src="/static/ephemeris/observer.js"></script>
-<script src="/static/ephemeris/util.js"></script>
-<script src="/static/js/orbital.js"></script>
-<script src="/static/js/dso.js"></script>
-<script src="/static/js/barn.min.js"></script>
-<script src="/static/js/moment.min.js"></script>
-<script src="/static/js/pikaday.js"></script>
+<script src="/js/euler_quaternion.js"></script>
+<script src="/js/paperContext.js"></script>
+<script src="/ephemeris/datetime.js"></script>
+<script src="/ephemeris/planets.js"></script>
+<script src="/ephemeris/moon.js"></script>
+<script src="/ephemeris/math.js"></script>
+<script src="/ephemeris/observer.js"></script>
+<script src="/ephemeris/util.js"></script>
+<script src="/js/orbital.js"></script>
+<script src="/js/dso.js"></script>
+<script src="/js/barn.min.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/pikaday.js"></script>
 </head>
 
 <body>
@@ -604,7 +604,7 @@ async function loadStarArray(zoneName)
 {
  if (!detailedMode)
     return;
-  starData = await Promise.all([d3.csv("/static/sky/" + zoneName + ".csv")]);
+  starData = await Promise.all([d3.csv("/sky/" + zoneName + ".csv")]);
   starsArray[zoneName] = starData; 
 }
 
@@ -891,11 +891,11 @@ function refresh()
 async function deferred() 
 {
   dataSets = await Promise.all([
-    d3.csv("/static/sky/stars.csv"),
-    d3.json("/static/sky/ecliptic.json"),
-    d3.json("/static/sky/constellations.json"),
-    d3.json("/static/sky/boundaries.json"),
-    d3.json("/static/sky/skytiles.json")
+    d3.csv("/sky/stars.csv"),
+    d3.json("/sky/ecliptic.json"),
+    d3.json("/sky/constellations.json"),
+    d3.json("/sky/boundaries.json"),
+    d3.json("/sky/skytiles.json")
     ]);
 
   stars = dataSets[0]

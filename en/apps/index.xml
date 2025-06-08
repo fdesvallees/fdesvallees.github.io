@@ -1,0 +1,56 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>François&#39; blog – Apps</title>
+    <link>https://fdesvallees.github.io/en/apps/</link>
+    <description>Recent content in Apps on François&#39; blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-EN</language>
+    <lastBuildDate>Sun, 25 May 2025 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="https://fdesvallees.github.io/en/apps/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Sky Map</title>
+      <link>https://fdesvallees.github.io/en/apps/skymap/</link>
+      <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/apps/skymap/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This sky map uses &lt;a href=&#34;http://d3js.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;d3.js&lt;/a&gt; and &lt;a href=&#34;http://paperjs.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper.js&lt;/a&gt; to display the night sky.&lt;br&gt;
+It displays a projection of the night sky (stars down to magnitude 9, constellation lines, planets, brightest Messier and NGC objects). The star database derives from the &lt;a href=&#34;http://astronexus.com/hyg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;astronomy nexus&lt;/a&gt;, and the constellation lines from the &lt;a href=&#34;http://pp3.sourceforge.net/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PP3 program&lt;/a&gt;.&lt;br&gt;
+You can zoom and drag the map, and hovering over a star displays its Draper catalog number and Bayer designation if available.&lt;br&gt;
+The amount of detail (ie the magnitude limit) depends on the zoom factor.
+At a certain level, we load tiles containing fainter stars, and unload them when zooming out or panning across the sky. This is described in a &lt;a href=&#34;http://astro.roya.org/blog/tiles/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;blog entry&lt;/a&gt;.
+To save memory and speed up loading, the constellation lines and boundaries are stored in &lt;a href=&#34;https://github.com/topojson/topojson&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;TopoJSON&lt;/a&gt;, Mike Bostock&amp;rsquo;s utility for encoding topology.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/apps/skymap/skymap.html&#34; width=&#34;1200px&#34; height=&#34;600px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Planets in 3D</title>
+      <link>https://fdesvallees.github.io/en/apps/planets/</link>
+      <pubDate>Fri, 22 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/apps/planets/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Planets with their orbits. The Solar System objects are represented with &lt;a href=&#34;https://threejs.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;THREE.js&lt;/a&gt; with a custom rendering engine based on &lt;a href=&#34;http://paperjs.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Paper.js&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It is possible to load additional objects (using the &amp;ldquo;settings&amp;rdquo; page). The orbital elements for these comets and asteroids come from the &lt;a href=&#34;http://www.minorplanetcenter.net/iau/Ephemerides/BrightMP.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Minor Planet Center&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The orbit computations are from Jean Meeus&amp;rsquo; &lt;a href=&#34;http://www.willbell.com/math/mc1.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;ldquo;Astronomical Algorithms&amp;rdquo;&lt;/a&gt;. Much of the code was adapted from &lt;a href=&#34;http://www.aphayes.16mb.com/ephemeris/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Peter Hayes ephemeris&lt;/a&gt;.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/apps/planets/planets.html&#34; width=&#34;1200px&#34; height=&#34;600px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

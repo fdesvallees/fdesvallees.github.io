@@ -1,0 +1,53 @@
+
+
+.adt-datetime 
+{
+  margin-left: 2em;
+  border:none;
+  font-family: "arial";
+  font-size: 12px;
+}
+
+.adt-small-button
+{
+  font-size:10px;
+    border: 30;
+    margin: 0;
+}
+
+
+.adt-box 
+{
+  float: left;
+}
+    
+.adt-row 
+{
+  display:inline-block;
+}
+
+.adt-menu
+{
+  position:absolute;
+  z-index: 1;
+}
+
+.adt-header
+{
+  position:absolute;
+  background-color: white;
+  z-index: 1; 
+}
+
+.form-input
+{
+  border:none; 
+  font-size: 12px;
+}
+
+.adt-num-input
+{
+  border:none; 
+  font-size: 12px;
+  width: 120px;
+}

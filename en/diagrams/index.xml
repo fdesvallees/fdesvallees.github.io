@@ -1,0 +1,133 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>François&#39; blog – Diagrams</title>
+    <link>https://fdesvallees.github.io/en/diagrams/</link>
+    <description>Recent content in Diagrams on François&#39; blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-EN</language>
+    <lastBuildDate>Sun, 25 May 2025 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="https://fdesvallees.github.io/en/diagrams/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>À la recherche du temps perdu</title>
+      <link>https://fdesvallees.github.io/en/diagrams/proustogram/</link>
+      <pubDate>Thu, 16 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/diagrams/proustogram/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Exercise in using Mike Bostock&amp;rsquo;s &lt;a href=&#34;https://idl.cs.washington.edu/papers/d3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;D3&lt;/a&gt; visualization framework.&lt;/p&gt;
+&lt;p&gt;Chronogram of Marcel Proust&amp;rsquo;s &lt;em&gt;In Search of Lost Time&lt;/em&gt;, based on Jacques Darrieulat&amp;rsquo;s &lt;a href=&#34;http://www.jdarriulat.net/Auteurs/Proust/ChronoProust.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chronoproust&lt;/a&gt;.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/diagrams/proustogram/proustogram.html&#34; width=&#34;640px&#34; height=&#34;500px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+&lt;p&gt;Each volume is represented as a rectangle of width proportional to its size, with time on the vertical axis.&lt;br&gt;
+The first volume starts around the birth of the &lt;a href=&#34;https://lithub.com/who-is-the-narrator-of-marcel-prousts-in-search-of-lost-time/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Narrator&lt;/a&gt;, and there is a 10-year gap between the last two. Famously, the last volume, &lt;em&gt;Le temps retrouvé&lt;/em&gt; ends around 1926, when the Narrator decides to start writing. Proust himself had died in 1922&amp;hellip;.&lt;/p&gt;
+&lt;p&gt;Try zooming in for more detail&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Planet Path - Ecliptic projection</title>
+      <link>https://fdesvallees.github.io/en/diagrams/planetpathecliptic/</link>
+      <pubDate>Sun, 24 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/diagrams/planetpathecliptic/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Displays the path of a planet during a given time frame in an ecliptic projection.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/diagrams/planetPathEcliptic/planetPathEcliptic.html&#34; width=&#34;1200px&#34; height=&#34;600px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Zodiac</title>
+      <link>https://fdesvallees.github.io/en/diagrams/zodiac/</link>
+      <pubDate>Sun, 10 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/diagrams/zodiac/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Displays Sun, Moon and planets, along with the constellations around the ecliptic in a rectangular projection.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/diagrams/zod.html&#34; width=&#34;1200px&#34; height=&#34;600px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Hourglass Diagram</title>
+      <link>https://fdesvallees.github.io/en/diagrams/hourglass/</link>
+      <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/diagrams/hourglass/</guid>
+      <description>
+        
+        
+        &lt;p&gt;All astronomy yearbooks display some form of &amp;ldquo;hourglass&amp;rdquo; diagram, that shows the times when Sun, Moon and planets rise and set.&lt;br&gt;
+Finding the times for sunrise and sunset is easy enough, drawing the lines too. Coloring is more involved, but paper.js greatly helps.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/diagrams/hourglass.html&#34; width=&#34;1000px&#34; height=&#34;800px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Sunrise</title>
+      <link>https://fdesvallees.github.io/en/diagrams/gradient/</link>
+      <pubDate>Thu, 28 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/diagrams/gradient/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Both HTML5 canvas and SVG have a &amp;ldquo;gradient&amp;rdquo; construct. This is an attempt to represent a sunrise with a circular gradient.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/diagrams/gradient.html&#34; width=&#34;1200px&#34; height=&#34;800px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Moon Calendar</title>
+      <link>https://fdesvallees.github.io/en/diagrams/mooncalendar/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/diagrams/mooncalendar/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Once we know the phase from the date, we draw one little moon for each day of the year.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/diagrams/moonCalendar.html&#34; width=&#34;1200px&#34; height=&#34;600px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Gibbon&#39;s &#34;Decline and Fall of the Roman Empire&#34;</title>
+      <link>https://fdesvallees.github.io/en/diagrams/gibbon/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/diagrams/gibbon/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Another example of a &lt;a href=&#34;https://observablehq.com/collection/@d3/charts&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;d3&lt;/a&gt; interactive chart.&lt;br&gt;
+The horizontal scale shows the pages (in my Modern Library edition), and the vertical scale shows the years described at each chapter.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/diagrams/gibbon/chronogram.html&#34; width=&#34;1200px&#34; height=&#34;800px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+&lt;p&gt;Hover mouse over curve to display the chapter title, zoom in for detail.&lt;br&gt;
+The long vertical bars represent chapters that span a long period.&lt;/p&gt;
+&lt;hr&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
