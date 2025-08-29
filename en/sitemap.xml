@@ -2,6 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fdesvallees.github.io/en/astronomy/ic_1396/</loc>
+    <lastmod>2025-08-28T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr-FR"
+                href="https://fdesvallees.github.io/fr/astronomy/ic_1396/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-EN"
+                href="https://fdesvallees.github.io/en/astronomy/ic_1396/"
+                />
+  </url><url>
     <loc>https://fdesvallees.github.io/en/archive/</loc>
     <lastmod>2025-05-25T14:46:17+02:00</lastmod>
     <xhtml:link
