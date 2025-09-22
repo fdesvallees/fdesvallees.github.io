@@ -16,6 +16,23 @@
     
     
     <item>
+      <title>NINA Log Analyzer</title>
+      <link>https://fdesvallees.github.io/en/diagrams/ninaloganalyzer/</link>
+      <pubDate>Sun, 21 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/diagrams/ninaloganalyzer/</guid>
+      <description>
+        
+        
+        &lt;p&gt;NINA is a program for controlling astrophoto equipment. It creates text logs that are difficult to read.
+This web page allows displaying the log in a graph.
+It is based on ideas from Brian Carter.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/diagrams/nla/nla.html&#34; width=&#34;640px&#34; height=&#34;500px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>À la recherche du temps perdu</title>
       <link>https://fdesvallees.github.io/en/diagrams/proustogram/</link>
       <pubDate>Thu, 16 Dec 2021 00:00:00 +0000</pubDate>

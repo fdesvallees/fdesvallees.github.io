@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Read File as ArrayBuffer</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script type="text/javascript" src="nla.js"></script>
+
+</head>
+    <style>
+    .bar {
+            fill: steelblue;
+        }
+  }
+</style>
+<body>
+  <input id="inputfile" type="file" >
+  <br>
+
+<svg width="800" height="500"></svg>
+  <div id="output"></div>
+
+
+<script type="text/javascript">
+
+  const selectedFile = document.getElementById("inputfile");
+
+  selectedFile.addEventListener('change', function () 
+  {
+    const fileName = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => 
+    {
+      var log = reader.result.split(/\r\n|\n/); // split lines
+      var chart = ninaLog(log);
+    }
+    reader.readAsText(fileName);
+  })
+  </script>
+</body>
+</html>
