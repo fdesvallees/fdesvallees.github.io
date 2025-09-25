@@ -7,19 +7,60 @@
   <script type="text/javascript" src="nla.js"></script>
 
 </head>
-    <style>
-    .bar {
+
+<style>
+html {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  
+}
+ 
+#page-wrapper {
+  width: 600px;
+  background: #FFF;
+  padding: 1em;
+  margin: 1em auto;
+  min-height: 300px;
+  border-top: 5px solid #69c773;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+ 
+h1 {
+  margin-top: 0;
+}
+ 
+img {
+  max-width: 100%;
+}
+ 
+#logArea {
+  margin-top: 2em;
+  width: 100%;
+  overflow-x: auto;
+}    
+
+.bar {
             fill: steelblue;
-        }
+    }
   }
 </style>
 <body>
+
+NINA Log Analyzer
+
+<br>
+
+Based on an idea by <a href="https://bcarter2490.shinyapps.io/NINALogAnalyzer/"> Brian Carter </a> 
+
+<br>
+
   <input id="inputfile" type="file" >
   <br>
 
-<svg width="800" height="500"></svg>
+<svg width="1024" height="500"></svg>
   <div id="output"></div>
 
+<pre id="logArea"></pre>
 
 <script type="text/javascript">
 
