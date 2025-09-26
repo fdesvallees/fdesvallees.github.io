@@ -95,12 +95,6 @@ function slope(scale)
 }
 
 
-// create list of exposure events
-function findExposure(data, evList)
-{
-  findStandardEvent(data, evList, 'TakeExposure')
-}
-
 // create list of meridian flip events
 function findMeridianFlip(data, evList)
 {
@@ -135,7 +129,6 @@ function parseLine(line)
   var cols = d3.dsvFormat("|").parse(line).columns;
   if (cols.length != 6)
     return null;
-  cols[0] = d3.isoParse(cols[0]); // parse timestamp into D3 time variable
   return {
     Time: d3.isoParse(cols[0]),
     Level: cols[1],
