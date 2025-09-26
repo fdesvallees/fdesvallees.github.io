@@ -173,8 +173,11 @@ function ninaLog(text)
             width = svg.attr("width") - margin,
             height = svg.attr("height") - margin
 
+  d3.select("g").remove();
+
   var g = svg.append("g")
             .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
 
    // X axis
   var xScale = d3.scaleTime().range([0, width])
