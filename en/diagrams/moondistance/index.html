@@ -9,27 +9,25 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>NINA Log Analyzer –François&#39; blog</title>
-  <meta name="description" content="NINA is a program for controlling astrophoto equipment. It creates text logs that are difficult to read. This web page allows displaying the log in a graph. It is based on ideas from Brian Carter." /><link rel="canonical" href="https://fdesvallees.github.io/en/diagrams/ninaloganalyzer/" itemprop="url" />
+<title>Moon Distance –François&#39; blog</title>
+  <meta name="description" content="Compute and draw the moon distance for each day of the year." /><link rel="canonical" href="https://fdesvallees.github.io/en/diagrams/moondistance/" itemprop="url" />
 
-<meta property="og:title" content="NINA Log Analyzer" />
-<meta property="og:description" content="NINA is a program for controlling astrophoto equipment. It creates text logs that are difficult to read.
-This web page allows displaying the log in a graph.
-It is based on ideas from Brian Carter.
+<meta property="og:title" content="Moon Distance" />
+<meta property="og:description" content="Compute and draw the moon distance for each day of the year.
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://fdesvallees.github.io/en/diagrams/ninaloganalyzer/" /><meta property="article:section" content="diagrams" />
-<meta property="article:published_time" content="2025-09-21T00:00:00+00:00" />
-<meta property="article:modified_time" content="2025-09-21T00:00:00+00:00" />
+<meta property="og:url" content="https://fdesvallees.github.io/en/diagrams/moondistance/" /><meta property="article:section" content="diagrams" />
+<meta property="article:published_time" content="2025-11-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-11-06T00:00:00+00:00" />
 
-  <meta itemprop="name" content="NINA Log Analyzer">
-  <meta itemprop="description" content="NINA is a program for controlling astrophoto equipment. It creates text logs that are difficult to read. This web page allows displaying the log in a graph. It is based on ideas from Brian Carter.">
-  <meta itemprop="datePublished" content="2025-09-21T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-09-21T00:00:00+00:00">
-  <meta itemprop="wordCount" content="35">
+  <meta itemprop="name" content="Moon Distance">
+  <meta itemprop="description" content="Compute and draw the moon distance for each day of the year.">
+  <meta itemprop="datePublished" content="2025-11-06T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-11-06T00:00:00+00:00">
+  <meta itemprop="wordCount" content="12">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="NINA Log Analyzer">
-  <meta name="twitter:description" content="NINA is a program for controlling astrophoto equipment. It creates text logs that are difficult to read. This web page allows displaying the log in a graph. It is based on ideas from Brian Carter.">
+  <meta name="twitter:title" content="Moon Distance">
+  <meta name="twitter:description" content="Compute and draw the moon distance for each day of the year.">
 
     <link rel="preload" href="/css/compiled/main.min.638f0ed622b35de68d8ca52146545b8f9f8cf0ab32a25bde4602c73b1276deed.css" as="style" integrity="sha256-Y48O1iKzXeaNjKUhRlRbj5&#43;M8KsyolveRgLHOxJ23u0=" />
     <link href="/css/compiled/main.min.638f0ed622b35de68d8ca52146545b8f9f8cf0ab32a25bde4602c73b1276deed.css" rel="stylesheet" integrity="sha256-Y48O1iKzXeaNjKUhRlRbj5&#43;M8KsyolveRgLHOxJ23u0=" />
@@ -970,22 +968,22 @@ It is based on ideas from Brian Carter.
   >Diagrams
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></span>
     </a><div class="hx:ltr:pr-0 hx:overflow-hidden">
-        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><a
+        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col open"><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500"
     href="/en/diagrams/moondistance/"
     
   >Moon Distance
     </a>
+  
               
-            </li><li class="hx:flex hx:flex-col open"><a
+            </li><li class="hx:flex hx:flex-col "><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500"
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
     href="/en/diagrams/ninaloganalyzer/"
     
   >NINA Log Analyzer
     </a>
-  
               
             </li><li class="hx:flex hx:flex-col "><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
@@ -1049,16 +1047,16 @@ It is based on ideas from Brian Carter.
 
     <ul class="hx:flex hx:flex-col hx:gap-1 hx:max-md:hidden">
         
-          <li class=""><a
+          <li class="open"><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500"
     href="/en/diagrams/moondistance/"
     
   >Moon Distance
     </a></li>
-          <li class="open"><a
+          <li class=""><a
     class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500"
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
     href="/en/diagrams/ninaloganalyzer/"
     
   >NINA Log Analyzer
@@ -1135,7 +1133,7 @@ It is based on ideas from Brian Carter.
         
         <li class="hx:flex hx:flex-col">
           <a
-            href="/en/diagrams/ninaloganalyzer/"
+            href="/en/diagrams/moondistance/"
             class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
           >English<span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span></a>
         </li>
@@ -1179,16 +1177,14 @@ It is based on ideas from Brian Carter.
   <div class="hx:mt-1.5 hx:flex hx:items-center hx:gap-1 hx:overflow-hidden hx:text-sm hx:text-gray-500 hx:dark:text-gray-400 hx:contrast-more:text-current">
         <div class="hx:whitespace-nowrap hx:transition-colors hx:min-w-[24px] hx:overflow-hidden hx:text-ellipsis hx:hover:text-gray-900 hx:dark:hover:text-gray-100">
           <a href="/en/diagrams/">Diagrams</a>
-        </div><svg class="hx:w-3.5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx:whitespace-nowrap hx:transition-colors hx:font-medium hx:text-gray-700 hx:contrast-more:font-bold hx:contrast-more:text-current hx:dark:text-gray-100 hx:contrast-more:dark:text-current">NINA Log Analyzer</div>
+        </div><svg class="hx:w-3.5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx:whitespace-nowrap hx:transition-colors hx:font-medium hx:text-gray-700 hx:contrast-more:font-bold hx:contrast-more:text-current hx:dark:text-gray-100 hx:contrast-more:dark:text-current">Moon Distance</div>
   </div>
 
         <br class="hx:mt-1.5 hx:text-sm" />
-        <h1 class="hx:text-center hx:mt-2 hx:text-4xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">NINA Log Analyzer</h1><span class="hx:mr-1">September 21, 2025</span><div class="hx:mb-16"></div>
+        <h1 class="hx:text-center hx:mt-2 hx:text-4xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">Moon Distance</h1><span class="hx:mr-1">November 6, 2025</span><div class="hx:mb-16"></div>
         <div class="content">
-          <p>NINA is a program for controlling astrophoto equipment. It creates text logs that are difficult to read.
-This web page allows displaying the log in a graph.
-It is based on ideas from Brian Carter.</p>
-<iframe src="/diagrams/nla/nla.html" width="640px" height="500px" style="border:none"></iframe>
+          <p>Compute and draw the moon distance for each day of the year.</p>
+<iframe src="/diagrams/moonDistance.html" width="1200px" height="600px" style="border:none"></iframe>
 
         </div>
         <div class="hx:mt-16"></div>

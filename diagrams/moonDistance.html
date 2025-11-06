@@ -2,14 +2,14 @@
 <html lang="en">
 	<head>
 		<title>Moon Distance</title>
-		<meta charset="utf-8">
     <link rel="stylesheet" href="/css/spectre.min.css" />
     <link rel="stylesheet" href="/css/styles.css" />
+		<meta charset="utf-8">
 		<style>
       /* Scale canvas with resize attribute to full size */
       canvas{
           width: 100%;
-          height: 300px;
+          height: 1000px;
       }
 		</style>
 
@@ -18,7 +18,7 @@
   <body>
   <div class="form-group" id="object_selection">
   <form action="#">
-   <select id="year" onchange="redraw(+this.value)" class="form-select">
+    <select id="year" onchange="redraw(this.value)" class="form-select">
       <option value="2020">2020</option>
       <option value="2021">2021</option>
       <option value="2022">2022</option>
@@ -27,22 +27,20 @@
       <option value="2025" selected="selected">2025</option>
       <option value="2026">2026</option>
       <option value="2027">2027</option>
-    </select>
+     </select>
   </form>
-</div>
+</div>    
     <canvas id="canvas1" resize="true"></canvas>
   </body>
   <script src="/ephemeris/math.js"></script>
   <script src="/ephemeris/util.js"></script>
   <script src="/ephemeris/datetime.js"></script>
   <script src="/ephemeris/moon.js"></script>
+  <script src="/d3/d3.js"></script>
   <script type="text/javascript">
 
-
-paper.install(window);
-
 // i is the phase angle of the Moon
-class Moon{
+class MoonFace{
   constructor(r, i)
   {
     this.r = r;
@@ -69,35 +67,75 @@ class Moon{
   }
 }
 
+
+
+paper.install(window);
+
 function redraw(year)
 {
+  var topMargin = 20;
+  var leftMargin = 20;
+  var xScale = d3.scaleLinear().domain([55,64]).range([50, 800]);
+  var yScale = d3.scaleLinear().domain([1,365]).range([2*leftMargin, view.size.height]);
+
+
+  function xLabel(val)
+  {
+    var x = xScale(val);
+    var pt1 = new Point(x, topMargin);
+    var pt2 = new Point(x, topMargin+10);
+    var label = new PointText(new Point(pt1.x-5,pt1.y-5));
+    label.content = val;
+    label.strokeColor = 'black';
+    label.strokeWidth = .5;
+    var tick = new Path.Line(pt1,pt2);
+    tick.strokeColor = 'black';
+  }
+
+  function yLabel(y, txt)
+  {
+    var pt1 = new Point(leftMargin, y);
+    var label = new PointText(new Point(pt1.x-10,pt1.y+5));
+    label.content = txt;
+    label.strokeColor = 'black';
+    label.strokeWidth = .5;
+  }
+
   project.activeLayer.clear();
-  var today = jstojd(new Date(year,0,1));
-  for (var i=1;i<=31;i++)
+  var xTicks = d3.ticks(55,64, 10);
+  xTicks.map(xLabel);
+  var today = jstojd(new Date(+year,0,1));
+ 
+  var path = new Path();
+  path.strokeColor = 'black';
+  path.strokeWidth = .5;
+
+  var quarters = MoonQuarters(today, 365);
+  for (var i in quarters)
   {
-    var dayName = new PointText(new Point(i*20, 10));
-    dayName.content = i;
-  }
-
-  for (var j=0;j<12;j++)
-  {
-    var firstOfMonth = new Date(year,j,1);
-    var monthName = new PointText(new Point(0,35+j*20));
-    monthName.content = firstOfMonth.toLocaleString('en-us', { month: "narrow" });
-
-
-    if ((j == 1) && (leapyear(year)))
-      var monthLength = 29;
-    else 
-      var monthLength = month_length[j];
-
-    for (var i=0;i<monthLength;i++)
+    var label = quarters[i];
+    if ((label == 'new') || (label == 'full'))
     {
-      var phase = MoonPhase(today++);
-      var moon = new Moon(10, phase);
-      moon.translate(new Point (30+(i*20), 30+ (j*20)));    
-    }    
+      if (i>=today)
+      {
+        var y = yScale(i - today);
+        var formatTime = d3.timeFormat("%b %d");
+        yLabel(y, formatTime(jdtojs(+i)));   
+        var moon = new MoonFace(10, (label == 'full')? 0:180);
+        var pos = MoonPos(+i);
+        var dist = pos[2] / 6378;   // in earth radii
+        moon.translate(new Point (xScale(dist), y));            
+      }
+    }
   }
+
+  for (var j=0;j<365;j++)
+  {
+    var pos = MoonPos(today++);
+    var dist = pos[2] / 6378;   // in earth radii
+    path.add(new Point(xScale(dist), yScale(j)));
+  }
+
 
 }
 

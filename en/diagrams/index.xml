@@ -16,6 +16,21 @@
     
     
     <item>
+      <title>Moon Distance</title>
+      <link>https://fdesvallees.github.io/en/diagrams/moondistance/</link>
+      <pubDate>Thu, 06 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/diagrams/moondistance/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Compute and draw the moon distance for each day of the year.&lt;/p&gt;
+&lt;iframe src=&#34;https://fdesvallees.github.io/diagrams/moonDistance.html&#34; width=&#34;1200px&#34; height=&#34;600px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>NINA Log Analyzer</title>
       <link>https://fdesvallees.github.io/en/diagrams/ninaloganalyzer/</link>
       <pubDate>Sun, 21 Sep 2025 00:00:00 +0000</pubDate>
