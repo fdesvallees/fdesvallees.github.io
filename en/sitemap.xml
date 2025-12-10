@@ -2,6 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fdesvallees.github.io/en/astronomy/observatory/</loc>
+    <lastmod>2025-12-10T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr-FR"
+                href="https://fdesvallees.github.io/fr/astronomy/observatory/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-EN"
+                href="https://fdesvallees.github.io/en/astronomy/observatory/"
+                />
+  </url><url>
     <loc>https://fdesvallees.github.io/en/astronomy/lobsterclaw/</loc>
     <lastmod>2025-12-03T00:00:00+00:00</lastmod>
     <xhtml:link
