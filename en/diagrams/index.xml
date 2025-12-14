@@ -41,7 +41,8 @@
         
         &lt;p&gt;NINA is a program for controlling astrophoto equipment. It creates text logs that are difficult to read.
 This web page allows displaying the log in a graph.
-It is based on ideas from Brian Carter.&lt;/p&gt;
+It is based on ideas from Brian Carter.&lt;br&gt;
+&lt;a href=&#34;https://fdesvallees.github.io/diagrams/nla/nla.html&#34; &gt;Full Frame&lt;/a&gt;&lt;/p&gt;
 &lt;iframe src=&#34;https://fdesvallees.github.io/diagrams/nla/nla.html&#34; width=&#34;640px&#34; height=&#34;500px&#34; style=&#34;border:none&#34;&gt;&lt;/iframe&gt;
 
       </description>
