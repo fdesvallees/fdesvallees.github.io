@@ -16,6 +16,27 @@
     
     
     <item>
+      <title>M33</title>
+      <link>https://fdesvallees.github.io/fr/astronomy/m33_2/</link>
+      <pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/fr/astronomy/m33_2/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/m33_2/M33.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;M33: Galaxie du Triangle &lt;br&gt;
+Borg 90FL à F5.6 avec Lacerta LFF, ASI533MC, 60x300sec&lt;br&gt;
+Date de prises de vue: 2025 Nov 11&lt;br&gt;
+Filtre UV/IR  &lt;br&gt;
+Monture: Takahashi NJP avec TeenAstro&lt;br&gt;
+PixInsight&lt;/p&gt;
+&lt;p&gt;Comparer avec une &lt;a href=&#34;../M33&#34; &gt;prmière version&lt;/a&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Observatoire</title>
       <link>https://fdesvallees.github.io/fr/astronomy/observatory/</link>
       <pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate>
@@ -32,7 +53,7 @@
     </item>
     
     <item>
-      <title>Lobster Claw</title>
+      <title>Pince du Homard</title>
       <link>https://fdesvallees.github.io/fr/astronomy/lobsterclaw/</link>
       <pubDate>Wed, 03 Dec 2025 00:00:00 +0000</pubDate>
       
@@ -41,7 +62,7 @@
         
         
         &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/lobsterclaw/lobster_claw.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;NGC 281: Nébuleuse de la pince de homard dans Cassiopée&lt;br&gt;
+&lt;p&gt;NGC 281: Nébuleuse de la Pince du Homard dans Cassiopée&lt;br&gt;
 Borg 90FL à F4 avec réducteur 7872, ASI533MC, 100x300sec&lt;br&gt;
 Filtres NBZ et UV/IR&lt;br&gt;
 Monture: Takahashi NJP avec TeenAstro&lt;br&gt;
@@ -221,12 +242,11 @@ The encoders connectors have 6 pins at 1.27mm pitch. It is difficult, but possib
         
         
         &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/m31/m31.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;M31: Andromeda Galaxy &lt;br&gt;
+&lt;p&gt;M31: Galaxie d&amp;rsquo;Andromède     &lt;br&gt;
 Nikkor 180mm@F4, ASI533MC, 48x300sec
-AP600 mount with TeenAstro&lt;br&gt;
+Monture AP600 avec TeenAstro&lt;br&gt;
 UV/IR Filter&lt;br&gt;
 PixInsight&lt;/p&gt;
-&lt;p&gt;This Nikkor lens is pretty good, but it leaves blue halos around bright stars. I need to find out how to get rid of them.&lt;/p&gt;
 
       </description>
     </item>
@@ -313,8 +333,9 @@ PixInsight&lt;/p&gt;
         
         
         &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/m45/M_45.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;M45: The Pleiades    &lt;br&gt;
+&lt;p&gt;M45: Les Pléiades    &lt;br&gt;
 Borg 90FL@F4, ASI533MC, 17x300sec&lt;br&gt;
+Monture: AP600 avec TeenAstro&lt;br&gt;
 UV/IR Filter&lt;br&gt;
 PixInsight&lt;/p&gt;
 
@@ -401,8 +422,9 @@ PixInsight, Affinity Photo, Starnet++&lt;/p&gt;
         
         
         &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/m33/M33.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;M33: Triangulum Galaxy &lt;br&gt;
+&lt;p&gt;M33: Galaxie du Triangle &lt;br&gt;
 Borg 90FL@F4, ASI533MC, 30x300sec&lt;br&gt;
+Monture: AP600 avec TeenAstro&lt;br&gt;
 UV/IR Filter&lt;br&gt;
 PixInsight, Affinity Photo&lt;/p&gt;
 
@@ -420,9 +442,10 @@ PixInsight, Affinity Photo&lt;/p&gt;
         
         &lt;p&gt;body:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/m16/M16.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;M16: Eagle Nebula in Serpens &lt;br&gt;
+&lt;p&gt;M16: Nébuleuse de l&amp;rsquo;Aigle dans le Serpent &lt;br&gt;
 Borg 90FL@F4, ASI533MC, 19x300sec&lt;br&gt;
-UV/IR Filter&lt;br&gt;
+Monture: AP600 avec TeenAstro&lt;br&gt;
+Filtre UV/IR    &lt;br&gt;
 PixInsight, Affinity Photo&lt;/p&gt;
 
       </description>

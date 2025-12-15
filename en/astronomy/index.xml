@@ -16,6 +16,27 @@
     
     
     <item>
+      <title>M33</title>
+      <link>https://fdesvallees.github.io/en/astronomy/m33_2/</link>
+      <pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://fdesvallees.github.io/en/astronomy/m33_2/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/m33_2/M33.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;M33: Triangulum Galaxy &lt;br&gt;
+Borg 90FL at F5.6 with Lacerta LFF flattener, ASI533MC, 60x300sec&lt;br&gt;
+Data acquisition: 2025 Nov 11&lt;br&gt;
+UV/IR Filter &lt;br&gt;
+Mount: Takahashi NJP with TeenAstro&lt;br&gt;
+PixInsight&lt;/p&gt;
+&lt;p&gt;Compare with &lt;a href=&#34;../M33&#34; &gt;earlier version&lt;/a&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Observatory</title>
       <link>https://fdesvallees.github.io/en/astronomy/observatory/</link>
       <pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate>
@@ -314,6 +335,7 @@ PixInsight&lt;/p&gt;
         &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/m45/M_45.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;M45: The Pleiades    &lt;br&gt;
 Borg 90FL@F4, ASI533MC, 17x300sec&lt;br&gt;
+Mount: AP600 with TeenAstro&lt;br&gt;
 UV/IR Filter&lt;br&gt;
 PixInsight&lt;/p&gt;
 
@@ -402,6 +424,7 @@ PixInsight, Affinity Photo, Starnet++&lt;/p&gt;
         &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/m33/M33.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;M33: Triangulum Galaxy &lt;br&gt;
 Borg 90FL@F4, ASI533MC, 30x300sec&lt;br&gt;
+Mount: AP600 with TeenAstro&lt;br&gt;
 UV/IR Filter&lt;br&gt;
 PixInsight, Affinity Photo&lt;/p&gt;
 
@@ -420,6 +443,7 @@ PixInsight, Affinity Photo&lt;/p&gt;
         &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/m16/M16.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;M16: Eagle Nebula in Serpens &lt;br&gt;
 Borg 90FL@F4, ASI533MC, 19x300sec&lt;br&gt;
+Mount: AP600 with TeenAstro&lt;br&gt;
 UV/IR Filter&lt;br&gt;
 PixInsight, Affinity Photo&lt;/p&gt;
 
