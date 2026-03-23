@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Choice of Motors - TeenAstro Linux</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Choice of Motors";
+        var mkdocs_page_input_path = "hwDesign/stepperAlternative.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> TeenAstro Linux
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/config/">Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/indi/">INDI driver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/ekos/">Ekos</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Firmware</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/firmware/">Building the Firmware</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/SmartHandController/">Smart Hand Controller</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/TeenAstroMainUnit/">TeenAstroMainUnit</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/UniversalMainUnit/">UniversalMainUnit</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/mountDesign/">Supported Mounts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../swDesign/troubleshooting/">Troubleshooting</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Choice of Motors</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#closed-loop-stepper-stepper-onlinecom">Closed-loop Stepper: stepper-online.com</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integrated-easy-servo-motor-stepper-onlinecom">Integrated Easy Servo Motor: stepper-online.com</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#odrive-micro-with-brushless-dc-motor-odriveroboticscom">ODrive Micro with Brushless DC Motor: odriverobotics.com</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#odesc-with-brushless-dc-motor-sequremallcom">ODesc with Brushless DC Motor: sequremall.com</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#teknic-clearpath-servos-teknic">Teknic ClearPath Servos: Teknic</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/auto_test/">autoTest</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/mount_sim/">Mount Simulator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../testing/teenastro_debug/">Debugging</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">TeenAstro Linux</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Firmware</li>
+      <li class="breadcrumb-item active">Choice of Motors</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="summary-of-motor-alternatives-for-teenastro">Summary of motor alternatives for TeenAstro</h1>
+<h3 id="closed-loop-stepper-stepper-onlinecom">Closed-loop Stepper: <a href="https://www.omc-stepperonline.com/closed-loop-stepper-driver-v4-1-0-3-0a-24-48vdc-for-nema-11-14-17-stepper-motor-cl42t-v41">stepper-online.com</a></h3>
+<p>This is a stepper motor with an internal shaft encoder. It is meant to be used with an external controller that corrects lost steps.  This external controller is a discrete board (also from stepper-online) that accepts Step/Dir signals - it replaces the TMC5160.</p>
+<p>Notes:</p>
+<ul>
+<li>The same functionality could be provided with just Teensy and TMC5160 in Motion Controller mode, by connecting the encoder to the TMC5160. (small PCB change, software change)</li>
+<li>It could also be implemented by the DCSTEP feature of TMC5160, that monitors motor overload. (software change only)</li>
+<li>In my experience, if the motors are powerful enough and the mount is well balanced, TeenAstro <strong>never loses steps</strong>. For me closed-loop steppers <strong>do not bring significant improvements</strong>.</li>
+</ul>
+<h3 id="integrated-easy-servo-motor-stepper-onlinecom">Integrated Easy Servo Motor: <a href="https://www.omc-stepperonline.com/nema-23-integrated-easy-servo-motor-90w-3000rpm-0-3nm-42-49oz-in-20-50vdc-servo-motor-short-shaft-isv57t-090s">stepper-online.com</a></h3>
+<p>This is a brushless DC motor with an integrated controller that takes Step/Dir inputs. This can be <strong>much faster than a stepper</strong>, especially for large mounts. It would require hardware changes (buffers to adapt Step/Dir signals from 3.3V to 5V) and some software changes (remove 5160 configuration). Note that this controller only takes rising edge pulses, whereas the current TeenAstro code uses both rising and falling edges to reduce interrupt frequency.</p>
+<h3 id="odrive-micro-with-brushless-dc-motor-odriveroboticscom">ODrive Micro with Brushless DC Motor: <a href="https://docs.odriverobotics.com/v/latest/hardware/micro-datasheet.html">odriverobotics.com</a></h3>
+<p>This is from a US company. It is similar in principle (but nicer in my view) to the one from stepper-online, with an additional Motion Controller, controlled by UART (Step/Dir is possible, but not recommended). This looks very good, but it is quite expensive, and it is <strong>no longer open source</strong>. It runs on a dedicated STM32 processor. In Step/Dir mode, same remarks as above. A positive side is that they have <strong>very good documentation</strong>. Motion Controller mode would require routing a UART to the Odrive board.</p>
+<h3 id="odesc-with-brushless-dc-motor-sequremallcom">ODesc with Brushless DC Motor: <a href="https://sequremall.com/collections/odesc/products/odesc-dual-drive">sequremall.com</a></h3>
+<p>This is a chinese clone of ODrive, less expensive, with their <strong>early open-source firmware, no longer maintained</strong>. It might be a good alternative, although they have zero documentation (or if they have I could not find any).</p>
+<h3 id="teknic-clearpath-servos-teknic">Teknic ClearPath Servos: <a href="https://teknic.com/clearpath-model-support/">Teknic</a></h3>
+<p>Similar to Odrive. Need to register to get the specs.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../swDesign/troubleshooting/" class="btn btn-neutral float-left" title="Troubleshooting"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../testing/auto_test/" class="btn btn-neutral float-right" title="autoTest">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../swDesign/troubleshooting/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../testing/auto_test/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
