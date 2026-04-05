@@ -105,7 +105,7 @@ function findMeridianFlip(data, evList)
   {
     if (ready)
     {
-      if ((data[i].Line == "158") && (data[i].Message.search("Meridian Flip") != -1))  // start
+      if ((data[i].Line == "160") && (data[i].Message.search("Meridian Flip") != -1))  // start
       {
         start = data[i].Time;
         ready = false;
@@ -113,7 +113,7 @@ function findMeridianFlip(data, evList)
     }
     else
     {
-      if ((data[i].Line == "219") && (data[i].Message.search("Meridian Flip") != -1))  // end 
+      if ((data[i].Line == "335") && (data[i].Message.search("Meridian Flip") != -1))  // end 
       {
         evList.push({Type: 'Meridian Flip', Start: start, Duration: (data[i].Time - start)}); 
         ready = true;
