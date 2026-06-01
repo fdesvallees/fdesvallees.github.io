@@ -4,7 +4,7 @@
     <link>https://fdesvallees.github.io/en/astronomy/</link>
     <description>Recent content in Astronomy on François&#39; blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-EN</language>
+    <copyright>en-EN</copyright>
     <lastBuildDate>Sun, 25 May 2025 14:46:17 +0200</lastBuildDate>
     
 	  <atom:link href="https://fdesvallees.github.io/en/astronomy/index.xml" rel="self" type="application/rss+xml" />
@@ -16,10 +16,28 @@
     
     
     <item>
+      <title>NGC 4565</title>
+      <link>https://fdesvallees.github.io/en/astronomy/ngc_4565/</link>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://fdesvallees.github.io/en/astronomy/ngc_4565/</guid>
+      <description>
+        
+        
+        &lt;p&gt;&lt;img src=&#34;https://fdesvallees.github.io/en/astronomy/ngc_4565/ngc_4565.jpg&#34; alt=&#34;&#34;  loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;NGC 2238: NGC 4565 Needle Galaxy &lt;br&gt;
+Takahashi TOA130 @ F7.7, QHY268M, LRGB + Hα, OIII, SII - Total exposure time 50x300sec&lt;br&gt;
+Capture Date: 2026 May 19/20&lt;br&gt;
+Mount: Takahashi NJP with TeenAstro&lt;br&gt;
+PixInsight, Starnet&lt;/p&gt;
+&lt;p&gt;Compare with &lt;a href=&#34;https://fdesvallees.github.io/en/astronomy/ngc4565/&#34; &gt;earlier version&lt;/a&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Rosette Nebula</title>
       <link>https://fdesvallees.github.io/en/astronomy/ngc_2238/</link>
       <pubDate>Thu, 19 Feb 2026 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ngc_2238/</guid>
       <description>
         
@@ -39,7 +57,6 @@ PixInsight, Starnet&lt;/p&gt;
       <title>IC342</title>
       <link>https://fdesvallees.github.io/en/astronomy/ic_342/</link>
       <pubDate>Sat, 24 Jan 2026 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ic_342/</guid>
       <description>
         
@@ -59,7 +76,6 @@ PixInsight&lt;/p&gt;
       <title>M33</title>
       <link>https://fdesvallees.github.io/en/astronomy/m33_2/</link>
       <pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/m33_2/</guid>
       <description>
         
@@ -80,7 +96,6 @@ PixInsight&lt;/p&gt;
       <title>Observatory</title>
       <link>https://fdesvallees.github.io/en/astronomy/observatory/</link>
       <pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/observatory/</guid>
       <description>
         
@@ -96,7 +111,6 @@ PixInsight&lt;/p&gt;
       <title>Lobster Claw</title>
       <link>https://fdesvallees.github.io/en/astronomy/lobsterclaw/</link>
       <pubDate>Wed, 03 Dec 2025 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/lobsterclaw/</guid>
       <description>
         
@@ -115,7 +129,6 @@ PixInsight, Starnet2&lt;/p&gt;
       <title>NGC 281</title>
       <link>https://fdesvallees.github.io/en/astronomy/ngc_281/</link>
       <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ngc_281/</guid>
       <description>
         
@@ -134,7 +147,6 @@ PixInsight, Starnet2&lt;/p&gt;
       <title>IC 1396</title>
       <link>https://fdesvallees.github.io/en/astronomy/ic_1396/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ic_1396/</guid>
       <description>
         
@@ -153,7 +165,6 @@ PixInsight, Starnet2&lt;/p&gt;
       <title>IC 5146</title>
       <link>https://fdesvallees.github.io/en/astronomy/ic_5146_2/</link>
       <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ic_5146_2/</guid>
       <description>
         
@@ -173,7 +184,6 @@ PixInsight, Starnet2&lt;/p&gt;
       <title>North America Nebula</title>
       <link>https://fdesvallees.github.io/en/astronomy/north_am_pelican/</link>
       <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/north_am_pelican/</guid>
       <description>
         
@@ -193,7 +203,6 @@ Capture date: 29 Aug 2024&lt;/p&gt;
       <title>Sadr Region</title>
       <link>https://fdesvallees.github.io/en/astronomy/sadr_region/</link>
       <pubDate>Mon, 29 Jul 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/sadr_region/</guid>
       <description>
         
@@ -213,7 +222,6 @@ Capture date: 27/28 Jul 2024&lt;/p&gt;
       <title>NGC 2244</title>
       <link>https://fdesvallees.github.io/en/astronomy/ngc_2244/</link>
       <pubDate>Wed, 03 Jul 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ngc_2244/</guid>
       <description>
         
@@ -234,7 +242,6 @@ Capture date: 14 Feb 2024&lt;/p&gt;
       <title>Takahashi NJP (Integrated TeenAstro)</title>
       <link>https://fdesvallees.github.io/en/astronomy/njp2/</link>
       <pubDate>Sun, 10 Mar 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/njp2/</guid>
       <description>
         
@@ -251,7 +258,6 @@ Capture date: 14 Feb 2024&lt;/p&gt;
       <title>Takahashi NJP</title>
       <link>https://fdesvallees.github.io/en/astronomy/njp/</link>
       <pubDate>Sat, 28 Oct 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/njp/</guid>
       <description>
         
@@ -275,7 +281,6 @@ The encoders connectors have 6 pins at 1.27mm pitch. It is difficult, but possib
       <title>M31</title>
       <link>https://fdesvallees.github.io/en/astronomy/m31/</link>
       <pubDate>Tue, 03 Oct 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/m31/</guid>
       <description>
         
@@ -295,7 +300,6 @@ PixInsight&lt;/p&gt;
       <title>Lunar Eclipse - 16 may 2022</title>
       <link>https://fdesvallees.github.io/en/astronomy/lunar_eclipse/</link>
       <pubDate>Mon, 16 May 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/lunar_eclipse/</guid>
       <description>
         
@@ -313,7 +317,6 @@ PixInsight&lt;/p&gt;
       <title>Leo Triplet</title>
       <link>https://fdesvallees.github.io/en/astronomy/leo_triplet/</link>
       <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/leo_triplet/</guid>
       <description>
         
@@ -331,7 +334,6 @@ PixInsight&lt;/p&gt;
       <title>Bode&#39;s Galaxies</title>
       <link>https://fdesvallees.github.io/en/astronomy/m81_82/</link>
       <pubDate>Sun, 17 Apr 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/m81_82/</guid>
       <description>
         
@@ -349,7 +351,6 @@ PixInsight&lt;/p&gt;
       <title>Markarian&#39;s Chain</title>
       <link>https://fdesvallees.github.io/en/astronomy/markarian_chain/</link>
       <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/markarian_chain/</guid>
       <description>
         
@@ -367,7 +368,6 @@ PixInsight&lt;/p&gt;
       <title>M45</title>
       <link>https://fdesvallees.github.io/en/astronomy/m45/</link>
       <pubDate>Sun, 23 Jan 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/m45/</guid>
       <description>
         
@@ -386,7 +386,6 @@ PixInsight&lt;/p&gt;
       <title>NGC 7822</title>
       <link>https://fdesvallees.github.io/en/astronomy/ngc_7822/</link>
       <pubDate>Thu, 20 Jan 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ngc_7822/</guid>
       <description>
         
@@ -404,7 +403,6 @@ PixInsight, Affinity Photo, Starnet++&lt;/p&gt;
       <title>Cold morning</title>
       <link>https://fdesvallees.github.io/en/astronomy/cold_morning/</link>
       <pubDate>Sun, 02 Jan 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/cold_morning/</guid>
       <description>
         
@@ -419,7 +417,6 @@ PixInsight, Affinity Photo, Starnet++&lt;/p&gt;
       <title>Heart Nebula</title>
       <link>https://fdesvallees.github.io/en/astronomy/heart_nebula/</link>
       <pubDate>Thu, 11 Nov 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/heart_nebula/</guid>
       <description>
         
@@ -438,7 +435,6 @@ PixInsight, Affinity Photo, starnet++&lt;/p&gt;
       <title>NGC 6992 - Eastern Veil Nebula</title>
       <link>https://fdesvallees.github.io/en/astronomy/ngc_6992/</link>
       <pubDate>Fri, 01 Oct 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ngc_6992/</guid>
       <description>
         
@@ -456,7 +452,6 @@ PixInsight, Affinity Photo, Starnet++&lt;/p&gt;
       <title>M33</title>
       <link>https://fdesvallees.github.io/en/astronomy/m33/</link>
       <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/m33/</guid>
       <description>
         
@@ -475,7 +470,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>M16</title>
       <link>https://fdesvallees.github.io/en/astronomy/m16/</link>
       <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/m16/</guid>
       <description>
         
@@ -494,7 +488,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>NGC 7635</title>
       <link>https://fdesvallees.github.io/en/astronomy/ngc_7635/</link>
       <pubDate>Mon, 06 Sep 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ngc_7635/</guid>
       <description>
         
@@ -512,7 +505,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>Dew Heater Controller</title>
       <link>https://fdesvallees.github.io/en/astronomy/dew_heater_controller/</link>
       <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/dew_heater_controller/</guid>
       <description>
         
@@ -530,7 +522,6 @@ Now I have a cool blinking LED on the mount.&lt;/p&gt;
       <title>IC 5146</title>
       <link>https://fdesvallees.github.io/en/astronomy/ic_5146/</link>
       <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ic_5146/</guid>
       <description>
         
@@ -548,7 +539,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>Reinforced pier for Telescope</title>
       <link>https://fdesvallees.github.io/en/astronomy/ap600_newpier/</link>
       <pubDate>Sat, 31 Jul 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ap600_newpier/</guid>
       <description>
         
@@ -563,7 +553,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>Summer Milky Way</title>
       <link>https://fdesvallees.github.io/en/astronomy/milkyway/</link>
       <pubDate>Sun, 25 Jul 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/milkyway/</guid>
       <description>
         
@@ -578,7 +567,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>Box for TeenAstro mount controller</title>
       <link>https://fdesvallees.github.io/en/astronomy/teenastro/</link>
       <pubDate>Wed, 29 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/teenastro/</guid>
       <description>
         
@@ -595,7 +583,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>M101</title>
       <link>https://fdesvallees.github.io/en/astronomy/m101/</link>
       <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/m101/</guid>
       <description>
         
@@ -610,7 +597,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>NGC4565</title>
       <link>https://fdesvallees.github.io/en/astronomy/ngc4565/</link>
       <pubDate>Sat, 11 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ngc4565/</guid>
       <description>
         
@@ -625,7 +611,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>Morning Planets</title>
       <link>https://fdesvallees.github.io/en/astronomy/morning-planets/</link>
       <pubDate>Sun, 05 Apr 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/morning-planets/</guid>
       <description>
         
@@ -640,7 +625,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>Home-made wooden pier for telescope mount</title>
       <link>https://fdesvallees.github.io/en/astronomy/ap600_pier/</link>
       <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ap600_pier/</guid>
       <description>
         
@@ -655,7 +639,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>NGC 2244 - Rosette Nebula</title>
       <link>https://fdesvallees.github.io/en/astronomy/rosette_nebula/</link>
       <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/rosette_nebula/</guid>
       <description>
         
@@ -671,7 +654,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>Moonlight over Obiou</title>
       <link>https://fdesvallees.github.io/en/astronomy/clair_de_lune_obiou/</link>
       <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/clair_de_lune_obiou/</guid>
       <description>
         
@@ -686,7 +668,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>Astro-Physics AP600 mount</title>
       <link>https://fdesvallees.github.io/en/astronomy/ap600/</link>
       <pubDate>Fri, 04 Oct 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/ap600/</guid>
       <description>
         
@@ -703,7 +684,6 @@ PixInsight, Affinity Photo&lt;/p&gt;
       <title>Enhancements for my Dobson Factory telescope</title>
       <link>https://fdesvallees.github.io/en/astronomy/scope_enhancements/</link>
       <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/scope_enhancements/</guid>
       <description>
         
@@ -722,7 +702,6 @@ Filter drawer - with filter in place&lt;/p&gt;
       <title>Equatorial table for my 12&#34; Dobson (3)</title>
       <link>https://fdesvallees.github.io/en/astronomy/eq_table-3/</link>
       <pubDate>Sat, 06 Aug 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/eq_table-3/</guid>
       <description>
         
@@ -740,7 +719,6 @@ Filter drawer - with filter in place&lt;/p&gt;
       <title>Equatorial table for my 12&#34; Dobson (2)</title>
       <link>https://fdesvallees.github.io/en/astronomy/eq_table-2/</link>
       <pubDate>Tue, 19 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/eq_table-2/</guid>
       <description>
         
@@ -758,7 +736,6 @@ Filter drawer - with filter in place&lt;/p&gt;
       <title>Equatorial table for my 12&#34; Dobson</title>
       <link>https://fdesvallees.github.io/en/astronomy/eq_table/</link>
       <pubDate>Thu, 14 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/eq_table/</guid>
       <description>
         
@@ -799,7 +776,6 @@ Filter drawer - with filter in place&lt;/p&gt;
       <title>Rainbow</title>
       <link>https://fdesvallees.github.io/en/astronomy/arc-en-ciel/</link>
       <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/arc-en-ciel/</guid>
       <description>
         
@@ -814,7 +790,6 @@ Filter drawer - with filter in place&lt;/p&gt;
       <title>Nuit Coupoles Ouvertes 2015</title>
       <link>https://fdesvallees.github.io/en/astronomy/nco-2015/</link>
       <pubDate>Tue, 23 Jun 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/nco-2015/</guid>
       <description>
         
@@ -835,7 +810,6 @@ Filter drawer - with filter in place&lt;/p&gt;
       <title>Telescopes</title>
       <link>https://fdesvallees.github.io/en/astronomy/telescopes/</link>
       <pubDate>Tue, 16 Jun 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/telescopes/</guid>
       <description>
         
@@ -854,7 +828,6 @@ Then of course a few eyepieces: a 24mm Panoptic, an 11mm Nagler and a 5mm Takaha
       <title>Beautiful thunderstorm above Nice yesterday</title>
       <link>https://fdesvallees.github.io/en/astronomy/beautiful-thunderstorm-above-nice-yesterday/</link>
       <pubDate>Tue, 08 Jul 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/astronomy/beautiful-thunderstorm-above-nice-yesterday/</guid>
       <description>
         

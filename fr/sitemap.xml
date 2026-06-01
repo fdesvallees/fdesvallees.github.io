@@ -1,18 +1,32 @@
+
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fdesvallees.github.io/fr/astronomy/ngc_4565/</loc>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr-FR"
+                href="https://fdesvallees.github.io/fr/astronomy/ngc_4565/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-EN"
+                href="https://fdesvallees.github.io/en/astronomy/ngc_4565/"
+                />
+  </url><url>
     <loc>https://fdesvallees.github.io/fr/astronomy/ngc_2238/</loc>
     <lastmod>2026-02-19T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="en-EN"
-                href="https://fdesvallees.github.io/en/astronomy/ngc_2238/"
+                hreflang="fr-FR"
+                href="https://fdesvallees.github.io/fr/astronomy/ngc_2238/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="fr-FR"
-                href="https://fdesvallees.github.io/fr/astronomy/ngc_2238/"
+                hreflang="en-EN"
+                href="https://fdesvallees.github.io/en/astronomy/ngc_2238/"
                 />
   </url><url>
     <loc>https://fdesvallees.github.io/fr/astronomy/ic_342/</loc>
@@ -45,13 +59,13 @@
     <lastmod>2025-12-10T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="en-EN"
-                href="https://fdesvallees.github.io/en/astronomy/observatory/"
+                hreflang="fr-FR"
+                href="https://fdesvallees.github.io/fr/astronomy/observatory/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="fr-FR"
-                href="https://fdesvallees.github.io/fr/astronomy/observatory/"
+                hreflang="en-EN"
+                href="https://fdesvallees.github.io/en/astronomy/observatory/"
                 />
   </url><url>
     <loc>https://fdesvallees.github.io/fr/astronomy/lobsterclaw/</loc>
@@ -110,13 +124,13 @@
     <lastmod>2025-05-25T14:46:17+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="en-EN"
-                href="https://fdesvallees.github.io/en/astronomy/"
+                hreflang="fr-FR"
+                href="https://fdesvallees.github.io/fr/astronomy/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="fr-FR"
-                href="https://fdesvallees.github.io/fr/astronomy/"
+                hreflang="en-EN"
+                href="https://fdesvallees.github.io/en/astronomy/"
                 />
   </url><url>
     <loc>https://fdesvallees.github.io/fr/</loc>
@@ -136,26 +150,26 @@
     <lastmod>2025-05-25T14:46:17+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="en-EN"
-                href="https://fdesvallees.github.io/en/woodworking/"
+                hreflang="fr-FR"
+                href="https://fdesvallees.github.io/fr/woodworking/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="fr-FR"
-                href="https://fdesvallees.github.io/fr/woodworking/"
+                hreflang="en-EN"
+                href="https://fdesvallees.github.io/en/woodworking/"
                 />
   </url><url>
     <loc>https://fdesvallees.github.io/fr/about/</loc>
     <lastmod>2025-05-25T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="en-EN"
-                href="https://fdesvallees.github.io/en/about/"
+                hreflang="fr-FR"
+                href="https://fdesvallees.github.io/fr/about/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="fr-FR"
-                href="https://fdesvallees.github.io/fr/about/"
+                hreflang="en-EN"
+                href="https://fdesvallees.github.io/en/about/"
                 />
   </url><url>
     <loc>https://fdesvallees.github.io/fr/astronomy/ic_5146_2/</loc>
@@ -500,13 +514,13 @@
     <lastmod>2020-03-25T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="en-EN"
-                href="https://fdesvallees.github.io/en/astronomy/rosette_nebula/"
+                hreflang="fr-FR"
+                href="https://fdesvallees.github.io/fr/astronomy/rosette_nebula/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="fr-FR"
-                href="https://fdesvallees.github.io/fr/astronomy/rosette_nebula/"
+                hreflang="en-EN"
+                href="https://fdesvallees.github.io/en/astronomy/rosette_nebula/"
                 />
   </url><url>
     <loc>https://fdesvallees.github.io/fr/astronomy/ap600_pier/</loc>
@@ -617,13 +631,13 @@
     <lastmod>2015-10-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="en-EN"
-                href="https://fdesvallees.github.io/en/astronomy/arc-en-ciel/"
+                hreflang="fr-FR"
+                href="https://fdesvallees.github.io/fr/astronomy/arc-en-ciel/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="fr-FR"
-                href="https://fdesvallees.github.io/fr/astronomy/arc-en-ciel/"
+                hreflang="en-EN"
+                href="https://fdesvallees.github.io/en/astronomy/arc-en-ciel/"
                 />
   </url><url>
     <loc>https://fdesvallees.github.io/fr/astronomy/nco-2015/</loc>

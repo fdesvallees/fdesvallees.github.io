@@ -4,7 +4,7 @@
     <link>https://fdesvallees.github.io/en/apps/</link>
     <description>Recent content in Apps on François&#39; blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-EN</language>
+    <copyright>en-EN</copyright>
     <lastBuildDate>Sun, 25 May 2025 00:00:00 +0000</lastBuildDate>
     
 	  <atom:link href="https://fdesvallees.github.io/en/apps/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +19,6 @@
       <title>Sky Map</title>
       <link>https://fdesvallees.github.io/en/apps/skymap/</link>
       <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/apps/skymap/</guid>
       <description>
         
@@ -39,7 +38,6 @@ To save memory and speed up loading, the constellation lines and boundaries are 
       <title>Planets in 3D</title>
       <link>https://fdesvallees.github.io/en/apps/planets/</link>
       <pubDate>Fri, 22 Dec 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://fdesvallees.github.io/en/apps/planets/</guid>
       <description>
         
